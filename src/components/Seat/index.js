@@ -1,23 +1,16 @@
 import React from "react";
 import "./seat.css";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { SeatPlayer } from "../SeatPlayer";
 import EmptySeat from "../EmptySeat";
-// import { fillterMessage, fillterParas } from "../../utils/filter-message";
 
-const Seat = ({ seatid, receiveMsg }) => {
+const Seat = ({ seatid }) => {
   let playerName = "";
   let avartarSource = "";
   let chips = "";
   let render_seat;
 
-  // ************** Test *************
-  // const messagef = fillterMessage(receiveMsg, "playerSitout");
-  // const messagebf = fillterMessage(receiveMsg, "emptySeat");
-
-  // console.log(messagef);
-  // console.log(messagebf);
-  // ********************************************************
+  const receiveMsg = useSelector(state => state.receiveMsg);
 
   // get all empty seat
   const emptySeatID = receiveMsg
@@ -99,8 +92,4 @@ const Seat = ({ seatid, receiveMsg }) => {
   }
 };
 
-function mapStateToProps(state) {
-  return { receiveMsg: state.receiveMsg };
-}
-
-export default connect(mapStateToProps)(Seat);
+export default Seat;

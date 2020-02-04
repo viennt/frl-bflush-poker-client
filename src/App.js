@@ -14,10 +14,10 @@ class App extends Component {
     super();
     this.state = {
       mgs: window.q.gtbl_id_enc, // Get the gtbl_id_enc from window output
-      receiveMsg: [], // This varibale to store received messages from Socket IO response.
       msgInput: [], // Send message
       paraInput: []
     };
+    this.receiveMsg = []; // This varibale to store received messages from Socket IO response.
   }
 
   componentWillMount() {
@@ -31,12 +31,11 @@ class App extends Component {
       var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
       var message = params.shift(); // message, eg. playerSitOut, clearTable
       //console.log("Recevied " + message + ", with params " + params.join("; "));
-      this.setState({
-        receiveMsg: [...this.state.receiveMsg, { message, params }]
-      });
+      this.receiveMsg = [...this.receiveMsg, { message, params }]
+
       this.props.dispatch({
         type: "UPDATE_RECEIVE",
-        payload: this.state.receiveMsg
+        payload: this.receiveMsg
       });
     });
   }
@@ -59,8 +58,6 @@ class App extends Component {
 
   render() {
     const { receiveMsg, modalShow, curSeatID } = this.props;
-    console.log(receiveMsg);
-    console.log(curSeatID);
     const popupBuyin_mes = receiveMsg.filter(receive => {
       return receive.message === "popupBuyin";
     });

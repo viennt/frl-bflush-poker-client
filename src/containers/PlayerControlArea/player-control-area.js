@@ -1,14 +1,19 @@
 import React from "react";
 import "./player-control-area.css";
-import { connect } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
 import { FilterSeatPlayerByUser } from "../../utils/filter";
 
-const PlayerControlArea = ({ receiveMsg, curSeat, dispatch }) => {
+const PlayerControlArea = (props) => {
   let fold_btn = "";
   let call_btn = "";
   let call_any_btn = "";
   let bet_btn = "";
   let show_player_control = false;
+
+  const receiveMsg = useSelector(state => state.receiveMsg);
+  const curSeat = useSelector(state => state.curSeatID);
+  const dispatch = useDispatch();
+
   let seat_user_id = FilterSeatPlayerByUser(receiveMsg);
   if (typeof seat_user_id !== "undefined" || seat_user_id != null) {
     dispatch({
@@ -50,11 +55,4 @@ const PlayerControlArea = ({ receiveMsg, curSeat, dispatch }) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    receiveMsg: state.receiveMsg,
-    curSeat: state.curSeatID
-  };
-}
-
-export default connect(mapStateToProps)(PlayerControlArea);
+export default PlayerControlArea;
