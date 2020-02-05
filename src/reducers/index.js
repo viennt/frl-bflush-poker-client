@@ -34,7 +34,9 @@ const reducer = (state = initialState, action) => {
 
       //end Vien case
     default:
-      return state;
+      let customData = {};
+      customData[action.type] = action.payload;
+      return {...state, ...customData};
   }
 };
 
