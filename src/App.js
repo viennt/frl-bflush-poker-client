@@ -40,22 +40,6 @@ class App extends Component {
     });
   }
 
-  onMessageSubmitInput = () => {
-    sendMsg(this.state.msgInput, [this.state.paraInput]);
-  };
-
-  handleMessageChange = e => {
-    this.setState({ msgInput: e.target.value }, () =>
-      console.log(this.state.msgInput)
-    );
-  };
-
-  handleParasChange = e => {
-    this.setState({ paraInput: e.target.value }, () =>
-      console.log(this.state.paraInput)
-    );
-  };
-
   render() {
     const { receiveMsg, modalShow, curSeatID } = this.props;
     const popupBuyin_mes = receiveMsg.filter(receive => {
@@ -64,7 +48,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="header-area"></div>
+        <div className="header-area"/>
         <div id="main-area">
           <Seat seatid="1" />
           <Seat seatid="2" />
@@ -80,26 +64,6 @@ class App extends Component {
           <CardArea />
         </div>
         <PlayerControlArea />
-
-        <div className="container">
-          <div style={{ marginRight: 20 }}>Mesages</div>
-          <input
-            style={{ marginRight: 20 }}
-            className="search"
-            type="search"
-            placeholder="Input message"
-            onChange={this.handleMessageChange}
-          />
-          <div style={{ marginRight: 20 }}>Parameter</div>
-          <input
-            style={{ marginRight: 20 }}
-            className="search"
-            type="search"
-            placeholder="Input params"
-            onChange={this.handleParasChange}
-          />
-          <button onClick={this.onMessageSubmitInput}>Send message</button>
-        </div>
         <BuyInModal
           buyin={popupBuyin_mes}
           show={modalShow}
