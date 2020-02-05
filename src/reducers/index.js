@@ -23,6 +23,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         curSeatID: action.payload
       };
+
+      //Quang case
+
+
+      //end Quang case
+
+      //Vien Case
+
+
+      //end Vien case
     default:
       return state;
   }
