@@ -25,8 +25,17 @@ const reducer = (state = initialState, action) => {
       };
 
       //Quang case
+    case "updateChat":
+      let update = state.updateChat;
+      update.push({
+        username: action.payload[0],
+        content: action.payload[1]
+      });
 
-
+      return {
+        ...state,
+        updateChat: update
+      };
       //end Quang case
 
       //Vien Case

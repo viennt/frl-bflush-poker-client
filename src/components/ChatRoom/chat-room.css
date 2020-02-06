@@ -1,0 +1,12 @@
+.chat-room {
+    position: absolute;
+    bottom: 5%;
+    z-index: 9999;
+    left: 35%;
+}
+.chat-room .display-chat {
+    background: white;
+    overflow-y: scroll;
+    max-height: 70px;
+    min-height: 70px;
+}
