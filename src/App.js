@@ -10,6 +10,7 @@ import BuyInModal from "./containers/BuyInModal/buyin-modal";
 import PlayerControlArea from "./containers/PlayerControlArea/player-control-area";
 
 import "./App.css";
+import ChatRoom from "./components/ChatRoom";
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +34,12 @@ class App extends Component {
       var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
       var message = params.shift(); // message, eg. playerSitOut, clearTable
       //console.log("Recevied " + message + ", with params " + params.join("; "));
-      this.receiveMsg = [...this.receiveMsg, { message, params }]
+      this.receiveMsg = [...this.receiveMsg, { message, params }];
+
+      this.props.dispatch({
+        type: message,
+        payload: params
+      });
 
       this.props.dispatch({
         type: "UPDATE_RECEIVE",
@@ -76,6 +82,7 @@ class App extends Component {
             })
           }
         />
+        <ChatRoom />
       </div>
     );
   }
