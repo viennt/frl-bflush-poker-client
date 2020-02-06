@@ -1,19 +1,22 @@
 .seat {
   width: 4rem;
-  height: 5rem;
-  /*border-radius: 4px;*/
+  height: 4.5rem;
+  border-radius: 2px;
   border: 1px solid #7ccbfc;
   position: absolute;
+  top: calc(50% - 2rem);
+  left: calc(50% - 2rem);
   display: flex;
   flex-direction: column;
+  font-size: .5rem;
 }
 
 .seat__status {
   width: 100%;
-  height: 0.8rem;
+  height: 0.9rem;
   text-align: center;
-  font-size: .5rem;
   text-transform: uppercase;
+  padding: 0 4px;
 }
 .seat__avatar {
   width: 100%;
@@ -21,4 +24,189 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.seat__cards {
+  width: 2rem;
+  margin-left: calc((100% - 2rem) / 2);
+  margin-top: -1.75rem;
+  margin-bottom: -2.25rem;
+  display: flex;
+}
+.seat__card {
+  width: 1.25rem;
+  height: 4rem;
+  background-image: url(https://i.ya-webdesign.com/images/playing-cards-back-png-1.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.seat__card:first-child {
+  margin-right: -.5rem;
+}
+.seat__card:last-child {
+  margin-left: -.5rem;
+}
+
+.seat__content {
+  width: 100%;
+  text-align: center;
+}
+.seat__content__title {
+  width: 100%;
+  height: 0.9rem;
+  background: #1F275A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px;
+}
+.seat__content__money {
+  width: 100%;
+  height: 0.8rem;
+  background: #0B0B0B;
+}
+
+@media (min-width: 640px) {
+  .seat {
+    width: 4rem;
+    height: 4.5rem;
+    border-radius: 2px;
+    top: calc(50% - 2rem);
+    left: calc(50% - 2rem);
+    font-size: .5rem;
+  }
+  .seat__status,
+  .seat__content__title,
+  .seat__content__money {
+    height: 0.9rem;
+    padding: 0 4px;
+  }
+  .seat__status {
+    font-size: 6px;
+    padding: 1px 8px;
+  }
+  .seat__cards {
+    width: 2rem;
+    margin-left: calc((100% - 2rem) / 2);
+    margin-top: -1.75rem;
+    margin-bottom: -2.25rem;
+  }
+  .seat__card {
+    width: 1.5rem;
+  }
+  .seat__card:first-child {
+    margin-right: -.5rem;
+  }
+  .seat__card:last-child {
+    margin-left: -.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .seat {
+    width: 5rem;
+    height: 6.5rem;
+    border-radius: 2px;
+    left: calc(50% - 2.5rem);
+    top: calc(50% - 2.25rem);
+    font-size: .7rem;
+  }
+  .seat__status,
+  .seat__content__title,
+  .seat__content__money {
+    height: 1.1rem;
+    padding: 0 8px;
+  }
+  .seat__status {
+    font-size: 8px;
+    padding: 2px 8px;
+  }
+  .seat__cards {
+    width: 3rem;
+    margin-left: calc((100% - 3rem) / 2);
+    margin-top: -3rem;
+    margin-bottom: -2rem;
+  }
+  .seat__card {
+    width: 2rem;
+  }
+  .seat__card:first-child {
+    margin-right: -.5rem;
+  }
+  .seat__card:last-child {
+    margin-left: -.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .seat {
+    width: 7rem;
+    height: 10rem;
+    border-radius: 2px;
+    left: calc(50% - 3.5rem);
+    top: calc(50% - 5rem);
+    font-size: 1rem;
+  }
+  .seat__status,
+  .seat__content__title,
+  .seat__content__money {
+    height: 1.6rem;
+    padding: 0 12px;
+  }
+  .seat__status {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+  }
+  .seat__cards {
+    width: 4.5rem;
+    margin-left: calc((100% - 4.5rem) / 2);
+    margin-top: -3rem;
+    margin-bottom: -2rem;
+  }
+  .seat__card {
+    width: 3rem;
+  }
+  .seat__card:first-child {
+    margin-right: -.75rem;
+  }
+  .seat__card:last-child {
+    margin-left: -.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .seat {
+    width: 7rem;
+    height: 10rem;
+    border-radius: 2px;
+    left: calc(50% - 3.5rem);
+    top: calc(50% - 5rem);
+    font-size: 1rem;
+  }
+  .seat__status,
+  .seat__content__title,
+  .seat__content__money {
+    height: 1.6rem;
+    padding: 0 16px;
+  }
+  .seat__status {
+    font-size: 12px;
+    padding: 4px 16px;
+  }
+  .seat__cards {
+    width: 4.5rem;
+    margin-left: calc((100% - 4.5rem) / 2);
+    margin-top: -3rem;
+    margin-bottom: -2rem;
+  }
+  .seat__card {
+    width: 3rem;
+  }
+  .seat__card:first-child {
+    margin-right: -.75rem;
+  }
+  .seat__card:last-child {
+    margin-left: -.75rem;
+  }
 }

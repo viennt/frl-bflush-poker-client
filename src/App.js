@@ -61,7 +61,6 @@ class App extends Component {
           <Seat seatid="7" />
           <Seat seatid="8" />
           <Seat seatid="9" />
-          <Seat seatid="10" />
           <PlayAreaBackground />
           <CardArea />
         </PlayArea>

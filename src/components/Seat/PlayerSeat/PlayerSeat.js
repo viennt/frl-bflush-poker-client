@@ -4,13 +4,16 @@ import "./player-seat.css";
 const PlayerSeat = ({ avatarSource, playerName, chips }) => {
   return (
     <div className="seat seat--player">
-      <div className="seat__status">Fold</div>
+      <div className="seat__status">{chips}</div>
       <div className="seat__avatar" style={{backgroundImage: `url(${avatarSource})`}} />
-      {/*<div className="player-seat-content">*/}
-      {/*  <div className="player-seat-content-title">{playerName}</div>*/}
-      {/*  <div className="player-seat-content-line" />*/}
-      {/*  <div className="player-seat-content-money">{chips}</div>*/}
-      {/*</div>*/}
+      <div className="seat__cards">
+        <div className="seat__card" />
+        <div className="seat__card" />
+      </div>
+      <div className="seat__content">
+        <div className="seat__content__title">{playerName}</div>
+        <div className="seat__content__money">6,800$</div>
+      </div>
     </div>
   );
 };
