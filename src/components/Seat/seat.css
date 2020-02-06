@@ -4,11 +4,12 @@
   border-radius: 2px;
   border: 1px solid #7ccbfc;
   position: absolute;
-  top: calc(50% - 2rem);
   left: calc(50% - 2rem);
+  top: calc(50% - 2.25rem);
   display: flex;
   flex-direction: column;
   font-size: .5rem;
+  overflow: hidden;
 }
 
 .seat__status {
@@ -65,6 +66,7 @@
   width: 100%;
   height: 0.8rem;
   background: #0B0B0B;
+  color: #7ccbfc;
 }
 
 @media (min-width: 640px) {
@@ -72,8 +74,8 @@
     width: 4rem;
     height: 4.5rem;
     border-radius: 2px;
-    top: calc(50% - 2rem);
     left: calc(50% - 2rem);
+    top: calc(50% - 2.25rem);
     font-size: .5rem;
   }
   .seat__status,
@@ -107,9 +109,9 @@
   .seat {
     width: 5rem;
     height: 6.5rem;
-    border-radius: 2px;
+    border-radius: 4px;
     left: calc(50% - 2.5rem);
-    top: calc(50% - 2.25rem);
+    top: calc(50% - 3.25rem);
     font-size: .7rem;
   }
   .seat__status,
@@ -143,7 +145,7 @@
   .seat {
     width: 7rem;
     height: 10rem;
-    border-radius: 2px;
+    border-radius: 4px;
     left: calc(50% - 3.5rem);
     top: calc(50% - 5rem);
     font-size: 1rem;
@@ -179,8 +181,8 @@
   .seat {
     width: 7rem;
     height: 10rem;
-    border-radius: 2px;
-    left: calc(50% - 3.5rem);
+    border-radius: 6px;
+    left: calc(50% - 3rem);
     top: calc(50% - 5rem);
     font-size: 1rem;
   }
