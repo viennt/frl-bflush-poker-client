@@ -1,11 +1,12 @@
 import React from "react";
-import "./empty-seat.css";
-import { sendMsg } from "../../utils/socket-io-lib";
 import { useDispatch} from "react-redux";
+
+import { sendMsg } from "../../../utils/socket-io-lib";
+
+import "./empty-seat.css";
 
 const EmptySeat = ({ seatid }) => {
   const dispatch = useDispatch();
-
 
   const SendMessageToServer = () => {
     sendMsg("reserveSeat", [seatid]);
@@ -20,10 +21,8 @@ const EmptySeat = ({ seatid }) => {
   };
 
   return (
-    <div className="seat-player">
-      <button onClick={SendMessageToServer} className="empty-seat-btn">
-        Empty Seat
-      </button>
+    <div className="seat seat--empty" onClick={SendMessageToServer}>
+      <span>empty</span>
     </div>
   );
 };

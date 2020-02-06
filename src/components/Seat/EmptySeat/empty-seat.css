@@ -1,0 +1,9 @@
+.seat--empty {
+  align-items: center;
+  justify-content: center;
+  background: #FCFCFC;
+  color: #444351;
+  font-weight: bold;
+  z-index: 100;
+  cursor: pointer;
+}

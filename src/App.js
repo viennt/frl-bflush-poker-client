@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { sendMsg, socket } from "./utils/socket-io-lib";
-import { FilterPlayerDealerID } from "./utils/filter";
-import "./App.css";
 import { connect } from "react-redux";
-import Seat from "./components/Seat";
-import { TableImage } from "./components/TableImage";
+import { sendMsg, socket } from "./utils/socket-io-lib";
+
+import { Seat } from "./components/Seat";
+import { PlayArea, PlayAreaBackground } from "./components/PlayArea";
+
 import CardArea from "./containers/CardArea";
 import BuyInModal from "./containers/BuyInModal/buyin-modal";
 import PlayerControlArea from "./containers/PlayerControlArea/player-control-area";
+
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -47,9 +49,9 @@ class App extends Component {
     });
 
     return (
-      <div className="App">
-        <div className="header-area"/>
-        <div id="main-area">
+      <div className="game">
+        <div className="game__header"/>
+        <PlayArea>
           <Seat seatid="1" />
           <Seat seatid="2" />
           <Seat seatid="3" />
@@ -60,9 +62,9 @@ class App extends Component {
           <Seat seatid="8" />
           <Seat seatid="9" />
           <Seat seatid="10" />
-          <TableImage />
+          <PlayAreaBackground />
           <CardArea />
-        </div>
+        </PlayArea>
         <PlayerControlArea />
         <BuyInModal
           buyin={popupBuyin_mes}

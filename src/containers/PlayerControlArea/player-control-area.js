@@ -42,11 +42,11 @@ const PlayerControlArea = (props) => {
   }
 
   if (curSeat === 0) {
-    return <div id="control-area"></div>;
+    return <div className="control-area" />;
   }
 
   return (
-    <div id="control-area">
+    <div className="control-area">
       {fold_btn}
       {call_btn}
       {call_any_btn}
