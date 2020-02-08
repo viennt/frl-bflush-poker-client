@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { sendMsg, socket } from "./utils/socket-io-lib";
 
-import { Seat } from "./components/Seat";
-import { PlayArea, PlayAreaBackground } from "./components/PlayArea";
+import { PlayArea } from "./components/PlayArea";
 
-import CardArea from "./containers/CardArea";
 import BuyInModal from "./containers/BuyInModal/buyin-modal";
 import PlayerControlArea from "./containers/PlayerControlArea/player-control-area";
 
 import "./App.css";
-import ChatRoom from "./components/ChatRoom";
+import GameHeader from "./components/GameHeader";
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +31,6 @@ class App extends Component {
     socket.on("message", text => {
       var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
       var message = params.shift(); // message, eg. playerSitOut, clearTable
-      //console.log("Recevied " + message + ", with params " + params.join("; "));
       this.receiveMsg = [...this.receiveMsg, { message, params }];
 
       this.props.dispatch({
@@ -56,21 +53,8 @@ class App extends Component {
 
     return (
       <div className="game">
-        <div className="game__header"/>
-        <PlayArea>
-          <Seat seatid="1" />
-          <Seat seatid="2" />
-          <Seat seatid="3" />
-          <Seat seatid="4" />
-          <Seat seatid="5" />
-          <Seat seatid="6" />
-          <Seat seatid="7" />
-          <Seat seatid="8" />
-          <Seat seatid="9" />
-          <Seat seatid="10" />
-          <PlayAreaBackground />
-          <CardArea />
-        </PlayArea>
+        <GameHeader/>
+        <PlayArea/>
         <PlayerControlArea />
         <BuyInModal
           buyin={popupBuyin_mes}
@@ -82,7 +66,7 @@ class App extends Component {
             })
           }
         />
-        <ChatRoom />
+        {/*<ChatRoom />*/}
       </div>
     );
   }

@@ -8,16 +8,67 @@ body {
 }
 .game__header {
   width: 100%;
-  height: 2rem;
+  height: 3rem;
   margin: 0 auto;
   background-color: #2D2F34;
   border-bottom: 1px solid #6f6f6f;
 }
+.game__header .menu-button.close-button {
+  background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%), linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
+  border: none;
+  font-weight: bold;
+}
+.game__header .menu-button {
+  border: 1.5px solid #7CCBFC;
+  background: #2D2F34;
+  color: white;
+  /* margin-top: 5px; */
+  padding: 5px 40px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+.game__header .spacer {
+  flex-grow: 1;
+}
+.game__header .list-menu {
+  position: absolute;
+  left: 7px;
+  top: 5px;
+  z-index: 999;
+}
+.game__header .list-menu-section {
+  max-width: 35vw;
+  background: #363636;
+  opacity: 0.84;
+  border: 1px solid #045388;
+  /* box-sizing: border-box; */
+  padding: 45px 20px 20px 20px;
+  transition: opacity ease-in-out 0.5s;
+}
+.game__header .list-menu hr{
+  background: #045388;
+}
+.game__header .list-menu .menu-items {
+  margin: 25px 0;
+}
+.game__header .list-menu .menu-items span {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.game__header .menu-section {
+  color: white;
+  font-style: italic;
+  margin-top: 25px;
+}
+.game__header .item-status {
+  color: white;
+}
+.game__header .update-status {
+  margin-right: 20px;
 }

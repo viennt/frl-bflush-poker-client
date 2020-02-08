@@ -37,7 +37,7 @@
 .seat__card {
   width: 1.25rem;
   height: 4rem;
-  background-image: url(https://i.ya-webdesign.com/images/playing-cards-back-png-1.png);
+  /*background-image: url(https://i.ya-webdesign.com/images/playing-cards-back-png-1.png);*/
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;

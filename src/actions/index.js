@@ -14,7 +14,7 @@ const initialState = {
   playerDealer:[],
   playerAction:[],
   playerTurn:[],
-  showCard:[],
+  showCard:{},
   highlightCards:[],
   playerWinner:[],
   playerActionStatus:[],
@@ -22,7 +22,7 @@ const initialState = {
   mainPotStatus:[],
   updateBlinds:[],
   buyinSuccessful:[],
-  TableDetails:[],
+  tableDetails:[],
   connectionEstablished:[],
   reserveSeat:[],
   clearTable:[],
@@ -40,7 +40,8 @@ const initialState = {
   sitOutPlayer:[],
   disconnectionTimer:[],
   cancelBuyin:[],
-  popupRebuy:[]
+  popupRebuy:[],
+  allStatus: []
 };
 
 export default initialState;
