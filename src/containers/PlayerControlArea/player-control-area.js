@@ -3,6 +3,9 @@ import "./player-control-area.css";
 import { useSelector , useDispatch } from "react-redux";
 import { FilterSeatPlayerByUser } from "../../utils/filter";
 
+import FoldButton from "../../components/Buttons/FoldButton";
+import CallButton from "../../components/Buttons/CallButton";
+
 const PlayerControlArea = (props) => {
   let fold_btn = "";
   let call_btn = "";
@@ -35,8 +38,8 @@ const PlayerControlArea = (props) => {
   }
 
   if (show_player_control) {
-    fold_btn = <button className="control-button">Fold</button>;
-    call_btn = <button className="control-button">Call</button>;
+    fold_btn = <FoldButton />;
+    call_btn = <CallButton />;
     call_any_btn = <button className="control-button">Call any</button>;
     bet_btn = <button className="control-button">Bet</button>;
   }
