@@ -13,27 +13,11 @@ const PlayerControlArea = (props) => {
   let bet_btn = "";
   let show_player_control = false;
 
-  const receiveMsg = useSelector(state => state.receiveMsg);
   const curSeat = useSelector(state => state.curSeatID);
-  const dispatch = useDispatch();
+  const playerSitout = useSelector(state => state.playerSitout);
 
-  let seat_user_id = FilterSeatPlayerByUser(receiveMsg);
-  if (typeof seat_user_id !== "undefined" || seat_user_id != null) {
-    dispatch({
-      type: "SET_CUR_SEAT_ID",
-      payload: seat_user_id.params[0]
-    });
-  }
 
-  const sitOutPlayerID = receiveMsg
-    .filter(receive => {
-      return receive.message === "playerSitout";
-    })
-    .filter(seat => {
-      return seat.params[0] === curSeat;
-    });
-
-  if (Object.keys(sitOutPlayerID).length < 1) {
+  if (!playerSitout.includes(curSeat)) {
     show_player_control = true;
   }
 

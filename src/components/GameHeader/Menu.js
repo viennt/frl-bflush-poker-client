@@ -1,8 +1,11 @@
 import React,{useState} from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
+import {useSelector} from "react-redux";
 
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
+    const isSittingOut = useSelector(state => state.isSittingOut);
+
 
     const renderListMenu = () => {
         let menuItems = [
@@ -57,6 +60,14 @@ const Menu = (props) => {
         setShowMenu(!showMenu)
     };
 
+    const renderButton = () => {
+        if (isSittingOut) {
+            return <button>I'm Back!</button>
+        } else {
+            return <button>Sit out next hand</button>
+        }
+    }
+
     return (
         <div className={'list-menu'}>
             <span
@@ -68,6 +79,7 @@ const Menu = (props) => {
             {
                 showMenu &&
                     <div className={'list-menu-section'}>
+                        {renderButton()}
                         <hr/>
                         <p className={'menu-section'}>The below options will fold your hand and cause you to leave the table</p>
                         {renderListMenu()}

@@ -1,5 +1,10 @@
 import initialState from "../actions";
-import {generatePlayerTurnString, handlePlayerTurn} from "../controller/playerTurnController";
+import {
+  generatePlayerTurnString,
+  handleEmptySeat, handlePlayerBackin,
+  handlePlayerSeat, handlePlayerSitout,
+  handlePlayerTurn
+} from "../controller/playerController";
 import {handleShowCardParam} from "../controller/showCardController";
 
 // Create Reducer
@@ -82,7 +87,7 @@ const reducer = (state = initialState, action) => {
       if (playerTurnAllStatus.length === 0) {
         playerTurnAllStatus.push(action.payload)
       } else {
-        playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload) ]
+        playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
       }
       return {
         ...state,
@@ -94,6 +99,49 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showCard
+      };
+    case "seatPlayer":
+      let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
+      if (state.modalShow) {
+        state.modalShow = false;
+      }
+      return {
+        ...state,
+        ...seatPlayer
+      };
+    case "emptySeat":
+      let emptySeat = handleEmptySeat(state.emptySeat,action.payload);
+      return {
+        ...state,
+        emptySeat
+      };
+    case "playerSitout":
+      let playerSitout = handlePlayerSitout(state.playerSitout,action.payload);
+      if (action.payload[0] == state.curSeatID) {
+        state.isSittingOut = true
+      }
+      return {
+        ...state,
+        playerSitout
+      };
+    case "playerBackin":
+      let playerBackin = handlePlayerBackin(state.playerBackin,action.payload);
+      if (action.payload[0] == state.curSeatID) {
+        state.isSittingOut = false
+      }
+      return {
+        ...state,
+        playerBackin
+      };
+    case "reEstablishPos":
+      return {
+        ...state,
+        reEstablishPos: action.payload[0]
+      };
+    case "resetClient":
+      return {
+        ...state,
+        curSeatID: action.payload[0]
       };
       //end Quang case
 
