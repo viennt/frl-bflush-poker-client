@@ -9,7 +9,7 @@ export function handlePlayerTurn(payload) {
 }
 
 export function generatePlayerTurnString(payload,user) {
-    return user[payload[0]] + ' It is your turn, you have ' + payload[1] + ' seconds.'
+    return user[payload[0]].user_name + ' It is your turn, you have ' + payload[1] + ' seconds.'
 }
 
 export function handlePlayerSeat(currentState, emptySeat, payload) {

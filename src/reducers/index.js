@@ -25,11 +25,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         modalShow: action.payload
       };
-    case "SET_CUR_SEAT_ID":
-      return {
-        ...state,
-        curSeatID: action.payload
-      };
 
       //Quang case
     case "updateChat":
@@ -139,9 +134,20 @@ const reducer = (state = initialState, action) => {
         reEstablishPos: action.payload[0]
       };
     case "resetClient":
+      console.log(action.payload[0])
       return {
         ...state,
         curSeatID: action.payload[0]
+      };
+    // case "clearTable":
+    //   console.log('this')
+    //   return {
+    //     ...initialState
+    //   };
+    case "mainPotStatus":
+      return {
+        ...state,
+        mainPotStatus: action.payload[0]
       };
       //end Quang case
 

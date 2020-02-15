@@ -1,10 +1,12 @@
 .card-area {
   position: absolute;
-  width: 180px;
-  height: 52px;
-  top: 90px;
-  left: 202px;
+  width: 25rem;
+  height: 7rem;
+  top: calc(50% - 3.5rem);
+  left: calc(50% - 12.5rem);
   background: blue;
   display: flex;
   justify-content: space-around;
+  right: 0;
+  bottom: 0;
 }

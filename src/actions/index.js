@@ -20,7 +20,7 @@ const initialState = {
   playerWinner:[],
   playerActionStatus:[],
   playerBetStatus:[],
-  mainPotStatus:[],
+  mainPotStatus: null,
   updateBlinds:[],
   buyinSuccessful:[],
   tableDetails:[],

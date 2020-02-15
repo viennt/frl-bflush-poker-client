@@ -32,7 +32,8 @@ class App extends Component {
       var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
       var message = params.shift(); // message, eg. playerSitOut, clearTable
       this.receiveMsg = [...this.receiveMsg, { message, params }];
-
+      // console.log(message)
+      // console.log(params)
       this.props.dispatch({
         type: message,
         payload: params

@@ -60,11 +60,29 @@ const Menu = (props) => {
         setShowMenu(!showMenu)
     };
 
+    const handleSitOutAction = () => {
+        sendMsg("sitOut");
+    };
+
+    const handleBackAction = () => {
+        sendMsg("backIn")
+    };
+
     const renderButton = () => {
         if (isSittingOut) {
-            return <button>I'm Back!</button>
+            return <button
+                onClick={handleBackAction}
+                className={'menu-back-button'}
+            >
+                I'm Back!
+            </button>
         } else {
-            return <button>Sit out next hand</button>
+            return <button
+                onClick={handleSitOutAction}
+                className={'menu-sitout-button'}
+            >
+                Sit out next hand
+            </button>
         }
     }
 
