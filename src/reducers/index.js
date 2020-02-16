@@ -134,7 +134,6 @@ const reducer = (state = initialState, action) => {
         reEstablishPos: action.payload[0]
       };
     case "resetClient":
-      console.log(action.payload[0])
       return {
         ...state,
         curSeatID: action.payload[0]
@@ -162,7 +161,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         buyinSuccessful: action.payload[0]
-      }
+      };
+    case "popupRebuy":
+      console.log('rebuy message')
+      console.log(action.payload);
+      return ;
       //end Quang case
 
       //Vien Case

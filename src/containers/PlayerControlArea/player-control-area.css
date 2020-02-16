@@ -1,6 +1,6 @@
 .control-area {
   width: 100%;
-  height: 3rem;
+  height: 6rem;
   margin: 0 auto;
   background-color: #2D2F34;
   border-top: 1px solid #6f6f6f;
@@ -12,15 +12,14 @@
 }
 
 .control-button {
-  width: 90px;
-  height: 26px;
-  background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%),
-    linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
+  width: 9em;
+  height: 2.5em;
+  background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%), linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
   color: #ffffff;
   font-style: normal;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 1.2rem;
+  /* line-height: 14px; */
   border: none;
   margin-left: 12px;
   font-family: "Lato", sans-serif;

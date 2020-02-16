@@ -15,15 +15,21 @@ const PlayerSeat = ({ avatarSource, playerName, chips }) => {
     };
 
     return (
-        <div className="seat seat--player">
-            <div className="seat__status">{chips !== 'PLAYER SITTING OUT' ? '$'+chips : chips}</div>
-            <div className="seat__avatar" style={{backgroundImage: `url(${avatarSource})`}} />
-            <div className="seat__cards">
-                {renderCardInMiddle()}
+        <div className="seat seat-player row">
+            <div className="seat-player-img col-3 p-0">
+                <img
+                    alt="seat_player_img"
+                    className="seat-player-img-img"
+                    src={avatarSource}
+                />
             </div>
-            <div className="seat__content">
-                <div className="seat__content__title">{playerName}</div>
+            <div className="seat-player-content col-9">
+                <div className="seat-player-content-title">{playerName}</div>
+                <div className="seat-player-content-line" />
+                <div className="seat-player-content-money">{chips !== 'PLAYER SITTING OUT' ? '$'+chips : chips}</div>
             </div>
+            <div className={'timer'}/>
+            {renderCardInMiddle()}
         </div>
     );
 };
