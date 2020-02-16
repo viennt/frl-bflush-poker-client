@@ -9,7 +9,7 @@ const initialState = {
   updateStatus:[],
   criticalError:[],
   notify:[],
-  popupBuyin:[],
+  popupBuyin: null,
   seatPlayer:{},
   emptySeat:[],
   playerDealer:[],

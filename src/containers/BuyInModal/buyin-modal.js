@@ -1,66 +1,125 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Modal } from "react-bootstrap";
 import { sendMsg } from "../../utils/socket-io-lib";
 import "./buy-in-modal.css";
+import {useDispatch, useSelector} from "react-redux";
 
 const BuyInModal = props => {
   let minChip = 0;
   let maxChip = 0;
   let curChip = 0;
 
-  if (props.buyin[0] === undefined) {
-    return null;
-  } else {
-    minChip = props.buyin[0].params[0];
-    maxChip = props.buyin[0].params[1];
-    curChip = props.buyin[0].params[2];
+  const popupBuyin = useSelector(state => state.popupBuyin,[]);
+  const modalShow = useSelector(state => state.modalShow,[]);
+
+  useEffect(() => {
+    if (popupBuyin) {
+      setBetChip(popupBuyin.min)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [popupBuyin]);
+
+  const dispatch = useDispatch();
+  if (popupBuyin) {
+    minChip = popupBuyin.min;
+    maxChip = popupBuyin.max;
+    curChip = popupBuyin.chips;
   }
 
+  const [betChip,setBetChip] = useState(minChip);
+
+
   const SendMessageToServer = () => {
-    sendMsg("buyin", [2.0]);
+    sendMsg("buyin", [betChip, 'N']);
   };
 
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Body>
-        <div className="modal-title">Lets play! </div>
-        <div className="modal-question">How many chips would you like?</div>
-        <div className="modal-introduce-table">
-          <div className="modal-introduce-table-row01">
-            <div>Minimum buy in:</div>
-            <div> Maximum buy in:</div>
-            <div className="modal-chips-text">Your total chips: </div>
-          </div>
-          <div className="modal-introduce-table-row02">
-            <div>{minChip}</div>
-            <div>{maxChip}</div>
-            <div className="modal-chips-text">{curChip}</div>
-          </div>
-        </div>
-        <div className="modal-chips-table">
-          <button className="modal-chips-mir">-</button>
-          <div className="modal-chips-chips">{minChip}</div>
-          <button className="modal-chips-plus">+</button>
-        </div>
-        <div className="modal-chips-menu-select">
-          <button className="modal-chips-menu-select-btn">
-            Wait for Big Blind
-          </button>
-          <button
-            onClick={SendMessageToServer}
-            className="modal-chips-menu-select-btn"
-          >
-            Buy
-          </button>
-        </div>
-      </Modal.Body>
-    </Modal>
-  );
+  const cancelReverseSeat = () => {
+    sendMsg("cancelSeatReservation");
+    dispatch({
+      type: "SET_MODAL_SHOW",
+      payload: false
+    })
+  };
+
+  const waitForBigBlind = () => {
+    sendMsg("buyin", [betChip,'Y'])
+  };
+
+  const handlePlusButtonPress = () => {
+    let chipsSet = betChip;
+    if (chipsSet < maxChip) {
+      chipsSet++;
+      setBetChip(chipsSet)
+    }
+  };
+
+  const handleMinusButtonPress = () => {
+    let chipsSet = betChip;
+    if (chipsSet > 0) {
+      chipsSet--;
+      setBetChip(chipsSet)
+    }
+  };
+
+  if (popupBuyin) {
+    return (
+        <Modal
+            {...props}
+            show={modalShow}
+            onHide={cancelReverseSeat}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+          <Modal.Body>
+            <div className="modal-title">Lets play! </div>
+            <div className="modal-question">How many chips would you like?</div>
+            <div className="modal-introduce-table">
+              <div className="modal-introduce-table-row01">
+                <div>Minimum buy in:</div>
+                <div> Maximum buy in:</div>
+                <div className="modal-chips-text">Your total chips: </div>
+              </div>
+              <div className="modal-introduce-table-row02">
+                <div>{minChip}</div>
+                <div>{maxChip}</div>
+                <div className="modal-chips-text">{curChip}</div>
+              </div>
+            </div>
+            <div className="modal-chips-table">
+              <button
+                  onClick={handleMinusButtonPress}
+                  className="modal-chips-mir"
+              >
+                -
+              </button>
+              <div className="modal-chips-chips">{betChip}</div>
+              <button
+                  onClick={handlePlusButtonPress}
+                  className="modal-chips-plus"
+              >
+                +
+              </button>
+            </div>
+            <div className="modal-chips-menu-select">
+              <button
+                  onClick={waitForBigBlind}
+                  className="modal-chips-menu-select-btn"
+              >
+                Wait for Big Blind
+              </button>
+              <button
+                  onClick={SendMessageToServer}
+                  className="modal-chips-menu-select-btn"
+              >
+                Buy
+              </button>
+            </div>
+          </Modal.Body>
+        </Modal>
+    );
+  }
+  return null
 };
 
 export default BuyInModal;

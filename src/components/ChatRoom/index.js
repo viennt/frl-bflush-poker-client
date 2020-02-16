@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import ChatSection from "./chatSection";
 
 const ChatRoom = (props) => {
-    const updateChat = useSelector(state => state.updateChat);
+    const updateChat = useSelector(state => state.updateChat,[]);
 
     const messagesEndRef = useRef(null);
 

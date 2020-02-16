@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from 'react-redux'
 const UpdateStatusGame = (props) => {
 
-    const allStatus = useSelector(state => state.allStatus);
+    const allStatus = useSelector(state => state.allStatus,[]);
 
     const renderAllStatus = () => {
         return allStatus.map((item,index) => <div key={index} className={'item-status'}>{item}</div>);

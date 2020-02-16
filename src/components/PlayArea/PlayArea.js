@@ -6,7 +6,7 @@ import CardArea from "../../containers/CardArea";
 import {useSelector} from "react-redux";
 
 const PlayArea = ({ children }) => {
-    const curSeatID = useSelector(state => state.curSeatID);
+    const curSeatID = useSelector(state => state.curSeatID,[]);
 
     const renderSeat = () => {
         let seats = [];
@@ -32,7 +32,7 @@ const PlayArea = ({ children }) => {
                 let moveArray = [];
                 let startMoveIndex = 0;
                 let numberMoveItems = parseInt(curSeatID,10) - 5;
-                for (let m = startMoveIndex; m <= numberMoveItems; m++) {
+                for (let m = startMoveIndex; m < numberMoveItems; m++) {
                     moveArray.push(backupArray[m])
                 }
                 let leftArray = [];

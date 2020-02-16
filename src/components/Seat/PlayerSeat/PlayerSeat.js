@@ -3,7 +3,7 @@ import "./player-seat.css";
 import {useSelector} from "react-redux";
 
 const PlayerSeat = ({ avatarSource, playerName, chips }) => {
-    const showCard = useSelector(state => state.showCard);
+    const showCard = useSelector(state => state.showCard,[]);
 
     const renderCardInMiddle = () => {
         let listCard = showCard[0];

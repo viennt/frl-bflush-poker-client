@@ -149,6 +149,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         mainPotStatus: action.payload[0]
       };
+    case "popupBuyin":
+      return {
+        ...state,
+        popupBuyin: {
+          min: action.payload[0],
+          max: action.payload[1],
+          chips: action.payload[2]
+        }
+      };
+    case "buyinSuccessful":
+      return {
+        ...state,
+        buyinSuccessful: action.payload[0]
+      }
       //end Quang case
 
       //Vien Case

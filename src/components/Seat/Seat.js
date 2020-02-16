@@ -11,9 +11,9 @@ const Seat = ({ seatid }) => {
   let avatarSource = "";
   let chips = "";
 
-  const seatPlayer = useSelector(state => state.seatPlayer[seatid]);
-  const emptySeat = useSelector(state => state.emptySeat);
-  const playerSitout = useSelector(state => state.playerSitout);
+  const seatPlayer = useSelector(state => state.seatPlayer[seatid],[]);
+  const emptySeat = useSelector(state => state.emptySeat,[]);
+  const playerSitout = useSelector(state => state.playerSitout,[]);
 
   if (seatPlayer) {
     playerName = seatPlayer['user_name'];

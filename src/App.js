@@ -12,12 +12,7 @@ import GameHeader from "./components/GameHeader";
 
 class App extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      mgs: window.q.gtbl_id_enc, // Get the gtbl_id_enc from window output
-      msgInput: [], // Send message
-      paraInput: []
-    };
+    super(props);
     this.receiveMsg = []; // This varibale to store received messages from Socket IO response.
   }
 
@@ -32,52 +27,26 @@ class App extends Component {
       var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
       var message = params.shift(); // message, eg. playerSitOut, clearTable
       this.receiveMsg = [...this.receiveMsg, { message, params }];
-      // console.log(message)
-      // console.log(params)
+      console.log(message)
+      console.log(params)
       this.props.dispatch({
         type: message,
         payload: params
-      });
-
-      this.props.dispatch({
-        type: "UPDATE_RECEIVE",
-        payload: this.receiveMsg
       });
     });
   }
 
   render() {
-    const { receiveMsg, modalShow, curSeatID } = this.props;
-    const popupBuyin_mes = receiveMsg.filter(receive => {
-      return receive.message === "popupBuyin";
-    });
-
     return (
       <div className="game">
         <GameHeader/>
         <PlayArea/>
         <PlayerControlArea />
-        <BuyInModal
-          buyin={popupBuyin_mes}
-          show={modalShow}
-          onHide={() =>
-            this.props.dispatch({
-              type: "SET_MODAL_SHOW",
-              payload: false
-            })
-          }
-        />
+        <BuyInModal/>
         {/*<ChatRoom />*/}
       </div>
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    receiveMsg: state.receiveMsg,
-    modalShow: state.modalShow,
-    curSeatID: state.curSeatID
-  };
-}
 
-export default connect(mapStateToProps)(App);
+export default connect()(App);

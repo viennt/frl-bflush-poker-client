@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
-    const isSittingOut = useSelector(state => state.isSittingOut);
+    const isSittingOut = useSelector(state => state.isSittingOut,[]);
 
 
     const renderListMenu = () => {

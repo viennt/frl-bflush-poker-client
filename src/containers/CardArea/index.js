@@ -3,8 +3,8 @@ import "./card-area.css";
 import {useSelector} from "react-redux";
 
 const CardArea = (props) => {
-  const showCard = useSelector(state => state.showCard);
-  const mainPotStatus = useSelector(state => state.mainPotStatus);
+  const showCard = useSelector(state => state.showCard,[]);
+  const mainPotStatus = useSelector(state => state.mainPotStatus,[]);
 
   const renderCardInMiddle = () => {
     let listCard = showCard[0];

@@ -13,8 +13,8 @@ const PlayerControlArea = (props) => {
   let bet_btn = "";
   let show_player_control = false;
 
-  const curSeat = useSelector(state => state.curSeatID);
-  const playerSitout = useSelector(state => state.playerSitout);
+  const curSeat = useSelector(state => state.curSeatID,[]);
+  const playerSitout = useSelector(state => state.playerSitout,[]);
 
 
   if (!playerSitout.includes(curSeat)) {
