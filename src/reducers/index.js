@@ -111,22 +111,18 @@ const reducer = (state = initialState, action) => {
         emptySeat
       };
     case "playerSitout":
-      let playerSitout = handlePlayerSitout(state.playerSitout,action.payload);
-      if (action.payload[0] == state.curSeatID) {
-        state.isSittingOut = true
-      }
+      let playerSitout = handlePlayerSitout(state.playerSitout,action.payload,state.playerBackin);
       return {
         ...state,
-        playerSitout
+        ...playerSitout,
+        isSittingOut: action.payload[0] == state.curSeatID
       };
     case "playerBackin":
-      let playerBackin = handlePlayerBackin(state.playerBackin,action.payload);
-      if (action.payload[0] == state.curSeatID) {
-        state.isSittingOut = false
-      }
+      let playerBackin = handlePlayerBackin(state.playerBackin,action.payload,state.playerSitout);
       return {
         ...state,
-        playerBackin
+        ...playerBackin,
+        isSittingOut: !(action.payload[0] == state.curSeatID)
       };
     case "reEstablishPos":
       return {
@@ -160,12 +156,21 @@ const reducer = (state = initialState, action) => {
     case "buyinSuccessful":
       return {
         ...state,
-        buyinSuccessful: action.payload[0]
+        curSeatID: action.payload[0]
       };
     case "popupRebuy":
       console.log('rebuy message')
       console.log(action.payload);
       return ;
+    case "showActions":
+      let showActions = false;
+      if (action.payload[0] === "Y") {
+        showActions = true;
+      }
+      return {
+        ...state,
+        showActions
+      };
       //end Quang case
 
       //Vien Case

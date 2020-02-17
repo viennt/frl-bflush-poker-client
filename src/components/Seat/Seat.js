@@ -31,11 +31,12 @@ const Seat = ({ seatid }) => {
     return <EmptySeat seatid={seatid} />;
   } else if (seatPlayer) {
     return (
-      <PlayerSeat
-        playerName={playerName}
-        avatarSource={avatarSource}
-        chips={chips}
-      />
+        <PlayerSeat
+            seatid={seatid}
+            playerName={playerName}
+            avatarSource={avatarSource}
+            chips={chips}
+        />
     );
   } else {
     return <div />;

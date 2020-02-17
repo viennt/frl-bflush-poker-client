@@ -38,18 +38,39 @@ export function handleEmptySeat(currentState, payload) {
     return currentState
 }
 
-export function handlePlayerSitout(currentState,payload) {
+export function handlePlayerSitout(currentState,payload,playerBackin) {
+    if (!currentState.includes(payload[0])) {
+        currentState.push(payload[0])
+    }
+    playerBackin.remove(payload[0]);
+
+    return {
+        playerSitout: currentState,
+        playerBackin: playerBackin
+    };
+}
+
+export function handlePlayerBackin(currentState, payload, playerSitout) {
     if (!currentState.includes(payload[0])) {
         currentState.push(payload[0])
     }
 
-    return currentState;
+    playerSitout.remove(payload[0]);
+
+    return {
+        playerBackin: currentState,
+        playerSitout: playerSitout
+    };
 }
 
-export function handlePlayerBackin(currentState, payload) {
-    if (!currentState.includes(payload[0])) {
-        currentState.push(payload[0])
+// eslint-disable-next-line no-extend-native
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
     }
-
-    return currentState;
-}
+    return this;
+};

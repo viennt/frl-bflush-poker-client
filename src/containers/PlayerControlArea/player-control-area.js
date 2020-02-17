@@ -15,6 +15,7 @@ const PlayerControlArea = (props) => {
 
   const curSeat = useSelector(state => state.curSeatID,[]);
   const playerSitout = useSelector(state => state.playerSitout,[]);
+  const showActions = useSelector(state => state.showActions,[]);
 
 
   if (!playerSitout.includes(curSeat)) {
@@ -28,16 +29,12 @@ const PlayerControlArea = (props) => {
     bet_btn = <button className="control-button">Bet</button>;
   }
 
-  if (curSeat === 0) {
-    return <div className="control-area" />;
-  }
-
   return (
     <div className="control-area">
-      {fold_btn}
-      {call_btn}
-      {call_any_btn}
-      {bet_btn}
+      {showActions && fold_btn}
+      {showActions && call_btn}
+      {showActions && call_any_btn}
+      {showActions && bet_btn}
     </div>
   );
 };

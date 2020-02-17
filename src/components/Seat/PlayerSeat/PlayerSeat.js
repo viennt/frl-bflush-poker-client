@@ -1,16 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import "./player-seat.css";
 import {useSelector} from "react-redux";
 
-const PlayerSeat = ({ avatarSource, playerName, chips }) => {
+const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
     const showCard = useSelector(state => state.showCard,[]);
+    const playerTurn = useSelector(state => state.playerTurn,[]);
 
     const renderCardInMiddle = () => {
-        let listCard = showCard[0];
+        let listCard = showCard[seatid];
         if (listCard) {
-            listCard.map((card,index) => {
-                return <div key={index} className="seat__card" style={{ backgroundImage: `url("/engine/0.1/images/html5/cards/cards_"+${card}+".svg")` }}/>
-            })
+            let displayCards = [];
+            listCard.forEach((card,index) => {
+                displayCards.push(
+                    <div
+                        key={index}
+                        className="seat__card"
+                        style={{
+                            background: 'url("https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg") center center no-repeat'
+                        }}
+                    />
+                )
+            });
+            return <div className={'seat__card_container'}>
+                {displayCards}
+            </div>;
         } else return null
     };
 
@@ -26,9 +39,20 @@ const PlayerSeat = ({ avatarSource, playerName, chips }) => {
             <div className="seat-player-content col-9">
                 <div className="seat-player-content-title">{playerName}</div>
                 <div className="seat-player-content-line" />
-                <div className="seat-player-content-money">{chips !== 'PLAYER SITTING OUT' ? '$'+chips : chips}</div>
+                <div className="seat-player-content-money" style={chips === 'PLAYER SITTING OUT' ? {fontSize: '0.7rem'} : {}}>
+                    {chips !== 'PLAYER SITTING OUT' ? '$'+chips : chips}
+                </div>
             </div>
-            <div className={'timer'}/>
+            <div id="prog-bar">
+                <div
+                    id="background"
+                    style={
+                        playerTurn && parseInt(playerTurn["seat"],10) === parseInt(seatid,10) ?
+                            {opacity: 1, transitionDuration: playerTurn["total_time"] + "s", clipPath: "inset(0 100% 0 0)"} :
+                            {opacity: 0}
+                    }
+                />
+            </div>
             {renderCardInMiddle()}
         </div>
     );
