@@ -171,6 +171,38 @@ const reducer = (state = initialState, action) => {
         ...state,
         showActions
       };
+    case "tableDetails":
+      return {
+        ...state,
+        tableDetails: {
+          name: action.payload[0],
+          small_blind: action.payload[1],
+          big_blind: action.payload[2],
+          max_buyin: action.payload[3],
+          real_money: action.payload[4],
+          tournament_id: action.payload[5],
+          live_video: action.payload[6],
+          max_players: action.payload[7],
+          blinds_timer: action.payload[8],
+          in_progress: action.payload[9]
+        },
+        isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null
+      };
+    case "playerAction":
+      return {
+        ...state,
+        playerAction:{
+          check_available: action.payload[0] === "Y",
+          call_amount: action.payload[1],
+          chips: action.payload[2],
+          reraise_amount: action.payload[3]
+        }
+      };
+    case "stackAction":
+      return {
+        ...state,
+        stackAction: action.payload
+      };
       //end Quang case
 
       //Vien Case

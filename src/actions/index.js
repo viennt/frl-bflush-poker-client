@@ -23,7 +23,7 @@ const initialState = {
   mainPotStatus: null,
   updateBlinds:[],
   buyinSuccessful:[],
-  tableDetails:[],
+  tableDetails: null,
   connectionEstablished:[],
   reserveSeat:[],
   clearTable:[],
@@ -42,7 +42,9 @@ const initialState = {
   disconnectionTimer:[],
   cancelBuyin:[],
   popupRebuy:[],
-  allStatus: []
+  allStatus: [],
+  isTournamentGame: false,
+  stackAction: null
 };
 
 export default initialState;
