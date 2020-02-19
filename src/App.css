@@ -36,8 +36,8 @@ body {
 }
 .game__header .list-menu {
   position: absolute;
-  left: 7px;
-  top: 5px;
+  left: 0.5rem;
+  top: 0.8rem;
   z-index: 999;
 }
 .game__header .list-menu-section {
