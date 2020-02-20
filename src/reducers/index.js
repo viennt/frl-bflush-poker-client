@@ -1,5 +1,6 @@
 import initialState from "../actions";
 import {
+  generatePlayerActionStatus,
   generatePlayerTurnString,
   handleEmptySeat, handlePlayerBackin,
   handlePlayerSeat, handlePlayerSitout,
@@ -77,6 +78,19 @@ const reducer = (state = initialState, action) => {
         criticalError: action.payload,
         allStatus: criticalErrorAllStatus,
       };
+    case "playerActionStatus":
+      let playerActionStatus = state.playerActionStatus;
+      if (playerActionStatus.length === 0) {
+        playerActionStatus.push(action.payload)
+      } else {
+        playerActionStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerActionStatus(action.payload,state.seatPlayer)]
+      }
+
+      return {
+        ...state,
+        playerActionStatus: action.payload,
+        allStatus: playerActionStatus
+      };
     case "playerTurn":
       let playerTurnAllStatus = state.allStatus;
       if (playerTurnAllStatus.length === 0) {
@@ -153,15 +167,21 @@ const reducer = (state = initialState, action) => {
           chips: action.payload[2]
         }
       };
+    case "popupRebuy":
+      return {
+        ...state,
+        popupRebuyModalShow: true,
+        popupRebuy: {
+          min: action.payload[0],
+          max: action.payload[1],
+          chips: action.payload[2]
+        }
+      };
     case "buyinSuccessful":
       return {
         ...state,
         curSeatID: action.payload[0]
       };
-    case "popupRebuy":
-      console.log('rebuy message')
-      console.log(action.payload);
-      return ;
     case "showActions":
       let showActions = false;
       if (action.payload[0] === "Y") {
@@ -202,6 +222,49 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         stackAction: action.payload
+      };
+    case "playerDealer":
+      return {
+        ...state,
+        playerDealer: action.payload[0]
+      };
+    case "cancelBuyin":
+      window.close();
+      return {
+        ...initialState
+      };
+    case "popupRebuyModalHide":
+      return {
+        ...state,
+        popupRebuyModalShow: false
+      };
+    case "notify":
+      return {
+        ...state,
+        showNotify: true,
+        notify: {
+          title: action.payload[0],
+          message: action.payload[1]
+        }
+      };
+    case "hideNotify":
+      return {
+        ...state,
+        showNotify: false
+      };
+    case "gameFinished":
+      return {
+        ...state,
+        showGameFinished: true,
+        gameFinished: {
+          title: action.payload[0],
+          message: action.payload[1]
+        }
+      };
+    case "hideGameFinished":
+      return {
+        ...state,
+        showGameFinished: false
       };
       //end Quang case
 

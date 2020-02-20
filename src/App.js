@@ -5,6 +5,9 @@ import { sendMsg, socket } from "./utils/socket-io-lib";
 import { PlayArea } from "./components/PlayArea";
 
 import BuyInModal from "./containers/BuyInModal/buyin-modal";
+import ReBuyModal from "./containers/ReBuyModal";
+import NotifyModal from "./containers/NotifyModal";
+import GameFinishModal from "./containers/GameFinishModal";
 import PlayerControlArea from "./containers/PlayerControlArea/player-control-area";
 
 import "./App.css";
@@ -43,6 +46,9 @@ class App extends Component {
         <PlayArea/>
         <PlayerControlArea />
         <BuyInModal/>
+        <ReBuyModal/>
+        <NotifyModal/>
+        <GameFinishModal/>
         {/*<ChatRoom />*/}
       </div>
     );

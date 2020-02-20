@@ -99,6 +99,28 @@
   height: 100%;
 }
 
+.seat-player .red-chips {
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  bottom: 7%;
+  right: -8%;
+  display: inline-block;
+}
+
+.seat-player .red-chips img {
+  width: 100%;
+}
+
+.seat-player .d-chip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url(https://www.bflush.co.uk/engine/0.1/images/html5/dealer-chip.svg) left top no-repeat;
+  width: 70%;
+  height: 40%;
+}
+
 #prog-bar {
   width: 100%;
   height: 10%;

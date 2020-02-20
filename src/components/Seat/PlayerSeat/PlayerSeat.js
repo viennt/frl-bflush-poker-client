@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
     const showCard = useSelector(state => state.showCard,[]);
     const playerTurn = useSelector(state => state.playerTurn,[]);
+    const playerDealer = useSelector(state => state.playerDealer,[]);
 
     const renderCardInMiddle = () => {
         let listCard = showCard[seatid];
@@ -30,6 +31,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
     return (
         <div className="seat seat-player row">
             <div className="seat-player-img col-3 p-0">
+                {parseInt(seatid,10) === parseInt(playerDealer,10) && <div className={'d-chip'}/>}
                 <img
                     alt="seat_player_img"
                     className="seat-player-img-img"
@@ -53,6 +55,12 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
                     }
                 />
             </div>
+            {
+                chips !== 'PLAYER SITTING OUT' && chips > 0 &&
+                <div className={'red-chips'}>
+                    <img src={'/assets/redChip.png'} alt={'red chip'}/>
+                </div>
+            }
             {renderCardInMiddle()}
         </div>
     );

@@ -12,6 +12,11 @@ export function generatePlayerTurnString(payload,user) {
     return user[payload[0]].user_name + ' It is your turn, you have ' + payload[1] + ' seconds.'
 }
 
+export function generatePlayerActionStatus(payload,user) {
+    let action = ["","Check","Fold","Call","Raise","All In"];
+    return "Last move:" + user[payload[0]].user_name + 'has just took action: ' + action[payload[1]];
+}
+
 export function handlePlayerSeat(currentState, emptySeat, payload) {
     currentState[payload[0]] = {
         seat_id: payload[0],

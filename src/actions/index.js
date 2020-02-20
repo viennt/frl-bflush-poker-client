@@ -8,11 +8,12 @@ const initialState = {
   updateChat:[],
   updateStatus:[],
   criticalError:[],
-  notify:[],
+  notify: {},
+  showNotify: false,
   popupBuyin: null,
   seatPlayer:{},
   emptySeat:[],
-  playerDealer:[],
+  playerDealer: 0,
   playerAction:[],
   playerTurn: null,
   showCard:{},
@@ -35,7 +36,8 @@ const initialState = {
   pause:[],
   updateStream:[],
   rebuyChips:[],
-  gameFinished:[],
+  gameFinished: null,
+  showGameFinished: false,
   redrawTable:[],
   mySeat:[],
   sitOutPlayer:[],
@@ -44,7 +46,8 @@ const initialState = {
   popupRebuy:[],
   allStatus: [],
   isTournamentGame: false,
-  stackAction: null
+  stackAction: null,
+  popupRebuyModalShow: false
 };
 
 export default initialState;
