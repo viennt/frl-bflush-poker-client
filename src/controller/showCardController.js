@@ -7,3 +7,8 @@ export function handleShowCardParam(payload, currentShowCard) {
     }
     return showCard
 }
+
+export function handleHighlightCards(payload, currentShowCard) {
+    currentShowCard[payload[0]] = payload[1].split("+");
+    return currentShowCard;
+}

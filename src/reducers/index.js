@@ -2,11 +2,11 @@ import initialState from "../actions";
 import {
   generatePlayerActionStatus,
   generatePlayerTurnString,
-  handleEmptySeat, handlePlayerBackin,
+  handleEmptySeat, handlePlayerBackin, handlePlayerBetStatus,
   handlePlayerSeat, handlePlayerSitout,
-  handlePlayerTurn
+  handlePlayerTurn, handleRebuyChips, handleReserveSeat, handleResetClient
 } from "../controller/playerController";
-import {handleShowCardParam} from "../controller/showCardController";
+import {handleHighlightCards, handleShowCardParam} from "../controller/showCardController";
 
 // Create Reducer
 const reducer = (state = initialState, action) => {
@@ -143,11 +143,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         reEstablishPos: action.payload[0]
       };
-    case "resetClient":
-      return {
-        ...state,
-        curSeatID: action.payload[0]
-      };
     // case "clearTable":
     //   console.log('this')
     //   return {
@@ -265,6 +260,42 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showGameFinished: false
+      };
+    case "playerBetStatus":
+      let playerBetStatus = handlePlayerBetStatus(action.payload, state.seatPlayer);
+      let mainPotStatus = parseInt(state.mainPotStatus,10);
+      if (parseInt(action.payload[3]) > 0) {
+        mainPotStatus += parseInt(action.payload[3])
+      }
+      return {
+        ...state,
+        seatPlayer: playerBetStatus,
+        mainPotStatus: mainPotStatus
+      };
+    case "resetClient":
+      let resetClient = handleResetClient(action.payload, state.seatPlayer);
+      return {
+        ...state,
+        curSeatID: action.payload[0],
+        seatPlayer: resetClient
+      };
+    case "reserveSeat":
+      let reserveSeat = handleReserveSeat(action.payload, state.seatPlayer);
+      return {
+        ...state,
+        seatPlayer: reserveSeat
+      };
+    case "rebuyChips":
+      let rebuyChips = handleRebuyChips(action.payload, state.seatPlayer);
+      return {
+        ...state,
+        seatPlayer: rebuyChips
+      };
+    case "highlightCards":
+      let highlightCards = handleHighlightCards(action.payload, state.showCard);
+      return {
+        ...state,
+        showCard: highlightCards
       };
       //end Quang case
 

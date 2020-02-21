@@ -10,6 +10,7 @@ const Seat = ({ seatid }) => {
   let playerName = "";
   let avatarSource = "";
   let chips = "";
+  let amount = "";
 
   const seatPlayer = useSelector(state => state.seatPlayer[seatid],[]);
   const emptySeat = useSelector(state => state.emptySeat,[]);
@@ -21,6 +22,7 @@ const Seat = ({ seatid }) => {
         "https://www.dev-b.bflush.com/" + seatPlayer['avatar'] :
         "https://pngimage.net/wp-content/uploads/2018/06/no-avatar-png.png";
     chips = seatPlayer['chips'];
+    amount = seatPlayer['amount']
   }
 
   if (playerSitout.includes(seatid)) {
@@ -36,6 +38,7 @@ const Seat = ({ seatid }) => {
             playerName={playerName}
             avatarSource={avatarSource}
             chips={chips}
+            amount={amount}
         />
     );
   } else {

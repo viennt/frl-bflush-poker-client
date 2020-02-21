@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./player-seat.css";
 import {useSelector} from "react-redux";
 
-const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
+const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const showCard = useSelector(state => state.showCard,[]);
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
@@ -30,6 +30,16 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
 
     return (
         <div className="seat seat-player row">
+            <div
+                className="seat-player-content-money position-absolute"
+                style={{
+                    top: "-40%",
+                    width: "100%",
+                    zIndex: 9,
+                    color: "white"
+                }}>
+                {amount ? "$"+amount : amount}
+            </div>
             <div className="seat-player-img col-3 p-0">
                 {parseInt(seatid,10) === parseInt(playerDealer,10) && <div className={'d-chip'}/>}
                 <img
@@ -56,7 +66,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid }) => {
                 />
             </div>
             {
-                chips !== 'PLAYER SITTING OUT' && chips > 0 &&
+                amount && parseInt(amount,10) > 0 &&
                 <div className={'red-chips'}>
                     <img src={'/assets/redChip.png'} alt={'red chip'}/>
                 </div>

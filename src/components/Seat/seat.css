@@ -142,17 +142,17 @@
 
 .seat__card_container {
   position: absolute;
-  top: -25%;
-  right: -5%;
+  top: -65%;
+  right: -10%;
 }
 
 .seat__card_container .seat__card {
-  width: 25px;
-  height: 40px;
+  width: 5vw;
+  height: 8vw;
 }
 
 .seat__card_container .seat__card:nth-child(2) {
-  transform: translateY(-50%) translateX(50%);
+  transform: translateY(-60%) translateX(40%);
 }
 
 @media (min-width: 640px) {

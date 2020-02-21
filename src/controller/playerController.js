@@ -17,25 +17,6 @@ export function generatePlayerActionStatus(payload,user) {
     return "Last move:" + user[payload[0]].user_name + 'has just took action: ' + action[payload[1]];
 }
 
-export function handlePlayerSeat(currentState, emptySeat, payload) {
-    currentState[payload[0]] = {
-        seat_id: payload[0],
-        user_name: payload[1],
-        chips: payload[2],
-        avatar: payload[3]
-    };
-    emptySeat.forEach((item,index) => {
-       if (item == payload[0]) {
-           emptySeat.splice(index, 1);
-       }
-    });
-
-    return {
-        seatPlayer: currentState,
-        emptySeat: emptySeat
-    }
-}
-
 export function handleEmptySeat(currentState, payload) {
     if (!currentState.includes(payload[0])) {
         currentState.push(payload[0])
@@ -65,6 +46,73 @@ export function handlePlayerBackin(currentState, payload, playerSitout) {
     return {
         playerBackin: currentState,
         playerSitout: playerSitout
+    };
+}
+
+export function handlePlayerSeat(currentState, emptySeat, payload) {
+    currentState[payload[0]] = {
+        seat_id: payload[0],
+        user_name: payload[1],
+        chips: payload[2],
+        avatar: payload[3]
+    };
+    emptySeat.forEach((item,index) => {
+        if (item == payload[0]) {
+            emptySeat.splice(index, 1);
+        }
+    });
+
+    return {
+        seatPlayer: currentState,
+        emptySeat: emptySeat
+    }
+}
+
+export function handlePlayerBetStatus (payload, currentState) {
+    if (!currentState.hasOwnProperty(payload[0])) {
+        currentState[payload[0]] = {}
+    }
+    currentState[payload[0]] = {
+        ...currentState[payload[0]],
+        amount: payload[1],
+        chips: payload[2],
+        total_pot: payload[3]
+    };
+    return currentState
+}
+
+export function handleResetClient (payload, currentState) {
+    if (!currentState.hasOwnProperty(payload[0])) {
+        currentState[payload[0]] = {}
+    }
+    currentState[payload[0]] = {
+        ...currentState[payload[0]],
+        chips: payload[1],
+        amount: payload[2]
+    };
+
+    return currentState;
+}
+
+export function handleReserveSeat (payload, currentState) {
+    if (!currentState.hasOwnProperty(payload[0])) {
+        currentState[payload[0]] = {}
+    }
+    currentState[payload[0]] = {
+        ...currentState[payload[0]],
+        chips: "RESERVE"
+    };
+
+    return currentState;
+}
+
+export function handleRebuyChips (payload, currentState) {
+    if (!currentState.hasOwnProperty(payload[0])) {
+        currentState[payload[0]] = {}
+    }
+    currentState[payload[0]] = {
+        ...currentState[payload[0]],
+        chips: payload[1]
     };
 }
 
