@@ -114,6 +114,21 @@ export function handleRebuyChips (payload, currentState) {
         ...currentState[payload[0]],
         chips: payload[1]
     };
+    return currentState;
+}
+
+export function handlePlayerWinner (payload, currentState) {
+    if (!currentState.hasOwnProperty(payload[0])) {
+        currentState[payload[0]] = {}
+    }
+
+    currentState[payload[0]] = {
+        ...currentState[payload[0]],
+        amount_won: payload[1],
+        chips: payload[3] === 'Y' ? "WINNER" : payload[2]
+    };
+
+    return currentState;
 }
 
 // eslint-disable-next-line no-extend-native

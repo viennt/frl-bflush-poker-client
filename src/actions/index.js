@@ -17,7 +17,7 @@ const initialState = {
   playerAction:[],
   playerTurn: null,
   showCard:{},
-  highlightCards:[],
+  highlightCards: 0,
   playerWinner:[],
   playerActionStatus:[],
   playerBetStatus: {},

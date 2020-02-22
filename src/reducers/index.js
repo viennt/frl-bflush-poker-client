@@ -4,10 +4,12 @@ import {
   generatePlayerTurnString,
   handleEmptySeat, handlePlayerBackin, handlePlayerBetStatus,
   handlePlayerSeat, handlePlayerSitout,
-  handlePlayerTurn, handleRebuyChips, handleReserveSeat, handleResetClient
+  handlePlayerTurn, handlePlayerWinner, handleRebuyChips, handleReserveSeat, handleResetClient
 } from "../controller/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../controller/showCardController";
 
+
+const defaultState = initialState;
 // Create Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -144,9 +146,8 @@ const reducer = (state = initialState, action) => {
         reEstablishPos: action.payload[0]
       };
     // case "clearTable":
-    //   console.log('this')
     //   return {
-    //     ...initialState
+    //     ...defaultState
     //   };
     case "mainPotStatus":
       return {
@@ -292,10 +293,29 @@ const reducer = (state = initialState, action) => {
         seatPlayer: rebuyChips
       };
     case "highlightCards":
-      let highlightCards = handleHighlightCards(action.payload, state.showCard);
+      let highlightCardsInShowCards = handleHighlightCards(action.payload, state.showCard);
       return {
         ...state,
-        showCard: highlightCards
+        showCard: highlightCardsInShowCards,
+        highlightCards: action.payload[0]
+      };
+    case "removeHightlightCard":
+      return {
+        ...state,
+        highlightCards: 0
+      };
+
+    case "playerWinner":
+      let playerWinner = handlePlayerWinner(action.payload, state.seatPlayer);
+
+      if (action.payload[3] === "Y") {
+        var x = document.getElementById("winnerAudio");
+        x.play();
+      }
+
+      return {
+        ...state,
+        seatPlayer: playerWinner
       };
       //end Quang case
 

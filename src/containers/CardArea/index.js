@@ -15,10 +15,12 @@ const CardArea = (props) => {
             <div
                 key={index}
                 className="seat__card"
-                style={{
-                  background: 'url("https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg") center center no-repeat'
-                }}
-            />
+            >
+              <img
+                src={'https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg'}
+                alt={'card-middle-table'}
+              />
+            </div>
         )
       });
       return (

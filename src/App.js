@@ -49,6 +49,9 @@ class App extends Component {
         <ReBuyModal/>
         <NotifyModal/>
         <GameFinishModal/>
+          <audio id="winnerAudio">
+            <source src="https://www.dev-b.bflush.com/engine/0.1/sounds/winner.ogg" type="audio/ogg"/>
+          </audio>
         {/*<ChatRoom />*/}
       </div>
     );

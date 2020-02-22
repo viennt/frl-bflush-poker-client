@@ -1,32 +1,11 @@
 import React, {useState} from "react";
 import "./player-seat.css";
 import {useSelector} from "react-redux";
+import PlayerCards from "./PlayerCards";
 
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
-    const showCard = useSelector(state => state.showCard,[]);
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
-
-    const renderCardInMiddle = () => {
-        let listCard = showCard[seatid];
-        if (listCard) {
-            let displayCards = [];
-            listCard.forEach((card,index) => {
-                displayCards.push(
-                    <div
-                        key={index}
-                        className="seat__card"
-                        style={{
-                            background: 'url("https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg") center center no-repeat'
-                        }}
-                    />
-                )
-            });
-            return <div className={'seat__card_container'}>
-                {displayCards}
-            </div>;
-        } else return null
-    };
 
     return (
         <div className="seat seat-player row">
@@ -71,7 +50,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     <img src={'/assets/redChip.png'} alt={'red chip'}/>
                 </div>
             }
-            {renderCardInMiddle()}
+            <PlayerCards seatid={seatid}/>
         </div>
     );
 };
