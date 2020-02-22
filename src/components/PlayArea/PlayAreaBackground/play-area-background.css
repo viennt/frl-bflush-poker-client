@@ -10,12 +10,11 @@
   background: url("/assets/table-logo.png") center center no-repeat;
   background-size: contain;
 }
+
 .raise-section {
-  /* height: 2.5em; */
-  transform: translateY(0.1em);
 }
+
 .raise-section .raise-button {
-  height: 2.5em;
   width: 2.5em;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
   border: none;
@@ -25,7 +24,6 @@
   margin-left: 12px;
 }
 .raise-section .raise-chips {
-  height: 2.5em;
   background: white;
   font-style: normal;
   font-weight: normal;
@@ -33,8 +31,7 @@
   color: #045388;
   text-align: center;
   margin-left: 12px;
-  padding: 10px;
-  width: 5.5em;
+  width: 8.5em;
 }
 .control-area .raise-detail {
   position: absolute;
@@ -52,5 +49,8 @@
   font-weight: bold;
   color: black;
   height: 1.5em;
-  width: 7em;
+}
+
+.control-area .raise-detail .control-button:nth-child(1) {
+  margin-left: 0;
 }

@@ -8,8 +8,6 @@ import {
 } from "../controller/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../controller/showCardController";
 
-
-const defaultState = initialState;
 // Create Reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -103,13 +101,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         playerTurn: handlePlayerTurn(action.payload),
+        currentPlayerTurn: action.payload[0],
         allStatus: playerTurnAllStatus,
       };
     case "showCard":
       let showCard = handleShowCardParam(action.payload,state.showCard);
       return {
         ...state,
-        showCard
+        showCard: showCard
       };
     case "seatPlayer":
       let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
@@ -145,10 +144,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         reEstablishPos: action.payload[0]
       };
-    // case "clearTable":
-    //   return {
-    //     ...defaultState
-    //   };
+    case "clearTable":
+      return {
+        ...state,
+        showCard: {},
+        playerDealer: 0,
+        playerTurn: null,
+        playerAction:[],
+        highlightCards: 0,
+        playerWinner:[],
+        playerActionStatus:[],
+        playerBetStatus: {},
+        mainPotStatus: null
+      };
     case "mainPotStatus":
       return {
         ...state,
@@ -264,9 +272,9 @@ const reducer = (state = initialState, action) => {
       };
     case "playerBetStatus":
       let playerBetStatus = handlePlayerBetStatus(action.payload, state.seatPlayer);
-      let mainPotStatus = parseInt(state.mainPotStatus,10);
-      if (parseInt(action.payload[3]) > 0) {
-        mainPotStatus += parseInt(action.payload[3])
+      let mainPotStatus = parseFloat(state.mainPotStatus);
+      if (parseFloat(action.payload[3]) > 0) {
+        mainPotStatus += parseFloat(action.payload[3])
       }
       return {
         ...state,
@@ -317,12 +325,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         seatPlayer: playerWinner
       };
-      //end Quang case
-
-      //Vien Case
-
-
-      //end Vien case
+    case "setRaiseAmount":
+      return {
+        ...state,
+        setRaiseAmount: action.payload
+      };
+    case "updateBlinds":
+      return {
+        ...state,
+        updateBlinds: {
+          small_blind_amount: action.payload[0],
+          big_blind_amount: action.payload[1],
+          time_remaining: action.payload[2]
+        }
+      };
     default:
       let customData = {};
       customData[action.type] = action.payload;

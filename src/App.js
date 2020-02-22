@@ -12,6 +12,7 @@ import PlayerControlArea from "./containers/PlayerControlArea/player-control-are
 
 import "./App.css";
 import GameHeader from "./components/GameHeader";
+import {assetBaseUrl} from "./const";
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class App extends Component {
         <NotifyModal/>
         <GameFinishModal/>
           <audio id="winnerAudio">
-            <source src="https://www.dev-b.bflush.com/engine/0.1/sounds/winner.ogg" type="audio/ogg"/>
+            <source src={assetBaseUrl + "/sounds/winner.ogg"} type="audio/ogg"/>
           </audio>
         {/*<ChatRoom />*/}
       </div>

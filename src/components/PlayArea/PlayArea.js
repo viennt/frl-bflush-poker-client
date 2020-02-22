@@ -13,17 +13,17 @@ const PlayArea = ({ children }) => {
         for (let i = 1; i <= 10; i++) {
             seats.push(<Seat seatid={i.toString()} key={i} />)
         }
-        if (parseInt(curSeatID,10) !== 0) {
-            if (parseInt(curSeatID,10) <= 5) {
+        if (parseFloat(curSeatID) !== 0) {
+            if (parseFloat(curSeatID) <= 5) {
                 let backupArray = [...seats];
                 let moveArray = [];
-                let startMoveIndex = parseInt(curSeatID,10) + 5;
+                let startMoveIndex = parseFloat(curSeatID) + 5;
                 let numberMoveItems = 9;
                 for (let m = startMoveIndex; m <= numberMoveItems; m++) {
                     moveArray.push(backupArray[m])
                 }
                 let leftArray = [];
-                for (let j = 0; j <= parseInt(curSeatID,10) + 4; j++ ) {
+                for (let j = 0; j <= parseFloat(curSeatID) + 4; j++ ) {
                     leftArray.push(backupArray[j])
                 }
                 seats = [...moveArray,...leftArray];
@@ -31,7 +31,7 @@ const PlayArea = ({ children }) => {
                 let backupArray = [...seats];
                 let moveArray = [];
                 let startMoveIndex = 0;
-                let numberMoveItems = parseInt(curSeatID,10) - 5;
+                let numberMoveItems = parseFloat(curSeatID) - 5;
                 for (let m = startMoveIndex; m < numberMoveItems; m++) {
                     moveArray.push(backupArray[m])
                 }

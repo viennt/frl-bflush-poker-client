@@ -22,7 +22,7 @@ const initialState = {
   playerActionStatus:[],
   playerBetStatus: {},
   mainPotStatus: null,
-  updateBlinds:[],
+  updateBlinds: null,
   buyinSuccessful:[],
   tableDetails: null,
   connectionEstablished:[],
@@ -47,7 +47,9 @@ const initialState = {
   allStatus: [],
   isTournamentGame: false,
   stackAction: null,
-  popupRebuyModalShow: false
+  popupRebuyModalShow: false,
+  currentPlayerTurn: 0,
+  setRaiseAmount: 0
 };
 
 export default initialState;

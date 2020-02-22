@@ -9,7 +9,7 @@ const EmptySeat = ({ seatid }) => {
   const dispatch = useDispatch();
   const curSeatID = useSelector(state => state.curSeatID);
   const SendMessageToServer = () => {
-    if (parseInt(curSeatID,10) === 0) {
+    if (parseFloat(curSeatID) === 0) {
       sendMsg("reserveSeat", [seatid]);
       dispatch({
         type: "SET_MODAL_SHOW",

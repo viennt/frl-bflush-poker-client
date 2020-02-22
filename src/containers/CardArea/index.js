@@ -1,6 +1,7 @@
 import React, {  } from "react";
 import "./card-area.css";
 import {useSelector} from "react-redux";
+import {assetBaseUrl} from "../../const";
 
 const CardArea = (props) => {
   const showCard = useSelector(state => state.showCard,[]);
@@ -17,7 +18,7 @@ const CardArea = (props) => {
                 className="seat__card"
             >
               <img
-                src={'https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg'}
+                src={assetBaseUrl + '/images/html5/cards/cards_' + card + '.svg'}
                 alt={'card-middle-table'}
               />
             </div>

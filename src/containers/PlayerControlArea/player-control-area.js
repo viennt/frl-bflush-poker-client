@@ -7,41 +7,76 @@ import CallButton from "../../components/Buttons/CallButton";
 import CheckButton from "../../components/Buttons/CheckButton";
 import RaiseButton from "../../components/Buttons/RaiseButton";
 import RaiseDetailActions from "../../components/Buttons/RaiseDetailActions";
+import CallAnyButton from "../../components/Buttons/CallAnyButton";
+import BlindTimer from "../../components/PlayArea/BlindTimer";
+import {sendMsg} from "../../utils/socket-io-lib";
 
 const PlayerControlArea = (props) => {
-  let show_player_control = false;
+    const curSeatID = useSelector(state => state.curSeatID,[]);
+    const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+    const tableDetails = useSelector(state => state.tableDetails,[]);
+    const emptySeat = useSelector(state => state.emptySeat,[]);
+    const playerSitout = useSelector(state => state.playerSitout,[]);
+    const stackAction = useSelector(state => state.stackAction,[]);
+    const playerTurn = useSelector(state => state.playerTurn,[]);
 
-  const curSeat = useSelector(state => state.curSeatID,[]);
-  const playerSitout = useSelector(state => state.playerSitout,[]);
-  const showActions = useSelector(state => state.showActions,[]);
-  const playerAction = useSelector(state => state.playerAction,[]);
 
-  if (!playerSitout.includes(curSeat)) {
-    show_player_control = true;
-  }
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 
-  if (show_player_control) {
-    if (!showActions) {
-      return (
-          <div className="control-area">
-            <FoldButton showActions={showActions}/>
-            <CallButton showActions={showActions}/>
-            <button className="control-button">Call any</button>
-          </div>
-      );
-    } else if (playerAction){
-      return (
-          <div className="control-area">
-            <FoldButton showActions={showActions}/>
-            <CallButton showActions={showActions}/>
-            <CheckButton showActions={showActions}/>
-            <RaiseButton />
-            <RaiseDetailActions />
-          </div>
-      )
+
+    let show = true;
+
+    if (!tableDetails) {
+        show = false;
     }
-  }
-  return null
+
+    if (emptySeat.includes(curSeatID)) {
+        show = false;
+    }
+
+    if (playerSitout.includes(curSeatID)) {
+        show = false;
+    }
+
+    // Auto send stack action
+    if (isMyTurn) {
+        if (stackAction) {
+            let shouldSend = true;
+            let payload = [];
+            let name = stackAction.name;
+            if (stackAction.name.includes("actionCall")) {
+                if (stackAction.name === "actionCallAny") {
+                    name = "actionCall";
+                    payload = stackAction.payload
+                } else {
+                    shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
+                    if (shouldSend) {
+                        payload = stackAction.payload;
+                    }
+                }
+            }
+            if (shouldSend) {
+                sendMsg(name, payload)
+            }
+        }
+    }
+
+    return (
+        <div className="control-area">
+            <FoldButton show={show} curSeatID={curSeatID}/>
+            <CheckButton show={show} curSeatID={curSeatID}/>
+            <CallButton show={show} curSeatID={curSeatID}/>
+            {!isMyTurn ?
+                <CallAnyButton show={show}/> :
+                <RaiseButton show={show}/>
+            }
+            {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
+            {show && isMyTurn && <div className={'remaining-chips'}>
+                Total chips remaining:
+            </div>}
+            {show && !isMyTurn && <BlindTimer/>}
+        </div>
+    );
 };
 
 export default PlayerControlArea;

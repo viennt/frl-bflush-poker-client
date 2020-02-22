@@ -20,7 +20,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 {amount ? "$"+amount : amount}
             </div>
             <div className="seat-player-img col-3 p-0">
-                {parseInt(seatid,10) === parseInt(playerDealer,10) && <div className={'d-chip'}/>}
+                {parseFloat(seatid) === parseFloat(playerDealer) && <div className={'d-chip'}/>}
                 <img
                     alt="seat_player_img"
                     className="seat-player-img-img"
@@ -38,14 +38,14 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 <div
                     id="background"
                     style={
-                        playerTurn && parseInt(playerTurn["seat"],10) === parseInt(seatid,10) ?
+                        playerTurn && parseFloat(playerTurn["seat"]) === parseFloat(seatid) ?
                             {opacity: 1, transitionDuration: playerTurn["total_time"] + "s", clipPath: "inset(0 100% 0 0)"} :
                             {opacity: 0}
                     }
                 />
             </div>
             {
-                amount && parseInt(amount,10) > 0 &&
+                amount && parseFloat(amount) > 0 &&
                 <div className={'red-chips'}>
                     <img src={'/assets/redChip.png'} alt={'red chip'}/>
                 </div>

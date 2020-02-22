@@ -1,17 +1,40 @@
 import React from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-const CheckButton = ({showActions}) => {
+const CheckButton = ({show,curSeatID}) => {
+    const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerAction = useSelector(state => state.playerAction,[]);
+    const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
+    const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
 
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
+
+    const dispatch = useDispatch();
+
+    let amount = 0;
+    if (seatPlayer && seatPlayer['amount']) {
+        amount = seatPlayer['amount']
+    }
     const sendMessageToServer = () => {
-        sendMsg("actionCheck")
+        if (isMyTurn) {
+            sendMsg("actionCheck")
+        } else {
+            dispatch({
+                type: "stackAction",
+                payload: {
+                    name: "actionCheck"
+                }
+            })
+        }
     };
-    // if (playerAction && playerAction["check_available"]) {
-        return <button className="control-button" onClick={sendMessageToServer}>Check</button>
-    // }
-    // return null
+
+    let disabled = isMyTurn ?
+        (!(playerAction && playerAction['check_available'])) :
+        (playerTurn && (parseFloat(playerTurn['call_amount']) > parseFloat(amount)));
+
+    if (!show) return null;
+    return <button disabled={disabled} className="control-button" onClick={sendMessageToServer}>Check</button>
 };
 
 export default CheckButton;

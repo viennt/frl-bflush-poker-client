@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {assetBaseUrl} from "../../../const";
 
 const PlayerCards = ({seatid}) => {
     const showCard = useSelector(state => state.showCard,[]);
@@ -7,7 +8,7 @@ const PlayerCards = ({seatid}) => {
     const dispatch = useDispatch();
 
     const resetHightlightCard = () => {
-        if (parseInt(highlightCards,10) !== 0 && parseInt(highlightCards,10) === parseInt(seatid,10)) {
+        if (parseFloat(highlightCards) !== 0 && parseFloat(highlightCards) === parseFloat(seatid)) {
             setTimeout(() => {
                 dispatch({
                     type: 'removeHightlightCard',
@@ -32,8 +33,8 @@ const PlayerCards = ({seatid}) => {
                         className={"seat__card"}
                     >
                         <img
-                            className={parseInt(highlightCards,10) === parseInt(seatid,10) ? "hightlight-card" : ""}
-                             src={'https://www.dev-b.bflush.com/engine/0.1/images/html5/cards/cards_' + card + '.svg'}
+                            className={parseFloat(highlightCards) === parseFloat(seatid) ? "hightlight-card" : ""}
+                             src={assetBaseUrl + '/images/html5/cards/cards_' + card + '.svg'}
                              alt={'card-player-show'}
                         />
                     </div>

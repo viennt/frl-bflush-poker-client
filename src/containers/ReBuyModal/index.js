@@ -8,22 +8,29 @@ const ReBuyModal = props => {
     let minChip = 0;
     let maxChip = 0;
     let curChip = 0;
+    let step = 0;
 
     const popupRebuy = useSelector(state => state.popupRebuy,[]);
     const popupRebuyModalShow = useSelector(state => state.popupRebuyModalShow,[]);
+    const playerAction = useSelector(state => state.playerAction,[]);
+    const tableDetails = useSelector(state => state.tableDetails,[]);
 
     useEffect(() => {
         if (popupRebuy) {
-            setBetChip(popupRebuy.min)
+            setBetChip(parseFloat(popupRebuy.min) - parseFloat(playerAction['chips']))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [popupRebuy]);
 
     const dispatch = useDispatch();
     if (popupRebuy) {
-        minChip = popupRebuy.min;
-        maxChip = popupRebuy.max;
+        minChip = parseFloat(popupRebuy.min) - parseFloat(playerAction['chips']);
+        maxChip = parseFloat(popupRebuy.max) - parseFloat(playerAction['chips']);
         curChip = popupRebuy.chips;
+    }
+
+    if (tableDetails) {
+        step = 10 * parseFloat(tableDetails['big_blind']);
     }
 
     const [betChip,setBetChip] = useState(minChip);
@@ -44,7 +51,11 @@ const ReBuyModal = props => {
     const handlePlusButtonPress = () => {
         let chipsSet = betChip;
         if (chipsSet < maxChip) {
-            chipsSet++;
+            chipsSet += step;
+
+            if (chipsSet > maxChip) {
+                chipsSet = maxChip
+            }
             setBetChip(chipsSet)
         }
     };
@@ -52,7 +63,11 @@ const ReBuyModal = props => {
     const handleMinusButtonPress = () => {
         let chipsSet = betChip;
         if (chipsSet > 0) {
-            chipsSet--;
+            chipsSet -= step;
+
+            if (chipsSet < 0) {
+                chipsSet = 0
+            }
             setBetChip(chipsSet)
         }
     };
