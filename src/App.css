@@ -50,8 +50,7 @@ body {
   background: #363636;
   opacity: 0.84;
   border: 1px solid #045388;
-  /* box-sizing: border-box; */
-  padding: 11vw 2vw 2vw 2vw;
+  padding: 4vw 2vw 2vw 2vw;
   transition: opacity ease-in-out 0.5s;
 }
 .game__header .list-menu hr{
@@ -169,6 +168,7 @@ body {
   .game__header .list-menu-section {
     max-width: 35vh;
     max-height: 90vw;
+    padding: 11vw 2vw 2vw 2vw;
     overflow: scroll;
   }
 
