@@ -1,5 +1,10 @@
 body {
-  font-family: "Lato", sans-serif;
+  margin: 0;
+  font-family: -apple-system,"Lato", BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .game {
@@ -28,7 +33,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 10;
 }
 
 .game__header .spacer {
@@ -38,7 +43,7 @@ body {
   position: absolute;
   left: 0.5rem;
   top: 0.8rem;
-  z-index: 999;
+  z-index: 9;
 }
 .game__header .list-menu-section {
   max-width: 35vw;
@@ -46,7 +51,7 @@ body {
   opacity: 0.84;
   border: 1px solid #045388;
   /* box-sizing: border-box; */
-  padding: 45px 20px 20px 20px;
+  padding: 11vw 2vw 2vw 2vw;
   transition: opacity ease-in-out 0.5s;
 }
 .game__header .list-menu hr{
@@ -86,4 +91,93 @@ body {
   margin-left: 25%;
   padding: 2px 35px;
   font-weight: bold;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  body {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  .control-area {
+    height: 4rem;
+  }
+  .play-area {
+    height: calc(100% - 8rem);
+  }
+  .game {
+    width: 100vh;
+    height: 100vw;
+  }
+
+  .seat-player {
+    width: 20vh;
+    height: 11vw;
+  }
+
+  .seat-player:nth-child(5) {
+    transform: translateX(-3vh) translateY(25vw);
+  }
+
+  .seat-player:nth-child(1) {
+    transform: translateX(22vh) translateY(-25vw);
+  }
+
+  .seat-player:nth-child(2) {
+    transform: translateX(32vh) translateY(-8vw);
+  }
+
+  .seat-player:nth-child(3) {
+    transform: translateX(32vh) translateY(8vw);
+  }
+
+  .seat-player:nth-child(4) {
+    transform: translateX(21vh) translateY(25vw);
+  }
+
+
+
+  .seat-player:nth-child(6) {
+    transform: translateX(-30vh) translateY(25vw);
+  }
+
+  .seat-player:nth-child(7) {
+    transform: translateX(-40vh) translateY(9vw);
+  }
+
+  .seat-player:nth-child(8) {
+    transform: translateX(-40vh) translateY(-8vw);
+  }
+
+  .seat-player:nth-child(9) {
+    transform: translateX(-30vh) translateY(-25vw);
+  }
+
+  .seat-player:nth-child(10) {
+    transform: translateX(-4vh) translateY(-25vw);
+  }
+
+  .control-button {
+    width: 15vh;
+    height: 10vw;
+  }
+  .game__header .list-menu-section {
+    max-width: 35vh;
+    max-height: 90vw;
+    overflow: scroll;
+  }
+
+  .seat-player-content-money {
+    font-size: unset;
+  }
+
+
+  .control-area .raise-detail {
+    bottom: 4rem;
+  }
 }

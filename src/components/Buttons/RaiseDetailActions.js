@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
 import {useDispatch, useSelector} from "react-redux";
 

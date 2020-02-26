@@ -1,7 +1,7 @@
 .chat-room {
     position: absolute;
     bottom: 5%;
-    z-index: 9999;
+    z-index: 9;
     left: 35%;
 }
 .chat-room .display-chat {

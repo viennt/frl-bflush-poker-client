@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
     const isSittingOut = useSelector(state => state.isSittingOut,[]);
+    const isTournamentGame = useSelector(state => state.isTournamentGame, []);
 
 
     const renderListMenu = () => {
@@ -97,7 +98,7 @@ const Menu = (props) => {
             {
                 showMenu &&
                     <div className={'list-menu-section'}>
-                        {renderButton()}
+                        {!isTournamentGame && renderButton()}
                         <hr/>
                         <p className={'menu-section'}>The below options will fold your hand and cause you to leave the table</p>
                         {renderListMenu()}

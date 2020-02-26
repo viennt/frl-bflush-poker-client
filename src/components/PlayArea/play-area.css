@@ -6,21 +6,4 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  body {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-  .game {
-    width: 100vh !important;
-    height: 100vw !important;
-  }
-}
-
-.play-area .seat { z-index: 100 }
+.play-area .seat { z-index: 5 }

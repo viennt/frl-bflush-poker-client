@@ -19,6 +19,7 @@ const PlayerControlArea = (props) => {
     const playerSitout = useSelector(state => state.playerSitout,[]);
     const stackAction = useSelector(state => state.stackAction,[]);
     const playerTurn = useSelector(state => state.playerTurn,[]);
+    const myInformation = useSelector(state => state.myInformation,[]);
 
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
@@ -71,10 +72,15 @@ const PlayerControlArea = (props) => {
                 <RaiseButton show={show}/>
             }
             {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
-            {show && isMyTurn && <div className={'remaining-chips'}>
-                Total chips remaining:
-            </div>}
-            {show && !isMyTurn && <BlindTimer/>}
+            {show &&
+                (!isMyTurn ?
+                    <BlindTimer/> :
+                    <div className={'remaining-chips'}>
+                        Total chips remaining:
+                        <div>{myInformation.chips}</div>
+                    </div>
+                )
+            }
         </div>
     );
 };

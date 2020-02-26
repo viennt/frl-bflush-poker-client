@@ -1,53 +1,53 @@
 .seat-player {
   position: absolute;
-  width: 12em;
-  height: 4em;
+  width: 20vw;
+  height: 11vh;
   border: 1px solid #000000;
-  top: calc(50% - 2em);
-  left: calc(50% - 5em);
+  top: 45%;
+  left: 44.5%;
 }
 
 .seat-player:nth-child(5) {
-  transform: translateX(0em) translateY(10em);
+  transform: translateX(-3vw) translateY(28vh);
 }
 
 .seat-player:nth-child(1) {
-  transform: translateX(14.5em) translateY(-8em);
+  transform: translateX(22vw) translateY(-29vh);
 }
 
 .seat-player:nth-child(2) {
-  transform: translateX(22em) translateY(-2.5em);
+  transform: translateX(32vw) translateY(-12vh);
 }
 
 .seat-player:nth-child(3) {
-  transform: translateX(22em) translateY(2.5em);
+  transform: translateX(32vw) translateY(7vh);
 }
 
 .seat-player:nth-child(4) {
-  transform: translateX(14.5em) translateY(8em);
+  transform: translateX(21vw) translateY(25vh);
 }
 
 
 
 
 .seat-player:nth-child(6) {
-  transform: translateX(-16.5em) translateY(8em);
+  transform: translateX(-30vw) translateY(25vh);
 }
 
 .seat-player:nth-child(7) {
-  transform: translateX(-24em) translateY(2.5em);
+  transform: translateX(-40vw) translateY(9vh);
 }
 
 .seat-player:nth-child(8) {
-  transform: translateX(-24em) translateY(-2.5em);
+  transform: translateX(-40vw) translateY(-11vh);
 }
 
 .seat-player:nth-child(9) {
-  transform: translateX(-16.5em) translateY(-8em);
+  transform: translateX(-30vw) translateY(-29vh);
 }
 
 .seat-player:nth-child(10) {
-  transform: translateX(0) translateY(-10em);
+  transform: translateX(-4vw) translateY(-32vh);
 }
 
 .seat-player-img {
@@ -95,6 +95,7 @@
 }
 
 .empty-seat-btn {
+  background: white;
   width: 100%;
   height: 100%;
 }

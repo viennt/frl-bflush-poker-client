@@ -1,3 +1,5 @@
+import {actionList, playerActionMessage, playerTurnMessage, RESERVE, WINNER} from "../const";
+
 export function handlePlayerTurn(payload) {
     return {
         seat: payload[0],
@@ -9,12 +11,11 @@ export function handlePlayerTurn(payload) {
 }
 
 export function generatePlayerTurnString(payload,user) {
-    return user[payload[0]].user_name + ' It is your turn, you have ' + payload[1] + ' seconds.'
+    return playerTurnMessage.replace("user_name",user[payload[0]].user_name).replace('time_remain', payload[1])
 }
 
 export function generatePlayerActionStatus(payload,user) {
-    let action = ["","Check","Fold","Call","Raise","All In"];
-    return "Last move:" + user[payload[0]].user_name + 'has just took action: ' + action[payload[1]];
+    return playerActionMessage.replace('user_name',user[payload[0]].user_name).replace('action_user',actionList[payload[1]]);
 }
 
 export function handleEmptySeat(currentState, payload) {
@@ -57,7 +58,7 @@ export function handlePlayerSeat(currentState, emptySeat, payload) {
         avatar: payload[3]
     };
     emptySeat.forEach((item,index) => {
-        if (item == payload[0]) {
+        if (parseFloat(item) === parseFloat(payload[0])) {
             emptySeat.splice(index, 1);
         }
     });
@@ -100,7 +101,7 @@ export function handleReserveSeat (payload, currentState) {
     }
     currentState[payload[0]] = {
         ...currentState[payload[0]],
-        chips: "RESERVE"
+        chips: RESERVE
     };
 
     return currentState;
@@ -125,15 +126,25 @@ export function handlePlayerWinner (payload, currentState) {
     currentState[payload[0]] = {
         ...currentState[payload[0]],
         amount_won: payload[1],
-        chips: payload[3] === 'Y' ? "WINNER" : payload[2]
+        chips: payload[3] === 'Y' ? WINNER : payload[2]
     };
 
     return currentState;
 }
 
+export function updatePlayerInformation (state, updateId, updateInformation) {
+    if (parseFloat(state.curSeatID) !== 0 && parseFloat(state.curSeatID) === parseFloat(updateId)) {
+        return {
+            ...state.myInformation,
+            ...updateInformation
+        }
+    }
+    return state.myInformation;
+}
+//remove item from array
 // eslint-disable-next-line no-extend-native
 Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
+    let what, a = arguments, L = a.length, ax;
     while (L && this.length) {
         what = a[--L];
         while ((ax = this.indexOf(what)) !== -1) {

@@ -1,5 +1,5 @@
 .seat--player {
   background: #1F275A;
   color: #FCFCFC;
-  z-index: 100;
+  z-index: 5;
 }

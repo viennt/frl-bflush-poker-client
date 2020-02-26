@@ -11,8 +11,8 @@ const BlindTimer = ({props}) => {
     let show = false;
 
     const startTimer = (duration) => {
-        var timer = duration, minutes, seconds;
-        var myCountDown = setInterval(function () {
+        let timer = duration, minutes, seconds;
+        let myCountDown = setInterval(function () {
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
@@ -27,17 +27,17 @@ const BlindTimer = ({props}) => {
         }, 1000);
     };
 
-    if (isTournamentGame && tableDetails) {
-        show = true
-    }
+    show = isTournamentGame && tableDetails;
 
     useEffect(() => {
-        let time = tableDetails["blinds_timer"];
-        if (updateBlinds) {
-            time = updateBlinds['time_remaining']
+        if (show) {
+            let time = tableDetails["blinds_timer"];
+            if (updateBlinds) {
+                time = updateBlinds['time_remaining']
+            }
+            startTimer(time)
         }
-        startTimer(time)
-    },[show,JSON.stringify(updateBlinds)]);
+    },[show, tableDetails, updateBlinds]);
 
     if (!show) return null;
 

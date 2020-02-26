@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import "./player-seat.css";
 import {useSelector} from "react-redux";
 import PlayerCards from "./PlayerCards";
+import {playerSitout} from "../../../const";
 
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
@@ -9,7 +10,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
 
     return (
         <div className="seat seat-player row">
-            <div
+            {amount && <div
                 className="seat-player-content-money position-absolute"
                 style={{
                     top: "-40%",
@@ -17,8 +18,8 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     zIndex: 9,
                     color: "white"
                 }}>
-                {amount ? "$"+amount : amount}
-            </div>
+                {"$"+amount}
+            </div>}
             <div className="seat-player-img col-3 p-0">
                 {parseFloat(seatid) === parseFloat(playerDealer) && <div className={'d-chip'}/>}
                 <img
@@ -30,8 +31,9 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             <div className="seat-player-content col-9">
                 <div className="seat-player-content-title">{playerName}</div>
                 <div className="seat-player-content-line" />
-                <div className="seat-player-content-money" style={chips === 'PLAYER SITTING OUT' ? {fontSize: '0.7rem'} : {}}>
-                    {chips !== 'PLAYER SITTING OUT' ? '$'+chips : chips}
+                {/* eslint-disable-next-line no-undef */}
+                <div className="seat-player-content-money" style={chips === playerSitout ? {fontSize: '0.7rem'} : {}}>
+                    {chips !== playerSitout ? '$'+chips : chips}
                 </div>
             </div>
             <div id="prog-bar">
