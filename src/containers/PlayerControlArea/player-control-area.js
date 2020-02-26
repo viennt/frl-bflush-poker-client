@@ -22,7 +22,7 @@ const PlayerControlArea = (props) => {
     const myInformation = useSelector(state => state.myInformation,[]);
 
 
-    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
 
 
     let show = true;
