@@ -11,11 +11,15 @@ export function handlePlayerTurn(payload) {
 }
 
 export function generatePlayerTurnString(payload,user) {
-    return playerTurnMessage.replace("user_name",user[payload[0]].user_name).replace('time_remain', payload[1])
+    if (user[payload[0]] && user[payload[0]].hasOwnProperty('user_name')) {
+        return playerTurnMessage.replace("user_name",user[payload[0]].user_name).replace('time_remain', payload[1])
+    } else return null
 }
 
 export function generatePlayerActionStatus(payload,user) {
-    return playerActionMessage.replace('user_name',user[payload[0]].user_name).replace('action_user',actionList[payload[1]]);
+    if (user[payload[0]] && user[payload[0]].hasOwnProperty('user_name')) {
+        return playerActionMessage.replace('user_name', user[payload[0]].user_name).replace('action_user', actionList[payload[1]]);
+    } else return null;
 }
 
 export function handleEmptySeat(currentState, payload) {
