@@ -1,4 +1,4 @@
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, START_PROCESSING, UPDATE_RECEIVE } from "../const";
+import {DID_FININSH_PROCESSING, CURRENT_PROCESS, START_PROCESSING, UPDATE_RECEIVE, IS_PROCESSING} from "../const";
 
 export const updateMessage = (message) =>
     async dispatch => {
@@ -10,6 +10,10 @@ export const updateMessage = (message) =>
 
 export const loadMessage = (message) =>
     async dispatch => {
+        dispatch({
+            type: IS_PROCESSING,
+            payload: true
+        });
         dispatch({
             type: message.message,
             payload: message.params

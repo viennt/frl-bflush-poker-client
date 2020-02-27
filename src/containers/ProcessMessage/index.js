@@ -4,13 +4,7 @@ import { loadMessage , didFinishProcess } from '../../actions'
 
 class ProcessMessage extends React.Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(nextProps.receiveMsg.length > 0) {
-            return true
-        }
-        if (nextProps.startProcessing === true) {
-            return true
-        }
-        return false;
+        return nextProps.isProcessing === false || nextProps.startProcessing === true;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -36,7 +30,8 @@ class ProcessMessage extends React.Component {
 function mapStateToProps(state) {
     return {
         receiveMsg : state.receiveMsg,
-        startProcessing: state.startProcessing
+        startProcessing: state.startProcessing,
+        isProcessing : state.isProcessing
     }
 }
 export default connect(mapStateToProps,{ loadMessage , didFinishProcess })(ProcessMessage)

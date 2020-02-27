@@ -14,7 +14,7 @@ import {
     updatePlayerInformation
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING } from "../const";
+import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING, IS_PROCESSING} from "../const";
 
 const initialState = {
     mgs: [],
@@ -69,7 +69,8 @@ const initialState = {
     setRaiseAmount: 0,
     myInformation: {},
     currentProcess: null,
-    startProcessing: false
+    startProcessing: false,
+    isProcessing: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -79,7 +80,8 @@ function rootReducer(state = initialState, action) {
             didFinishProcessing.shift();
             return {
                 ...state,
-                receiveMsg: didFinishProcessing
+                receiveMsg: didFinishProcessing,
+                isProcessing: false
             };
         case CURRENT_PROCESS:
             return {
@@ -95,6 +97,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 receiveMsg: action.payload
+            };
+        case IS_PROCESSING:
+            return {
+                ...state,
+                isProcessing: action.payload
             };
         case "SET_MODAL_SHOW":
             return {
