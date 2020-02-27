@@ -12,13 +12,13 @@ class ProcessMessage extends React.Component {
         if (msg){
             this.props.loadMessage(msg)
                 .then(() => {
-                    if (msg["message"] === "pause") {
-                        setTimeout(() => {
-                            this.props.didFinishProcess();
-                        }, parseFloat(msg['params'][0]) * 1000 )
-                    } else {
+                    // if (msg["message"] === "pause") {
+                    //     setTimeout(() => {
+                    //         this.props.didFinishProcess();
+                    //     }, parseFloat(msg['params'][0]) * 1000 )
+                    // } else {
                         this.props.didFinishProcess();
-                    }
+                    // }
                 })
         }
     }
