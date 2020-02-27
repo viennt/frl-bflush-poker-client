@@ -70,7 +70,7 @@ const Menu = (props) => {
     };
 
     const renderButton = () => {
-        if (isSittingOut) {
+        if (!isSittingOut) {
             return <button
                 onClick={handleBackAction}
                 className={'menu-back-button'}

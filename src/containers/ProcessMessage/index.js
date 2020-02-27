@@ -4,12 +4,8 @@ import { loadMessage , didFinishProcess } from '../../actions'
 
 class ProcessMessage extends React.Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.receiveMsg.length !== this.props.receiveMsg.length &&
-            nextProps.didFinishProcessing !== this.props.didFinishProcessing) {
+        if(nextProps.receiveMsg.length > 0) {
             return true
-        }
-        if (nextProps.didFinishProcessing === nextProps.receiveMsg.length) {
-            return false
         }
         if (nextProps.startProcessing === true) {
             return true
@@ -18,17 +14,19 @@ class ProcessMessage extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        let msg = this.props.receiveMsg[this.props.didFinishProcessing];
-        this.props.loadMessage(msg)
-            .then(() => {
-                if (msg["message"] === "pause") {
-                    setTimeout(() => {
+        let msg = this.props.receiveMsg[0];
+        if (msg){
+            this.props.loadMessage(msg)
+                .then(() => {
+                    if (msg["message"] === "pause") {
+                        setTimeout(() => {
+                            this.props.didFinishProcess();
+                        }, parseFloat(msg['params'][0]) * 1000 )
+                    } else {
                         this.props.didFinishProcess();
-                    }, parseFloat(msg['params'][0]) * 1000 )
-                } else {
-                    this.props.didFinishProcess();
-                }
-            })
+                    }
+                })
+        }
     }
 
     render() {
@@ -38,7 +36,6 @@ class ProcessMessage extends React.Component {
 function mapStateToProps(state) {
     return {
         receiveMsg : state.receiveMsg,
-        didFinishProcessing: state.didFinishProcessing,
         startProcessing: state.startProcessing
     }
 }

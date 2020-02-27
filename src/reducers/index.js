@@ -69,18 +69,17 @@ const initialState = {
     setRaiseAmount: 0,
     myInformation: {},
     currentProcess: null,
-    didFinishProcessing: 0,
     startProcessing: false
 };
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
         case DID_FININSH_PROCESSING:
-            let didFinishProcessing = state.didFinishProcessing;
-            didFinishProcessing++;
+            let didFinishProcessing = [...state.receiveMsg];
+            didFinishProcessing.shift();
             return {
                 ...state,
-                didFinishProcessing: didFinishProcessing
+                receiveMsg: didFinishProcessing
             };
         case CURRENT_PROCESS:
             return {
