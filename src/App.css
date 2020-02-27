@@ -108,7 +108,7 @@ body {
 
   .seat-player {
     width: 20vw;
-    height: 11vh;
+    height: 13vh;
   }
 
   .seat-player:nth-child(5) {
@@ -172,6 +172,10 @@ body {
   .control-area .raise-detail {
     bottom: 4rem;
   }
+  .seat-player-content-title {
+    font-size: 0.4rem;
+    text-align: center;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   body {
@@ -197,7 +201,7 @@ body {
 
   .seat-player {
     width: 20vh;
-    height: 11vw;
+    height: 13vw;
   }
 
   .seat-player:nth-child(5) {
@@ -260,5 +264,9 @@ body {
 
   .control-area .raise-detail {
     bottom: 4rem;
+  }
+  .seat-player-content-title {
+    font-size: 0.4rem;
+    text-align: center;
   }
 }

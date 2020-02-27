@@ -3,7 +3,7 @@ import "./player-seat.css";
 import {useSelector} from "react-redux";
 import PlayerCards from "./PlayerCards";
 import {playerSitout} from "../../../const";
-
+import {isMobile} from 'react-device-detect'
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
@@ -32,7 +32,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 <div className="seat-player-content-title">{playerName}</div>
                 <div className="seat-player-content-line" />
                 {/* eslint-disable-next-line no-undef */}
-                <div className="seat-player-content-money" style={chips === playerSitout ? {fontSize: '0.7rem'} : {}}>
+                <div className="seat-player-content-money" style={chips === playerSitout ? {fontSize: isMobile ? '0.1rem' : '0.7rem'} : {}}>
                     {chips !== playerSitout ? '$'+chips : chips}
                 </div>
             </div>

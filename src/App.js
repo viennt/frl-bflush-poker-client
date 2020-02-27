@@ -18,11 +18,6 @@ import {assetBaseUrl} from "./const";
 import { updateMessage, currentProcessMsg, startProcessMsg , loadMessage } from './actions'
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.receiveMsg = []; // This varibale to store received messages from Socket IO response.
-    }
-
     componentWillMount() {
         sendMsg("setSession", [window.q.gtbl_id_enc]);
     }
@@ -31,11 +26,11 @@ class App extends Component {
     // Read res from service via Socket IO
     // socket.on("message", receiveMsg);
     socket.on("message", text => {
-      var params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
-      var message = params.shift(); // message, eg. playerSitOut, clearTable
-      this.receiveMsg = [...this.receiveMsg, { message, params }];
+      let params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
+      let message = params.shift(); // message, eg. playerSitOut, clearTable
+      let receiveMsg = [...this.props.receiveMsg, { message, params }];
       console.log({message,params});
-      this.props.updateMessage(this.receiveMsg);
+      this.props.updateMessage(receiveMsg);
       if (message === "startProcessQueue") {
           setTimeout(() => {
               this.props.startProcessMsg()
@@ -64,6 +59,10 @@ class App extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+        receiveMsg: state.receiveMsg
+    }
+}
 
-
-export default connect(null, { updateMessage , currentProcessMsg , startProcessMsg , loadMessage })(App);
+export default connect(mapStateToProps, { updateMessage , currentProcessMsg , startProcessMsg , loadMessage })(App);
