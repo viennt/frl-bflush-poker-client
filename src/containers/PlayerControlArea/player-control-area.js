@@ -1,6 +1,6 @@
 import React from "react";
 import "./player-control-area.css";
-import { useSelector  } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import FoldButton from "../../components/Buttons/FoldButton";
 import CallButton from "../../components/Buttons/CallButton";
@@ -21,6 +21,7 @@ const PlayerControlArea = (props) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const myInformation = useSelector(state => state.myInformation,[]);
 
+    const dispatch = useDispatch();
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
 
@@ -57,7 +58,11 @@ const PlayerControlArea = (props) => {
                 }
             }
             if (shouldSend) {
-                sendMsg(name, payload)
+                sendMsg(name, payload);
+                dispatch({
+                    type: "stackAction",
+                    payload: null
+                })
             }
         }
     }

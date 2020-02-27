@@ -187,7 +187,8 @@ function rootReducer(state = initialState, action) {
             let showCard = handleShowCardParam(action.payload,state.showCard);
             return {
                 ...state,
-                showCard: showCard
+                showCard: showCard,
+                stackAction: null
             };
         case "seatPlayer":
             let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
@@ -245,7 +246,8 @@ function rootReducer(state = initialState, action) {
                 playerWinner:[],
                 playerActionStatus:[],
                 playerBetStatus: {},
-                mainPotStatus: null
+                mainPotStatus: null,
+                stackAction: null
             };
         case "mainPotStatus":
             return {
@@ -428,7 +430,8 @@ function rootReducer(state = initialState, action) {
 
             return {
                 ...state,
-                seatPlayer: playerWinner
+                seatPlayer: playerWinner,
+                stackAction: null
             };
         case "setRaiseAmount":
             return {
