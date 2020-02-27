@@ -5,3 +5,9 @@ export const actionList = ["","Check","Fold","Call","Raise","All In"];
 export const RESERVE = "RESERVE";
 export const WINNER = "WINNER";
 export const playerSitout = 'PLAYER SITTING OUT';
+
+
+export const CURRENT_PROCESS = 'CURRENT_PROCESS';
+export const DID_FININSH_PROCESSING = 'DID_FININSH_PROCESSING';
+export const UPDATE_RECEIVE = 'UPDATE_RECEIVE';
+export const START_PROCESSING = 'START_PROCESSING';

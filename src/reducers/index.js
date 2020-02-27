@@ -14,6 +14,7 @@ import {
     updatePlayerInformation
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
+import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING } from "../const";
 
 const initialState = {
     mgs: [],
@@ -66,17 +67,32 @@ const initialState = {
     popupRebuyModalShow: false,
     currentPlayerTurn: 0,
     setRaiseAmount: 0,
-    myInformation: {}
+    myInformation: {},
+    currentProcess: null,
+    didFinishProcessing: 0,
+    startProcessing: false
 };
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
-        case "UPDATE_MSG":
+        case DID_FININSH_PROCESSING:
+            let didFinishProcessing = state.didFinishProcessing;
+            didFinishProcessing++;
             return {
                 ...state,
-                mgs: action.payload
+                didFinishProcessing: didFinishProcessing
             };
-        case "UPDATE_RECEIVE":
+        case CURRENT_PROCESS:
+            return {
+                ...state,
+                currentProcess: action.payload
+            };
+        case START_PROCESSING:
+            return {
+                ...state,
+                startProcessing: true
+            };
+        case UPDATE_RECEIVE:
             return {
                 ...state,
                 receiveMsg: action.payload
