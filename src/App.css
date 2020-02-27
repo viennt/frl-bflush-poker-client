@@ -188,6 +188,9 @@ body {
   .card__middle .seat__card {
     width: 6vw;
   }
+  .game__header .menu-back-button {
+    padding: 0;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   body {
@@ -291,5 +294,8 @@ body {
 
   .card__middle .seat__card {
     width: 6vh;
+  }
+  .game__header .menu-back-button {
+    padding: 0;
   }
 }

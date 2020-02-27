@@ -11,10 +11,6 @@ export const updateMessage = (message) =>
 export const loadMessage = (message) =>
     async dispatch => {
         dispatch({
-            type: IS_PROCESSING,
-            payload: true
-        });
-        dispatch({
             type: message.message,
             payload: message.params
         })

@@ -1,7 +1,11 @@
 export function handleShowCardParam(payload, currentShowCard) {
     let showCard = {...currentShowCard};
     if (parseFloat(payload[0]) === 0) {
-        showCard[payload[0]].push(payload[1])
+        if (showCard.hasOwnProperty(payload[0])) {
+            showCard[payload[0]].push(payload[1])
+        } else {
+            showCard[payload[0]] = [payload[1]]
+        }
     } else {
         if (showCard.hasOwnProperty(payload[0])) {
             if (showCard[payload[0]].length === 2) {

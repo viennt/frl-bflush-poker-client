@@ -94,14 +94,11 @@ function rootReducer(state = initialState, action) {
                 startProcessing: true
             };
         case UPDATE_RECEIVE:
+            let receive = [...state.receiveMsg];
+            receive.push(action.payload);
             return {
                 ...state,
-                receiveMsg: action.payload
-            };
-        case IS_PROCESSING:
-            return {
-                ...state,
-                isProcessing: action.payload
+                receiveMsg: receive
             };
         case "SET_MODAL_SHOW":
             return {
