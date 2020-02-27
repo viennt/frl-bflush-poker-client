@@ -92,7 +92,88 @@ body {
   font-weight: bold;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  .control-area {
+    height: 4rem;
+  }
+  .play-area {
+    height: calc(100% - 8rem);
+  }
+  .control-area {
+    height: 4rem;
+  }
+  .play-area {
+    height: calc(100% - 8rem);
+  }
+
+  .seat-player {
+    width: 20vw;
+    height: 11vh;
+  }
+
+  .seat-player:nth-child(5) {
+    transform: translateX(-3vw) translateY(25vh);
+  }
+
+  .seat-player:nth-child(1) {
+    transform: translateX(22vw) translateY(-25vh);
+  }
+
+  .seat-player:nth-child(2) {
+    transform: translateX(32vw) translateY(-8vh);
+  }
+
+  .seat-player:nth-child(3) {
+    transform: translateX(32vw) translateY(8vh);
+  }
+
+  .seat-player:nth-child(4) {
+    transform: translateX(21vw) translateY(25vh);
+  }
+
+
+
+  .seat-player:nth-child(6) {
+    transform: translateX(-30vw) translateY(25vh);
+  }
+
+  .seat-player:nth-child(7) {
+    transform: translateX(-40vw) translateY(9vh);
+  }
+
+  .seat-player:nth-child(8) {
+    transform: translateX(-40vw) translateY(-8vh);
+  }
+
+  .seat-player:nth-child(9) {
+    transform: translateX(-30vw) translateY(-25vh);
+  }
+
+  .seat-player:nth-child(10) {
+    transform: translateX(-4vw) translateY(-25vh);
+  }
+
+  .control-button {
+    width: 15vw;
+    height: 10vh;
+  }
+  .game__header .list-menu-section {
+    max-width: 35vw;
+    max-height: 90vh;
+    padding: 11vh 2vh 2vh 2vh;
+    overflow: scroll;
+  }
+
+  .seat-player-content-money {
+    font-size: unset;
+  }
+
+
+  .control-area .raise-detail {
+    bottom: 4rem;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   body {
     transform: rotate(-90deg);
     transform-origin: left top;
