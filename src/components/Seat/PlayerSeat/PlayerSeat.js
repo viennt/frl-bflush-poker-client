@@ -33,9 +33,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 <div className="seat-player-content-line" />
                 {/* eslint-disable-next-line no-undef */}
                 <div className="seat-player-content-money" style={chips === playerSitout ? {fontSize: isMobile ? '0.1rem' : '0.7rem'} : {}}>
-                    <div className='position-absolute'>
-                        {chips !== playerSitout ? '$'+chips : chips}
-                    </div>
+                    {chips !== playerSitout ? '$'+chips : chips}
                 </div>
             </div>
             <div id="prog-bar">
