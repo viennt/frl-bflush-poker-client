@@ -184,6 +184,10 @@ body {
     font-size: 0.4rem;
     text-align: center;
   }
+
+  .card__middle .seat__card {
+    width: 6vw;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   body {
@@ -283,5 +287,9 @@ body {
   .seat-player-content-title {
     font-size: 0.4rem;
     text-align: center;
+  }
+
+  .card__middle .seat__card {
+    width: 6vh;
   }
 }
