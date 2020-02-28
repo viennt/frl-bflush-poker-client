@@ -1,4 +1,4 @@
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, START_PROCESSING, UPDATE_RECEIVE, IS_PROCESSING} from "../const";
+import {DID_FININSH_PROCESSING, CURRENT_PROCESS, START_PROCESSING, UPDATE_RECEIVE} from "../const";
 
 export const updateMessage = (message) =>
     async dispatch => {

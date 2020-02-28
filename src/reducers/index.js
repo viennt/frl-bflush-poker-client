@@ -14,7 +14,7 @@ import {
     updatePlayerInformation
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING, IS_PROCESSING} from "../const";
+import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING} from "../const";
 
 const initialState = {
     mgs: [],

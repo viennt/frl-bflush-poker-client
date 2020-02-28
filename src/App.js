@@ -15,7 +15,7 @@ import Loading from './containers/Loading';
 import "./App.css";
 import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
-import { updateMessage, currentProcessMsg, startProcessMsg , loadMessage } from './actions'
+import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'
 
 class App extends Component {
     constructor(props) {
@@ -62,4 +62,4 @@ class App extends Component {
         );
     }
 }
-export default connect(null, { updateMessage , currentProcessMsg , startProcessMsg , loadMessage })(App);
+export default connect(null, { updateMessage , currentProcessMsg , startProcessMsg })(App);
