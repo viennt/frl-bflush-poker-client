@@ -24,6 +24,12 @@
   margin-left: 12px;
   font-family: "Lato", sans-serif;
 }
+.control-button:disabled {
+  background:  #045388;
+}
+.control-button.selected {
+  background: linear-gradient(180deg, #045388 0%, #7CCBFC 100%);
+}
 
 .remaining-chips {
   color: white;

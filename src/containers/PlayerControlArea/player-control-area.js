@@ -20,13 +20,15 @@ const PlayerControlArea = (props) => {
     const stackAction = useSelector(state => state.stackAction,[]);
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const myInformation = useSelector(state => state.myInformation,[]);
+    const playerAction = useSelector(state => state.playerAction,[]);
+    const isSittingOut = useSelector(state => state.isSittingOut,[]);
 
     const dispatch = useDispatch();
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
 
 
-    let show = true;
+    let show = undefined;
 
     if (!tableDetails) {
         show = false;
@@ -38,6 +40,16 @@ const PlayerControlArea = (props) => {
 
     if (playerSitout.includes(curSeatID)) {
         show = false;
+    }
+
+    if (isMyTurn) {
+        if (Object.keys(playerAction).length > 0) {
+            show = true;
+        }
+    } else {
+        if (!isSittingOut && playerTurn) {
+            show = true;
+        }
     }
 
     // Auto send stack action
@@ -68,24 +80,27 @@ const PlayerControlArea = (props) => {
     }
 
     return (
-        <div className="control-area">
-            <FoldButton show={show} curSeatID={curSeatID}/>
-            <CheckButton show={show} curSeatID={curSeatID}/>
-            <CallButton show={show} curSeatID={curSeatID}/>
-            {!isMyTurn ?
-                <CallAnyButton show={show}/> :
-                <RaiseButton show={show}/>
-            }
-            {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
-            {show &&
-                (!isMyTurn ?
-                    <BlindTimer/> :
-                    <div className={'remaining-chips'}>
-                        Total chips remaining:
-                        <div>{myInformation.chips}</div>
-                    </div>
-                )
-            }
+        <div>
+            {isMyTurn && show && <p style={{color: 'white'}}>Pre-select your next action</p>}
+            <div className="control-area">
+                <FoldButton show={show} curSeatID={curSeatID}/>
+                <CheckButton show={show} curSeatID={curSeatID}/>
+                <CallButton show={show} curSeatID={curSeatID}/>
+                {!isMyTurn ?
+                    <CallAnyButton show={show}/> :
+                    <RaiseButton show={show}/>
+                }
+                {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
+                {show &&
+                    (!isMyTurn ?
+                            <BlindTimer/> :
+                            <div className={'remaining-chips'}>
+                                Total chips remaining:
+                                <div>{myInformation.chips}</div>
+                            </div>
+                    )
+                }
+            </div>
         </div>
     );
 };

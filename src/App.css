@@ -91,7 +91,12 @@ body {
   padding: 2px 35px;
   font-weight: bold;
 }
-
+.menu__button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   .control-area {
     height: 4rem;
@@ -111,7 +116,12 @@ body {
   .play-area {
     height: calc(100% - 6rem);
   }
-
+  .game__header .list-menu .menu-items span{
+    font-size: 1.1rem;
+  }
+  .game__header .list-menu .menu-items {
+    margin: 10px 0;
+  }
   .seat-player {
     width: 20vw;
     height: 13vh;
@@ -189,7 +199,9 @@ body {
     width: 6vw;
   }
   .game__header .menu-back-button {
-    padding: 0;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    margin: 5px;
   }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
@@ -202,6 +214,25 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
+  }
+  .game__header .list-menu .menu-items span{
+    font-size: 1.1rem;
+  }
+  .game__header .list-menu .menu-items {
+    margin: 10px 0;
+  }
+  .modal-backdrop {
+    width: 100vh;
+    height: 100vw;
+  }
+  .modal.show .modal-dialog {
+    justify-content: center;
+  }
+  .modal-content {
+    width: 80%;
+  }
+  .modal-dialog-centered::before {
+    height: unset;
   }
   .control-area {
     height: 3rem;
@@ -296,6 +327,8 @@ body {
     width: 6vh;
   }
   .game__header .menu-back-button {
-    padding: 0;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    margin: 5px;
   }
 }

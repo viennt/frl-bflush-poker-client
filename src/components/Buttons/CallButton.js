@@ -7,6 +7,7 @@ const CallButton = ({show,curSeatID}) => {
   const playerAction = useSelector(state => state.playerAction,[]);
 
   const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+  const stackAction = useSelector(state => state.stackAction,[]);
 
   let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 
@@ -27,7 +28,12 @@ const CallButton = ({show,curSeatID}) => {
   };
 
   if (!show) return null;
-  return <button disabled={isMyTurn && playerAction && playerAction['check_available']} className="control-button" onClick={sendMessageToServer}>Call</button>
+  return <button
+      disabled={isMyTurn && playerAction && playerAction['check_available']}
+      className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+      onClick={sendMessageToServer}>
+    Call
+  </button>
 };
 
 export default CallButton;

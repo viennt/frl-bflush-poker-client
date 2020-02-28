@@ -7,6 +7,7 @@ const CheckButton = ({show,curSeatID}) => {
     const playerAction = useSelector(state => state.playerAction,[]);
     const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
     const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+    const stackAction = useSelector(state => state.stackAction,[]);
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 
@@ -34,7 +35,12 @@ const CheckButton = ({show,curSeatID}) => {
         (playerTurn && (parseFloat(playerTurn['call_amount']) > parseFloat(amount)));
 
     if (!show) return null;
-    return <button disabled={disabled} className="control-button" onClick={sendMessageToServer}>Check</button>
+    return <button
+        disabled={disabled}
+        className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+        onClick={sendMessageToServer}>
+        Check
+    </button>
 };
 
 export default CheckButton;

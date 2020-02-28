@@ -55,6 +55,8 @@ const BuyInModal = props => {
     if (chipsSet < parseFloat(maxChip)) {
       chipsSet += parseFloat(step);
 
+      chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
+
       if (chipsSet > maxChip) {
         chipsSet = maxChip
       }
@@ -66,6 +68,8 @@ const BuyInModal = props => {
     let chipsSet = parseFloat(betChip);
     if (chipsSet > 0) {
       chipsSet -= parseFloat(step);
+
+      chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
 
       if (chipsSet < 0) {
         chipsSet = 0

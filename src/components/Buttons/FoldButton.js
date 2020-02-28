@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 const FoldButton = ({show,curSeatID}) => {
   const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+  const stackAction = useSelector(state => state.stackAction,[]);
 
   let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 
@@ -24,7 +25,11 @@ const FoldButton = ({show,curSeatID}) => {
 
   if (!show) return null;
   return (
-    <button className="control-button" onClick={sendMessageToServer}>Fold</button>
+    <button
+        className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+        onClick={sendMessageToServer}>
+      Fold
+    </button>
   );
 };
 

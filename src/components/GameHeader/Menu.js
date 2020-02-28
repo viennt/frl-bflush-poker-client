@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, {useEffect, useState} from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
 import {useSelector} from "react-redux";
 
@@ -6,7 +6,13 @@ const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
     const isSittingOut = useSelector(state => state.isSittingOut,[]);
     const isTournamentGame = useSelector(state => state.isTournamentGame, []);
+    const curSeatID = useSelector(state => state.curSeatID, []);
 
+    useEffect(() => {
+        if (isSittingOut && !showMenu) {
+            setShowMenu(true);
+        }
+    },[isSittingOut, showMenu]);
 
     const renderListMenu = () => {
         let menuItems = [
@@ -63,29 +69,51 @@ const Menu = (props) => {
 
     const handleSitOutAction = () => {
         sendMsg("sitOut");
+        setShowMenu(!showMenu)
     };
 
     const handleBackAction = () => {
-        sendMsg("backIn")
+        sendMsg("backIn");
+        setShowMenu(!showMenu)
+    };
+
+    const handleReBuyAction = () => {
+        sendMsg("rebuy");
+        setShowMenu(!showMenu)
     };
 
     const renderButton = () => {
-        if (!isSittingOut) {
-            return <button
-                onClick={handleBackAction}
-                className={'menu-back-button'}
-            >
-                I'm Back!
-            </button>
-        } else {
-            return <button
-                onClick={handleSitOutAction}
-                className={'menu-sitout-button'}
-            >
-                Sit out next hand
-            </button>
+        if (parseFloat(curSeatID) !== 0) {
+            let extraButton = null;
+            if (!isSittingOut) {
+                extraButton = <button
+                    onClick={handleBackAction}
+                    className={'menu-back-button'}
+                >
+                    I'm Back!
+                </button>
+            } else {
+                extraButton = <button
+                    onClick={handleSitOutAction}
+                    className={'menu-sitout-button'}
+                >
+                    Sit out next hand
+                </button>
+            }
+            return (
+                <div className='menu__button-container'>
+                    {extraButton}
+                    <button
+                        onClick={handleReBuyAction}
+                        className={'menu-back-button'}
+                    >
+                        Buy Chips
+                    </button>
+                </div>
+            )
         }
-    }
+        return null
+    };
 
     return (
         <div className={'list-menu'}>
