@@ -20,8 +20,8 @@ const EmptySeat = ({ seatid }) => {
 
   return (
       <div className="seat-player">
-        <button onClick={SendMessageToServer} className={parseFloat(curSeatID) !== 0 ? "select-seat-btn" : "empty-seat-btn"}>
-          {parseFloat(curSeatID) !== 0 ? "Select Seat" : "Empty Seat"}
+        <button onClick={SendMessageToServer} className={parseFloat(curSeatID) === 0 ? "select-seat-btn" : "empty-seat-btn"}>
+          {parseFloat(curSeatID) === 0 ? "Select Seat" : "Empty Seat"}
         </button>
       </div>
   );

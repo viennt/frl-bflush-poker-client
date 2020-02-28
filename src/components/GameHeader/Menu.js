@@ -74,22 +74,21 @@ const Menu = (props) => {
                     Sit out next hand
                 </button>
             }
-            return (
-                <div className='menu__button-container'>
-                    {extraButton}
-                    {
-                        playerTurn &&
-                        Object.keys(myInformation).length > 0 &&
-                        parseFloat(tableDetails['max_buyin']) >= myInformation['chips']  &&
+            if (playerTurn &&
+                Object.keys(myInformation).length > 0 &&
+                parseFloat(tableDetails['max_buyin']) >= myInformation['chips']) {
+                return (
+                    <div className='menu__button-container'>
+                        {extraButton}
                         <button
                             onClick={handleReBuyAction}
                             className={'menu-back-button'}
                         >
                             Buy Chips
                         </button>
-                    }
-                </div>
-            )
+                    </div>
+                )
+            }
         }
         return null
     };
