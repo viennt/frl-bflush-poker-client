@@ -23,9 +23,9 @@ const BuyInModal = props => {
 
   const dispatch = useDispatch();
   if (popupBuyin) {
-    minChip = popupBuyin.min;
-    maxChip = popupBuyin.max;
-    curChip = popupBuyin.chips;
+    minChip = parseFloat(popupBuyin.min);
+    maxChip = parseFloat(popupBuyin.max);
+    curChip = parseFloat(popupBuyin.chips);
   }
   if (tableDetails) {
     step = 10 * parseFloat(tableDetails['big_blind']);
@@ -51,9 +51,9 @@ const BuyInModal = props => {
   };
 
   const handlePlusButtonPress = () => {
-    let chipsSet = betChip;
-    if (chipsSet < maxChip) {
-      chipsSet += step;
+    let chipsSet = parseFloat(betChip);
+    if (chipsSet < parseFloat(maxChip)) {
+      chipsSet += parseFloat(step);
 
       if (chipsSet > maxChip) {
         chipsSet = maxChip
@@ -63,9 +63,9 @@ const BuyInModal = props => {
   };
 
   const handleMinusButtonPress = () => {
-    let chipsSet = betChip;
+    let chipsSet = parseFloat(betChip);
     if (chipsSet > 0) {
-      chipsSet -= step;
+      chipsSet -= parseFloat(step);
 
       if (chipsSet < 0) {
         chipsSet = 0

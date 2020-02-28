@@ -26,7 +26,7 @@ const ReBuyModal = props => {
     if (popupRebuy) {
         minChip = parseFloat(popupRebuy.min) - parseFloat(playerAction['chips']);
         maxChip = parseFloat(popupRebuy.max) - parseFloat(playerAction['chips']);
-        curChip = popupRebuy.chips;
+        curChip = parseFloat(popupRebuy.chips);
     }
 
     if (tableDetails) {
@@ -49,9 +49,9 @@ const ReBuyModal = props => {
     };
 
     const handlePlusButtonPress = () => {
-        let chipsSet = betChip;
-        if (chipsSet < maxChip) {
-            chipsSet += step;
+        let chipsSet = parseFloat(betChip);
+        if (chipsSet < parseFloat(maxChip)) {
+            chipsSet += parseFloat(step);
 
             if (chipsSet > maxChip) {
                 chipsSet = maxChip
@@ -61,9 +61,9 @@ const ReBuyModal = props => {
     };
 
     const handleMinusButtonPress = () => {
-        let chipsSet = betChip;
+        let chipsSet = parseFloat(betChip);
         if (chipsSet > 0) {
-            chipsSet -= step;
+            chipsSet -= parseFloat(step);
 
             if (chipsSet < 0) {
                 chipsSet = 0
