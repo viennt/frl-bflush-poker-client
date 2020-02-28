@@ -30,7 +30,7 @@ const CallButton = ({show,curSeatID}) => {
   if (!show) return null;
   return <button
       disabled={isMyTurn && playerAction && playerAction['check_available']}
-      className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+      className={stackAction && stackAction.name === 'actionCall' ? "control-button selected" : "control-button"}
       onClick={sendMessageToServer}>
     Call
   </button>

@@ -158,7 +158,7 @@ function rootReducer(state = initialState, action) {
                 allStatus: criticalErrorAllStatus,
             };
         case "playerActionStatus":
-            let playerActionStatus = state.playerActionStatus;
+            let playerActionStatus = state.allStatus;
             if (playerActionStatus.length === 0) {
                 playerActionStatus.push(action.payload)
             } else {
@@ -228,7 +228,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 ...playerBackin,
-                isSittingOut: !parseFloat(action.payload[0]) === parseFloat(state.curSeatID)
+                isSittingOut: !(parseFloat(action.payload[0]) === parseFloat(state.curSeatID))
             };
         case "reEstablishPos":
             return {
@@ -366,7 +366,7 @@ function rootReducer(state = initialState, action) {
             let playerBetStatus = handlePlayerBetStatus(action.payload, state.seatPlayer);
             let mainPotStatus = parseFloat(state.mainPotStatus);
             if (parseFloat(action.payload[3]) > 0) {
-                mainPotStatus += parseFloat(action.payload[3])
+                mainPotStatus += parseFloat(action.payload[3]);
             }
             let playerInformationUpdated = updatePlayerInformation(
                 state,

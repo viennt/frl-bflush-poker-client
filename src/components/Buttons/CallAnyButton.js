@@ -18,7 +18,7 @@ const CallAnyButton = ({show}) => {
 
     if (!show) return null;
     return <button
-        className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+        className={stackAction && stackAction.name === 'actionCallAny' ? "control-button selected" : "control-button"}
         onClick={handleCallAny}>
         Call any
     </button>

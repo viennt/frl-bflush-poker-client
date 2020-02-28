@@ -13,10 +13,10 @@ const Menu = (props) => {
     const myInformation = useSelector(state => state.myInformation, []);
 
     useEffect(() => {
-        if (isSittingOut && !showMenu) {
+        if (isSittingOut) {
             setShowMenu(true);
         }
-    },[isSittingOut, showMenu]);
+    },[isSittingOut]);
 
     const renderListMenu = () => {
         let menu = [];
@@ -43,23 +43,23 @@ const Menu = (props) => {
 
     const handleSitOutAction = () => {
         sendMsg("sitOut");
-        setShowMenu(!showMenu)
+        setShowMenu(false)
     };
 
     const handleBackAction = () => {
         sendMsg("backIn");
-        setShowMenu(!showMenu)
+        setShowMenu(false)
     };
 
     const handleReBuyAction = () => {
         sendMsg("rebuy");
-        setShowMenu(!showMenu)
+        setShowMenu(false)
     };
 
     const renderButton = () => {
         if (parseFloat(curSeatID) !== 0) {
             let extraButton = null;
-            if (!isSittingOut) {
+            if (isSittingOut) {
                 extraButton = <button
                     onClick={handleBackAction}
                     className={'menu-back-button'}
@@ -74,21 +74,21 @@ const Menu = (props) => {
                     Sit out next hand
                 </button>
             }
-            if (playerTurn &&
-                Object.keys(myInformation).length > 0 &&
-                parseFloat(tableDetails['max_buyin']) >= myInformation['chips']) {
-                return (
-                    <div className='menu__button-container'>
-                        {extraButton}
+            return (
+                <div className='menu__button-container'>
+                    {parseFloat(curSeatID) !== 0 && extraButton}
+                    {
+                        playerTurn &&
+                        Object.keys(myInformation).length > 0 &&
+                        parseFloat(tableDetails['max_buyin']) >= myInformation['chips'] &&
                         <button
                             onClick={handleReBuyAction}
                             className={'menu-back-button'}
                         >
                             Buy Chips
-                        </button>
-                    </div>
-                )
-            }
+                        </button>}
+                </div>
+            )
         }
         return null
     };
@@ -103,12 +103,12 @@ const Menu = (props) => {
             </span>
             {
                 showMenu &&
-                    <div className={'list-menu-section'}>
-                        {!isTournamentGame && renderButton()}
-                        <hr/>
-                        <p className={'menu-section'}>The below options will fold your hand and cause you to leave the table</p>
-                        {renderListMenu()}
-                    </div>
+                <div className={'list-menu-section'}>
+                    {!isTournamentGame && renderButton()}
+                    <hr/>
+                    <p className={'menu-section'}>The below options will fold your hand and cause you to leave the table</p>
+                    {renderListMenu()}
+                </div>
             }
         </div>
     )

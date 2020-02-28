@@ -4,7 +4,14 @@
   margin: 0 auto;
   background-color: #2D2F34;
   border-top: 1px solid #6f6f6f;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  position: relative;
+  flex-direction: column;
+}
 
+.control-area-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;

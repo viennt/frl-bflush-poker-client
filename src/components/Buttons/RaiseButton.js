@@ -4,7 +4,6 @@ import {sendMsg} from "../../utils/socket-io-lib";
 
 const RaiseButton = ({show}) => {
     const setRaiseAmount = useSelector(state => state.setRaiseAmount,[]);
-    const stackAction = useSelector(state => state.stackAction,[]);
 
     const sendMessageToServer = () => {
         sendMsg("actionRaise",[setRaiseAmount])
@@ -13,7 +12,7 @@ const RaiseButton = ({show}) => {
     if (!show) return null;
 
     return <button
-        className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+        className={"control-button"}
         onClick={sendMessageToServer}>
         Raise
     </button>

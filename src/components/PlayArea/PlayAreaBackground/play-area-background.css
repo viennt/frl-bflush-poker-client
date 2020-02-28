@@ -54,3 +54,11 @@
 .control-area .raise-detail .control-button:nth-child(1) {
   margin-left: 0;
 }
+
+.pre-select-action {
+  color: white;
+  position: absolute;
+  font-size: 0.6rem;
+  top: 0;
+  left: 25px;
+}

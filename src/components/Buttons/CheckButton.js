@@ -37,7 +37,7 @@ const CheckButton = ({show,curSeatID}) => {
     if (!show) return null;
     return <button
         disabled={disabled}
-        className={stackAction && stackAction.name === 'actionFold' ? "control-button selected" : "control-button"}
+        className={stackAction && stackAction.name === 'actionCheck' ? "control-button selected" : "control-button"}
         onClick={sendMessageToServer}>
         Check
     </button>

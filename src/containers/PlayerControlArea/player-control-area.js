@@ -24,11 +24,19 @@ const PlayerControlArea = (props) => {
     const isSittingOut = useSelector(state => state.isSittingOut,[]);
 
     const dispatch = useDispatch();
-
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
 
 
     let show = undefined;
+    if (isMyTurn) {
+        if (Object.keys(playerAction).length > 0) {
+            show = true;
+        }
+    } else {
+        if (!isSittingOut && playerTurn) {
+            show = true;
+        }
+    }
 
     if (!tableDetails) {
         show = false;
@@ -40,16 +48,6 @@ const PlayerControlArea = (props) => {
 
     if (playerSitout.includes(curSeatID)) {
         show = false;
-    }
-
-    if (isMyTurn) {
-        if (Object.keys(playerAction).length > 0) {
-            show = true;
-        }
-    } else {
-        if (!isSittingOut && playerTurn) {
-            show = true;
-        }
     }
 
     // Auto send stack action
@@ -80,9 +78,14 @@ const PlayerControlArea = (props) => {
     }
 
     return (
-        <div>
-            {isMyTurn && show && <p style={{color: 'white'}}>Pre-select your next action</p>}
-            <div className="control-area">
+        <div className="control-area">
+            {show && !isMyTurn && <p className={"pre-select-action"}>Pre-select your next action</p>}
+            <div
+                style={{
+                    marginTop: show && !isMyTurn ? "15px" : "0"
+                }}
+                className="control-area-container"
+            >
                 <FoldButton show={show} curSeatID={curSeatID}/>
                 <CheckButton show={show} curSeatID={curSeatID}/>
                 <CallButton show={show} curSeatID={curSeatID}/>

@@ -102,7 +102,7 @@ body {
     height: 4rem;
   }
   .play-area {
-    height: calc(100% - 8rem);
+    height: calc(100% - 6rem);
   }
   .control-area {
     height: 3rem;
@@ -112,9 +112,6 @@ body {
   }
   .game__header .list-menu {
     top: 0.3rem;
-  }
-  .play-area {
-    height: calc(100% - 6rem);
   }
   .game__header .list-menu .menu-items span{
     font-size: 1.1rem;
