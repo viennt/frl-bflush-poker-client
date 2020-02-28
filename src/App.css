@@ -203,6 +203,9 @@ body {
     font-size: 1.1rem;
     margin: 5px;
   }
+  .select-seat-btn,.empty-seat-btn {
+    font-size: 0.8rem;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   body {
@@ -330,5 +333,8 @@ body {
     padding: 0 20px;
     font-size: 1.1rem;
     margin: 5px;
+  }
+  .select-seat-btn,.empty-seat-btn {
+    font-size: 0.8rem;
   }
 }

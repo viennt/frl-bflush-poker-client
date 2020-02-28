@@ -8,6 +8,9 @@ const Menu = (props) => {
     const isSittingOut = useSelector(state => state.isSittingOut,[]);
     const isTournamentGame = useSelector(state => state.isTournamentGame, []);
     const curSeatID = useSelector(state => state.curSeatID, []);
+    const playerTurn = useSelector(state => state.playerTurn, []);
+    const tableDetails = useSelector(state => state.tableDetails, []);
+    const myInformation = useSelector(state => state.myInformation, []);
 
     useEffect(() => {
         if (isSittingOut && !showMenu) {
@@ -74,12 +77,17 @@ const Menu = (props) => {
             return (
                 <div className='menu__button-container'>
                     {extraButton}
-                    <button
-                        onClick={handleReBuyAction}
-                        className={'menu-back-button'}
-                    >
-                        Buy Chips
-                    </button>
+                    {
+                        playerTurn &&
+                        Object.keys(myInformation).length > 0 &&
+                        parseFloat(tableDetails['max_buyin']) >= myInformation['chips']  &&
+                        <button
+                            onClick={handleReBuyAction}
+                            className={'menu-back-button'}
+                        >
+                            Buy Chips
+                        </button>
+                    }
                 </div>
             )
         }

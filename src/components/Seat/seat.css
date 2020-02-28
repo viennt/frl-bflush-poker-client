@@ -96,11 +96,19 @@
 }
 
 .empty-seat-btn {
-  background: white;
+  color: white;
+  background: #0D77BF;
+  border: 1px solid #045388;
   width: 100%;
   height: 100%;
 }
-
+.select-seat-btn {
+  color: #045388;
+  background: #7CCBFC;
+  border: 1px solid #0D77BF;
+  width: 100%;
+  height: 100%;
+}
 .seat-player .red-chips {
   position: absolute;
   width: 15%;
