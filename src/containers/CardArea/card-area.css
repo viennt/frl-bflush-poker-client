@@ -37,3 +37,14 @@
   font-weight: bold;
   margin-top: 10px;
 }
+.seat__card {
+  width: 5vw;
+  overflow: hidden;
+  height: 11vh;
+}
+img, svg {
+  vertical-align: middle;
+  width: 140%;
+  height: 140%;
+  overflow: hidden;
+}

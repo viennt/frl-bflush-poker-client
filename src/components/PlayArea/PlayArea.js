@@ -4,14 +4,22 @@ import {Seat} from "../Seat";
 import {PlayAreaBackground} from "./index";
 import CardArea from "../../containers/CardArea";
 import {useSelector} from "react-redux";
+import {seatMap} from "../../const";
 
 const PlayArea = ({ children }) => {
     const curSeatID = useSelector(state => state.curSeatID,[]);
-
+    const tableDetails = useSelector(state => state.tableDetails,[]);
     const renderSeat = () => {
         let seats = [];
+        let seatid = 1;
+        let matrixSeat = seatMap[tableDetails["max_players"]];
         for (let i = 1; i <= 10; i++) {
-            seats.push(<Seat seatid={i.toString()} key={i} />)
+            if (matrixSeat[seatid] === i) {
+                seats.push(<Seat seatid={seatid.toString()} key={i} />);
+                seatid++;
+            } else {
+                seats.push(<div key={i}/>)
+            }
         }
         if (parseFloat(curSeatID) !== 0) {
             if (parseFloat(curSeatID) <= 5) {
@@ -47,7 +55,7 @@ const PlayArea = ({ children }) => {
 
     return (
         <div className="play-area">
-            {renderSeat()}
+            {tableDetails && renderSeat()}
             <PlayAreaBackground />
             <CardArea />
         </div>

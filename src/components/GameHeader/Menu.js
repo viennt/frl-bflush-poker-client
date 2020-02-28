@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
 import {useSelector} from "react-redux";
+import {menuItems} from "../../const";
 
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
@@ -15,36 +16,6 @@ const Menu = (props) => {
     },[isSittingOut, showMenu]);
 
     const renderListMenu = () => {
-        let menuItems = [
-            {
-                name: 'Tables',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Account',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Genealogy',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Cashier',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Tokens',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Marketing',
-                link: "/members-area/index.html"
-            },
-            {
-                name: 'Support',
-                link: "/members-area/index.html"
-            },
-        ];
         let menu = [];
         menuItems.forEach((item,index) => {
             menu.push(

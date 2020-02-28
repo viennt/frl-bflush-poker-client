@@ -49,7 +49,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             {
                 amount && parseFloat(amount) > 0 &&
                 <div className={'red-chips'}>
-                    <img src={'/assets/redChip.png'} alt={'red chip'}/>
+                    <img src={'../../../assets/redChip.png'} alt={'red chip'}/>
                 </div>
             }
             <PlayerCards seatid={seatid}/>
