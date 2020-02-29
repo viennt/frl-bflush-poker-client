@@ -13,6 +13,9 @@ import ProcessMessage from './containers/ProcessMessage';
 import Loading from './containers/Loading';
 
 import "./App.css";
+import "./responsive_landscape.css";
+import "./responsive_portrait.css";
+
 import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
 import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'

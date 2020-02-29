@@ -9,31 +9,34 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerDealer = useSelector(state => state.playerDealer,[]);
 
     return (
-        <div className="seat seat-player row">
-            {amount && <div
-                className="seat-player-content-money position-absolute"
-                style={{
-                    top: "-40%",
-                    width: "100%",
-                    zIndex: 9,
-                    color: "white"
-                }}>
-                {"$"+amount}
+        <div className="seat-player container">
+            {amount &&
+            <div
+                className="seat-player-content-money amount position-absolute">
+               {"£"+amount}
             </div>}
-            <div className="seat-player-img col-3 p-0">
-                {parseFloat(seatid) === parseFloat(playerDealer) && <div className={'d-chip'}/>}
-                <img
-                    alt="seat_player_img"
-                    className="seat-player-img-img"
-                    src={avatarSource}
-                />
-            </div>
-            <div className="seat-player-content col-9">
-                <div className="seat-player-content-title">{playerName}</div>
-                <div className="seat-player-content-line" />
-                {/* eslint-disable-next-line no-undef */}
-                <div className="seat-player-content-money" style={chips === playerSitout ? {fontSize: isMobile ? '0.1rem' : '0.7rem'} : {}}>
-                    {!isNaN(chips) ? '$'+chips : chips}
+            <div className="row" style={{height: "100%"}}>
+                <div className="seat-player-img col-3 p-0">
+                    {parseFloat(seatid) === parseFloat(playerDealer) &&
+                    <div className={'d-chip'}>
+                        <img src={"https://www.bflush.co.uk/engine/0.1/images/html5/dealer-chip.svg"} alt={'dealer-chip'}/>
+                    </div>}
+                    <img
+                        alt="seat_player_img"
+                        className="seat-player-img-img"
+                        src={avatarSource}
+                    />
+                </div>
+                <div className="seat-player-content col-9">
+                    <div className="seat-player-content-title">{playerName}</div>
+                    <div className="seat-player-content-line" />
+                    {/* eslint-disable-next-line no-undef */}
+                    <div
+                        className="seat-player-content-money"
+                        style={chips === playerSitout ? {fontSize: isMobile ? '1vh' : '2vh'} : {}}
+                    >
+                        {!isNaN(chips) ? '£'+chips : chips}
+                    </div>
                 </div>
             </div>
             <div id="prog-bar">
@@ -49,7 +52,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             {
                 amount && parseFloat(amount) > 0 &&
                 <div className={'red-chips'}>
-                    <img src={'../../../assets/redChip.png'} alt={'red chip'}/>
+                    <img src={'../src/assets/redChip.png'} alt={'red chip'}/>
                 </div>
             }
             <PlayerCards seatid={seatid}/>

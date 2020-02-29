@@ -14,41 +14,49 @@
 .raise-section {
 }
 
+
+
 .raise-section .raise-button {
-  width: 2.5em;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
-  border: none;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-left: 12px;
+    width: 2.5em;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
+    border: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 5vh;
+    margin-left: 12px;
+    height: 5vh;
+    line-height: 5vh;
 }
 .raise-section .raise-chips {
-  background: white;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.2em;
-  color: #045388;
-  text-align: center;
-  margin-left: 12px;
-  width: 8.5em;
+    background: white;
+    font-style: normal;
+    font-weight: normal;
+    color: #045388;
+    text-align: center;
+    margin-left: 12px;
+    width: 17vw;
+    height: 5vh;
+    line-height: 5vh;
+    font-size: 4vh;
 }
+
 .control-area .raise-detail {
-  position: absolute;
-  background: #2c2f34;
-  bottom: 6rem;
-  width: 100%;
-  height: 3rem;
-  z-index: 10;
-  padding: 10px;
-}
+   position: absolute;
+   background: #2c2f34;
+   bottom: 9vh;
+   width: 100%;
+   z-index: 10;
+   padding: 10px;
+ }
+
 .control-area .raise-detail .control-button {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
-  font-size: 1.2em;
-  border: none;
-  font-weight: bold;
-  color: black;
-  height: 1.5em;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
+    font-size: 3vh;
+    border: none;
+    font-weight: bold;
+    color: black;
+    height: 5vh;
+    line-height: 5vh;
 }
 
 .control-area .raise-detail .control-button:nth-child(1) {
@@ -56,9 +64,9 @@
 }
 
 .pre-select-action {
-  color: white;
-  position: absolute;
-  font-size: 0.6rem;
-  top: 0;
-  left: 25px;
+    color: white;
+    position: absolute;
+    font-size: 2vh;
+    top: 1vh;
+    left: 25px;
 }

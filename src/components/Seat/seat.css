@@ -1,53 +1,90 @@
 .seat-player {
   position: absolute;
-  width: 20vw;
-  height: 11vh;
+  width: 23vw;
+  height: 13vh;
   border: 1px solid #000000;
-  top: 45%;
-  left: 44.5%;
+}
+
+.seat-player .amount {
+  width: 100%;
+  z-index: 5;
+  color: white;
+  text-align: center;
+  top: -5vh;
 }
 
 .seat-player:nth-child(5) {
-  transform: translateX(-3vw) translateY(28vh);
+  transform: translateY(30vh);
 }
 
 .seat-player:nth-child(1) {
-  transform: translateX(22vw) translateY(-29vh);
+  transform: translateX(25vw) translateY(-26vh);
+}
+
+.seat-player:nth-child(1) .amount {
+  bottom: -5vh;
+  left: -5vw;
 }
 
 .seat-player:nth-child(2) {
-  transform: translateX(32vw) translateY(-12vh);
+  transform: translateX(35vw) translateY(-9vh);
 }
 
 .seat-player:nth-child(3) {
-  transform: translateX(32vw) translateY(7vh);
+  transform: translateX(35vw) translateY(8vh);
+}
+
+.seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
+  top: 2vh;
+  left: -16vw;
 }
 
 .seat-player:nth-child(4) {
-  transform: translateX(21vw) translateY(25vh);
+  transform: translateX(25vw) translateY(25vh);
 }
-
+.seat-player:nth-child(4) .amount {
+  left: -5vw
+}
 
 
 
 .seat-player:nth-child(6) {
-  transform: translateX(-30vw) translateY(25vh);
+  transform: translateX(-25vw) translateY(25vh);
+}
+
+.seat-player:nth-child(6) .amount {
+  left: 5vw;
 }
 
 .seat-player:nth-child(7) {
-  transform: translateX(-40vw) translateY(9vh);
+  transform: translateX(-35vw) translateY(8vh);
 }
 
 .seat-player:nth-child(8) {
-  transform: translateX(-40vw) translateY(-11vh);
+  transform: translateX(-35vw) translateY(-9vh);
+}
+
+.seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
+  top: 2vh;
+  left: 16vw;
 }
 
 .seat-player:nth-child(9) {
-  transform: translateX(-30vw) translateY(-29vh);
+  transform: translateX(-25vw) translateY(-26vh);
+}
+
+.seat-player:nth-child(9) .amount {
+  bottom: -5vh;
+  left: 5vw;
 }
 
 .seat-player:nth-child(10) {
-  transform: translateX(-4vw) translateY(-32vh);
+  transform: translateY(-30vh);
+}
+
+.seat-player:nth-child(10) .amount {
+  bottom: -5vh;
+  top: unset;
 }
 
 .seat-player-img {
@@ -69,12 +106,10 @@
    flex-direction: column;
  }
 .seat-player-content-title {
-  font-size: 1.2rem;
+  font-size: 4vh;
   text-align: center;
-  line-height: 14px;
   margin-bottom: 1vh;
 }
-
 .seat-player-content-line {
   height: 0;
   width: 100%;
@@ -83,11 +118,9 @@
 }
 
 .seat-player-content-money {
-  font-size: 1.2rem;
+  font-size: 3vh;
   text-align: center;
-  line-height: 12px;
   margin-top: 5px;
-  width: 150%;
 }
 
 .empty-seat {
@@ -101,6 +134,7 @@
   border: 1px solid #045388;
   width: 100%;
   height: 100%;
+  font-size: 3vh;
 }
 .select-seat-btn {
   color: #045388;
@@ -108,6 +142,7 @@
   border: 1px solid #0D77BF;
   width: 100%;
   height: 100%;
+  font-size: 3vh;
 }
 .seat-player .red-chips {
   position: absolute;
@@ -124,11 +159,13 @@
 
 .seat-player .d-chip {
   position: absolute;
-  bottom: -40%;
+  bottom: 1vh;
   left: 0;
-  background: url(https://www.bflush.co.uk/engine/0.1/images/html5/dealer-chip.svg) left bottom no-repeat;
-  width: 100%;
-  height: 100%;
+  z-index: 7;
+}
+.seat-player .d-chip img {
+  width: 33px;
+  height: 25px;
 }
 
 #prog-bar {

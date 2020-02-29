@@ -1,9 +1,12 @@
 .play-area {
   width: 100%;
-  height: calc(100% - 10rem);
+  display: flex;
+  flex-grow: 1;
   position: relative;
   background: #444351;
   overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
 .play-area .seat { z-index: 5 }

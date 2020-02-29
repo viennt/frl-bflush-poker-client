@@ -1,10 +1,9 @@
 .card-area {
   position: absolute;
-  width: 25rem;
-  height: 8rem;
-  top: calc(50% - 4rem);
-  left: calc(50% - 12.5rem);
-  /* background: blue; */
+  width: 28vw;
+  height: 30vh;
+  top: calc(50% - 20vh);
+  left: calc(50% - 14vw);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,6 +40,10 @@
   width: 5vw;
   overflow: hidden;
   height: 11vh;
+}
+.seat__card img {
+  width: 100%;
+  height: 100%;
 }
 img, svg {
   vertical-align: middle;

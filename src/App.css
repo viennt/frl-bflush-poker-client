@@ -10,10 +10,12 @@ body {
 .game {
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
+  display: flex;
 }
 .game__header {
   width: 100%;
-  height: 4rem;
+  height: 9vh;
   margin: 0 auto;
   background-color: #2D2F34;
   border-bottom: 1px solid #6f6f6f;
@@ -27,8 +29,7 @@ body {
   border: 1.5px solid #7CCBFC;
   background: #2D2F34;
   color: white;
-  /* margin-top: 5px; */
-  padding: 5px 40px;
+  padding: 1vh 3vw;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -41,8 +42,8 @@ body {
 }
 .game__header .list-menu {
   position: absolute;
-  left: 0.5rem;
-  top: 0.8rem;
+  left: 1vw;
+  top: 2vh;
   z-index: 9;
 }
 .game__header .list-menu-section {
@@ -52,29 +53,30 @@ body {
   border: 1px solid #045388;
   padding: 4vw 2vw 2vw 2vw;
   transition: opacity ease-in-out 0.5s;
+  max-height: 75vh;
+  overflow: scroll;
 }
 .game__header .list-menu hr{
   background: #045388;
 }
 .game__header .list-menu .menu-items {
-  margin: 25px 0;
-}
-.game__header .list-menu .menu-items span {
+  margin: 3vh 0;
   cursor: pointer;
   color: white;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 3vh;
 }
 .game__header .menu-section {
   color: white;
   font-style: italic;
-  margin-top: 25px;
+  margin: 2vh 0;
 }
 .game__header .item-status {
   color: white;
+  font-size: 3vh;
 }
 .game__header .update-status {
-  margin-right: 20px;
+  margin-right: 1vw;
 }
 
 .game__header .menu-sitout-button {
@@ -96,242 +98,4 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  .control-area {
-    height: 4rem;
-  }
-  .play-area {
-    height: calc(100% - 6rem);
-  }
-  .control-area {
-    height: 3rem;
-  }
-  .game__header {
-    height: 3rem;
-  }
-  .game__header .list-menu {
-    top: 0.3rem;
-  }
-  .game__header .list-menu .menu-items span{
-    font-size: 1.1rem;
-  }
-  .game__header .list-menu .menu-items {
-    margin: 10px 0;
-  }
-  .seat-player {
-    width: 20vw;
-    height: 13vh;
-  }
-
-  .seat-player:nth-child(5) {
-    transform: translateX(-3vw) translateY(25vh);
-  }
-
-  .seat-player:nth-child(1) {
-    transform: translateX(22vw) translateY(-25vh);
-  }
-
-  .seat-player:nth-child(2) {
-    transform: translateX(34vw) translateY(-8vh);
-  }
-
-  .seat-player:nth-child(3) {
-    transform: translateX(32vw) translateY(8vh);
-  }
-
-  .seat-player:nth-child(4) {
-    transform: translateX(21vw) translateY(25vh);
-  }
-
-
-
-  .seat-player:nth-child(6) {
-    transform: translateX(-30vw) translateY(25vh);
-  }
-
-  .seat-player:nth-child(7) {
-    transform: translateX(-40vw) translateY(9vh);
-  }
-
-  .seat-player:nth-child(8) {
-    transform: translateX(-40vw) translateY(-8vh);
-  }
-
-  .seat-player:nth-child(9) {
-    transform: translateX(-30vw) translateY(-25vh);
-  }
-
-  .seat-player:nth-child(10) {
-    transform: translateX(-4vw) translateY(-25vh);
-  }
-
-  .control-button {
-    width: 15vw;
-    height: 8vh;
-    font-size: 1rem;
-  }
-
-  .game__header .list-menu-section {
-    max-width: 35vw;
-    max-height: 90vh;
-    padding: 11vh 2vh 2vh 2vh;
-    overflow: scroll;
-  }
-
-  .seat-player-content-money {
-    font-size: unset;
-  }
-
-
-  .control-area .raise-detail {
-    bottom: 3rem;
-  }
-  .seat-player-content-title {
-    font-size: 0.4rem;
-    text-align: center;
-  }
-
-  .card__middle .seat__card {
-    width: 6vw;
-  }
-  .game__header .menu-back-button {
-    padding: 0 20px;
-    font-size: 1.1rem;
-    margin: 5px;
-  }
-  .select-seat-btn,.empty-seat-btn {
-    font-size: 0.8rem;
-  }
-}
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
-  body {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-  .game__header .list-menu .menu-items span{
-    font-size: 1.1rem;
-  }
-  .game__header .list-menu .menu-items {
-    margin: 10px 0;
-  }
-  .modal-backdrop {
-    width: 100vh;
-    height: 100vw;
-  }
-  .modal.show .modal-dialog {
-    justify-content: center;
-  }
-  .modal-content {
-    width: 80%;
-  }
-  .modal-dialog-centered::before {
-    height: unset;
-  }
-  .control-area {
-    height: 3rem;
-  }
-  .game__header {
-    height: 3rem;
-  }
-  .game__header .list-menu {
-    top: 0.3rem;
-  }
-  .play-area {
-    height: calc(100% - 6rem);
-  }
-  .game {
-    width: 100vh;
-    height: 100vw;
-  }
-
-  .seat-player {
-    width: 20vh;
-    height: 13vw;
-  }
-
-  .seat-player:nth-child(5) {
-    transform: translateX(-3vh) translateY(25vw);
-  }
-
-  .seat-player:nth-child(1) {
-    transform: translateX(22vh) translateY(-25vw);
-  }
-
-  .seat-player:nth-child(2) {
-    transform: translateX(34vh) translateY(-8vw);
-  }
-
-  .seat-player:nth-child(3) {
-    transform: translateX(32vh) translateY(8vw);
-  }
-
-  .seat-player:nth-child(4) {
-    transform: translateX(21vh) translateY(25vw);
-  }
-
-
-
-  .seat-player:nth-child(6) {
-    transform: translateX(-30vh) translateY(25vw);
-  }
-
-  .seat-player:nth-child(7) {
-    transform: translateX(-40vh) translateY(9vw);
-  }
-
-  .seat-player:nth-child(8) {
-    transform: translateX(-40vh) translateY(-8vw);
-  }
-
-  .seat-player:nth-child(9) {
-    transform: translateX(-30vh) translateY(-25vw);
-  }
-
-  .seat-player:nth-child(10) {
-    transform: translateX(-4vh) translateY(-25vw);
-  }
-
-  .control-button {
-    width: 15vh;
-    height: 8vw;
-    font-size: 1rem;
-  }
-  .game__header .list-menu-section {
-    max-width: 35vh;
-    max-height: 90vw;
-    padding: 11vw 2vw 2vw 2vw;
-    overflow: scroll;
-  }
-
-  .seat-player-content-money {
-    font-size: unset;
-  }
-
-
-  .control-area .raise-detail {
-    bottom: 3rem;
-  }
-  .seat-player-content-title {
-    font-size: 0.4rem;
-    text-align: center;
-  }
-
-  .card__middle .seat__card {
-    width: 6vh;
-  }
-  .game__header .menu-back-button {
-    padding: 0 20px;
-    font-size: 1.1rem;
-    margin: 5px;
-  }
-  .select-seat-btn,.empty-seat-btn {
-    font-size: 0.8rem;
-  }
 }

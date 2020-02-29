@@ -82,7 +82,7 @@ const PlayerControlArea = (props) => {
             {show && !isMyTurn && <p className={"pre-select-action"}>Pre-select your next action</p>}
             <div
                 style={{
-                    marginTop: show && !isMyTurn ? "15px" : "0"
+                    marginTop: show && !isMyTurn ? "2.5vh" : "0"
                 }}
                 className="control-area-container"
             >
