@@ -42,6 +42,7 @@
 
     .card__middle .seat__card {
         width: 6vw;
+        height: 15vh;
     }
     .game__header .menu-back-button {
         padding: 0 20px;
@@ -53,5 +54,8 @@
     }
     .game__header .list-menu .menu-items {
         font-size: 3vw;
+    }
+    .seat-player-content-money.chips {
+        font-size: 1vw;
     }
 }

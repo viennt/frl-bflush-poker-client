@@ -10,15 +10,17 @@
   z-index: 5;
   color: white;
   text-align: center;
-  top: -5vh;
+  top: -8vh;
 }
 
 .seat-player:nth-child(5) {
   transform: translateY(30vh);
+  z-index: 5;
 }
 
 .seat-player:nth-child(1) {
   transform: translateX(25vw) translateY(-26vh);
+  z-index: 1;
 }
 
 .seat-player:nth-child(1) .amount {
@@ -28,10 +30,12 @@
 
 .seat-player:nth-child(2) {
   transform: translateX(35vw) translateY(-9vh);
+  z-index: 2;
 }
 
 .seat-player:nth-child(3) {
   transform: translateX(35vw) translateY(8vh);
+  z-index: 3;
 }
 
 .seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
@@ -41,6 +45,7 @@
 
 .seat-player:nth-child(4) {
   transform: translateX(25vw) translateY(25vh);
+  z-index: 4;
 }
 .seat-player:nth-child(4) .amount {
   left: -5vw
@@ -50,6 +55,7 @@
 
 .seat-player:nth-child(6) {
   transform: translateX(-25vw) translateY(25vh);
+  z-index: 4;
 }
 
 .seat-player:nth-child(6) .amount {
@@ -58,10 +64,12 @@
 
 .seat-player:nth-child(7) {
   transform: translateX(-35vw) translateY(8vh);
+  z-index: 3;
 }
 
 .seat-player:nth-child(8) {
   transform: translateX(-35vw) translateY(-9vh);
+  z-index: 2;
 }
 
 .seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
@@ -71,6 +79,7 @@
 
 .seat-player:nth-child(9) {
   transform: translateX(-25vw) translateY(-26vh);
+  z-index: 1;
 }
 
 .seat-player:nth-child(9) .amount {
@@ -80,6 +89,7 @@
 
 .seat-player:nth-child(10) {
   transform: translateY(-30vh);
+  z-index: 10;
 }
 
 .seat-player:nth-child(10) .amount {
@@ -123,6 +133,10 @@
   margin-top: 5px;
 }
 
+.seat-player-content-money.chips {
+  font-size: 2vh;
+}
+
 .empty-seat {
   display: none;
   border: none;
@@ -146,11 +160,12 @@
 }
 .seat-player .red-chips {
   position: absolute;
-  width: 15%;
-  height: 15%;
-  bottom: 7%;
-  right: -8%;
+  width: 4vw;
+  height: 3vw;
   display: inline-block;
+  bottom: 5%;
+  left: 90%;
+  z-index: 9;
 }
 
 .seat-player .red-chips img {
@@ -159,13 +174,17 @@
 
 .seat-player .d-chip {
   position: absolute;
-  bottom: 1vh;
+  bottom: 2vw;
   left: 0;
   z-index: 7;
+  background-size: contain;
+  width: 3vw;
+  height: 2.5vw;
 }
+
 .seat-player .d-chip img {
-  width: 33px;
-  height: 25px;
+  width: 100%;
+  height: 100%;
 }
 
 #prog-bar {
@@ -174,7 +193,9 @@
   overflow: hidden;
   background: transparent;
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 8;
 }
 
 #prog-bar #background {
@@ -194,7 +215,8 @@
 }
 
 .seat__card_container .seat__card {
-  width: 5vw;
+  width: 9vw;
+  height: 15vh;
 }
 
 .seat__card_container .seat__card .hightlight-card {

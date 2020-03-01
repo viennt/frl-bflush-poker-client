@@ -63,7 +63,7 @@ const initialState = {
     popupRebuy:[],
     allStatus: [],
     isTournamentGame: false,
-    stackAction: null,
+    stackAction: {},
     popupRebuyModalShow: false,
     currentPlayerTurn: 0,
     setRaiseAmount: 0,
@@ -188,7 +188,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 showCard: showCard,
-                stackAction: null
+                stackAction: {}
             };
         case "seatPlayer":
             let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
@@ -247,7 +247,7 @@ function rootReducer(state = initialState, action) {
                 playerActionStatus:[],
                 playerBetStatus: {},
                 mainPotStatus: null,
-                stackAction: null
+                stackAction: {}
             };
         case "mainPotStatus":
             return {
@@ -315,9 +315,11 @@ function rootReducer(state = initialState, action) {
                 }
             };
         case "stackAction":
+            let stackAction = {...state.stackAction};
+            stackAction[state.curSeatID] = action.payload;
             return {
                 ...state,
-                stackAction: action.payload
+                stackAction: stackAction
             };
         case "playerDealer":
             return {
@@ -377,7 +379,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerBetStatus,
-                mainPotStatus: mainPotStatus,
+                mainPotStatus: mainPotStatus.toFixed(2),
                 myInformation: playerInformationUpdated
             };
         case "resetClient":
@@ -431,7 +433,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerWinner,
-                stackAction: null
+                stackAction: {}
             };
         case "setRaiseAmount":
             return {

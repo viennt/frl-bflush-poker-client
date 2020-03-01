@@ -3,7 +3,8 @@ import "./player-seat.css";
 import {useSelector} from "react-redux";
 import PlayerCards from "./PlayerCards";
 import {playerSitout} from "../../../const";
-import {isMobile} from 'react-device-detect'
+import redChips from '../../../assets/redChip.png';
+import dealerChips from '../../../assets/dealer-chip.svg';
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
@@ -19,7 +20,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 <div className="seat-player-img col-3 p-0">
                     {parseFloat(seatid) === parseFloat(playerDealer) &&
                     <div className={'d-chip'}>
-                        <img src={"https://www.bflush.co.uk/engine/0.1/images/html5/dealer-chip.svg"} alt={'dealer-chip'}/>
+                        <img src={dealerChips} alt={'dealer-chip'}/>
                     </div>}
                     <img
                         alt="seat_player_img"
@@ -32,8 +33,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     <div className="seat-player-content-line" />
                     {/* eslint-disable-next-line no-undef */}
                     <div
-                        className="seat-player-content-money"
-                        style={chips === playerSitout ? {fontSize: isMobile ? '1vh' : '2vh'} : {}}
+                        className={chips === playerSitout ? "seat-player-content-money chips" : "seat-player-content-money"}
                     >
                         {!isNaN(chips) ? '£'+chips : chips}
                     </div>
@@ -52,7 +52,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             {
                 amount && parseFloat(amount) > 0 &&
                 <div className={'red-chips'}>
-                    <img src={'../src/assets/redChip.png'} alt={'red chip'}/>
+                    <img src={redChips} alt={'red chip'}/>
                 </div>
             }
             <PlayerCards seatid={seatid}/>

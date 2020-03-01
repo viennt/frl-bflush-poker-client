@@ -17,7 +17,7 @@ const PlayerControlArea = (props) => {
     const tableDetails = useSelector(state => state.tableDetails,[]);
     const emptySeat = useSelector(state => state.emptySeat,[]);
     const playerSitout = useSelector(state => state.playerSitout,[]);
-    const stackAction = useSelector(state => state.stackAction,[]);
+    const stackAction = useSelector(state => state.stackAction[curSeatID], []);
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const myInformation = useSelector(state => state.myInformation,[]);
     const playerAction = useSelector(state => state.playerAction,[]);

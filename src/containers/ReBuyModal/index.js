@@ -24,8 +24,11 @@ const ReBuyModal = props => {
 
     const dispatch = useDispatch();
     if (popupRebuy && playerAction) {
-        minChip = parseFloat(popupRebuy.min) - parseFloat(playerAction['chips']);
-        maxChip = parseFloat(popupRebuy.max) - parseFloat(playerAction['chips']);
+        minChip = (parseFloat(popupRebuy.min) - parseFloat(playerAction['chips'])).toFixed(2);
+        if (minChip < 0) {
+            minChip = 0;
+        }
+        maxChip = (parseFloat(popupRebuy.max) - parseFloat(playerAction['chips'])).toFixed(2);
         curChip = parseFloat(popupRebuy.chips);
     }
 
@@ -52,7 +55,9 @@ const ReBuyModal = props => {
         let chipsSet = parseFloat(betChip);
         if (chipsSet < parseFloat(maxChip)) {
             chipsSet += parseFloat(step);
-            chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
+
+            let toFixed = parseFloat(step) >= 1 ? 0 : step.toString().length-2;
+            chipsSet = parseFloat(chipsSet.toFixed(toFixed));
 
             if (chipsSet > maxChip) {
                 chipsSet = maxChip
@@ -65,7 +70,9 @@ const ReBuyModal = props => {
         let chipsSet = parseFloat(betChip);
         if (chipsSet > 0) {
             chipsSet -= parseFloat(step);
-            chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
+
+            let toFixed = parseFloat(step) >= 1 ? 0 : step.toString().length-2;
+            chipsSet = parseFloat(chipsSet.toFixed(toFixed));
 
             if (chipsSet < 0) {
                 chipsSet = 0

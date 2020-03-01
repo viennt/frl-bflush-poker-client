@@ -188,4 +188,27 @@
     .game__header .item-status {
         font-size: 3vw;
     }
+    .seat-player-content-money.chips {
+        font-size: 1vh;
+    }
+    .seat__card_container .seat__card {
+        width: 9vh;
+        height: 14vw;
+    }
+    .remaining-chips {
+        font-size: 3vw;
+    }
+    .blind-timer .clock {
+        font-size: 3vw;
+        padding: 2vw;
+    }
+    .seat-player .red-chips {
+        width: 4vh;
+        height: 3vh;
+    }
+    .seat-player .d-chip {
+        bottom: 2vh;
+        width: 3vh;
+        height: 2.5vh;
+    }
 }

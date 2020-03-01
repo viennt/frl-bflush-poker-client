@@ -1,9 +1,9 @@
 .card-area {
   position: absolute;
-  width: 28vw;
+  width: 35vw;
   height: 30vh;
-  top: calc(50% - 20vh);
-  left: calc(50% - 14vw);
+  top: calc(50% - 18vh);
+  left: calc(50% - 18vw);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,11 +18,12 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  flex-flow: wrap;
 }
 
 .card__middle .seat__card {
-  width: 15%;
-  margin: 5px;
+  width: 6vw;
+  height: 14vh;
 }
 
 .inner_card {
