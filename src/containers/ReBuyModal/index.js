@@ -17,7 +17,11 @@ const ReBuyModal = props => {
 
     useEffect(() => {
         if (popupRebuy && playerAction) {
-            setBetChip(parseFloat(popupRebuy.min) - parseFloat(playerAction['chips']))
+            let setminChipValue = (parseFloat(popupRebuy.min) - parseFloat(playerAction['chips'])).toFixed(2);
+            if (setminChipValue < 0) {
+                setminChipValue = 0;
+            }
+            setBetChip(setminChipValue)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [popupRebuy]);

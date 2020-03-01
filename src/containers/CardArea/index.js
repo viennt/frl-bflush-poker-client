@@ -35,7 +35,7 @@ const CardArea = (props) => {
   return <div className="card-area">
     {renderCardInMiddle()}
     <div className={'total-pot'}>
-      {mainPotStatus ? 'Total Pot: £' + mainPotStatus : ''}
+      {mainPotStatus ? 'Total Pot: £' + parseFloat(mainPotStatus).toFixed(2) : ''}
     </div>
   </div>;
 };

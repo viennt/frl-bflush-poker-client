@@ -20,6 +20,13 @@ import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
 import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'
 
+
+//leave Table when close window
+const closingCode = () => {
+    sendMsg("leaveTable");
+    return null;
+};
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -30,20 +37,21 @@ class App extends Component {
     }
 
     componentDidMount() {
-    // Read res from service via Socket IO
-    // socket.on("message", receiveMsg);
-    socket.on("message", text => {
-      let params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
-      let message = params.shift(); // message, eg. playerSitOut, clearTable
-      console.log({message,params});
-      this.props.updateMessage({ message, params });
-      if (message === "startProcessQueue") {
-          setTimeout(() => {
-              this.props.startProcessMsg()
-          },2000)
-      }
-    });
-  }
+        window.onbeforeunload = closingCode;
+        // Read res from service via Socket IO
+        // socket.on("message", receiveMsg);
+        socket.on("message", text => {
+            let params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
+            let message = params.shift(); // message, eg. playerSitOut, clearTable
+            console.log({message,params});
+            this.props.updateMessage({ message, params });
+            if (message === "startProcessQueue") {
+                setTimeout(() => {
+                    this.props.startProcessMsg()
+                },2000)
+            }
+        });
+    }
 
     render() {
         return (
