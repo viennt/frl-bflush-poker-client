@@ -79,18 +79,18 @@ const PlayerControlArea = (props) => {
 
     return (
         <div className="control-area">
-            {!show && !isMyTurn && <p className={"pre-select-action"}>Pre-select your next action</p>}
+            {show && !isMyTurn && <p className={"pre-select-action"}>Pre-select your next action</p>}
             <div
                 style={{
-                    marginTop: !show && !isMyTurn ? "2.5vh" : "0"
+                    marginTop: show && !isMyTurn ? "2.5vh" : "0"
                 }}
                 className="control-area-container"
             >
-                <FoldButton show={!show} curSeatID={curSeatID}/>
-                <CheckButton show={!show} curSeatID={curSeatID}/>
-                <CallButton show={!show} curSeatID={curSeatID}/>
+                <FoldButton show={show} curSeatID={curSeatID}/>
+                <CheckButton show={show} curSeatID={curSeatID}/>
+                <CallButton show={show} curSeatID={curSeatID}/>
                 {!isMyTurn ?
-                    <CallAnyButton show={!show}/> :
+                    <CallAnyButton show={show}/> :
                     <RaiseButton show={show}/>
                 }
                 {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
