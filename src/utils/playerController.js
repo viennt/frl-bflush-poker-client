@@ -201,7 +201,6 @@ export function positioningPlayer (numberPlayer,curSeatID,seats) {
                 seats = [...leftArray,...moveArray];
             }
             return seats;
-            break;
         case "10":
             if (parseFloat(curSeatID) <= 5) {
                 let startMoveIndex = parseFloat(curSeatID) + 5;

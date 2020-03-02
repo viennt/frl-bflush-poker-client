@@ -210,13 +210,13 @@
 
 .seat__card_container {
   position: absolute;
-  top: -65%;
+  top: -20%;
   right: -10%;
 }
 
 .seat__card_container .seat__card {
-  width: 9vw;
-  height: 15vh;
+  width: 5vw;
+  height: 11vh;
 }
 
 .seat__card_container .seat__card .hightlight-card {
@@ -224,7 +224,7 @@
 }
 
 .seat__card_container .seat__card:nth-child(2) {
-  transform: translateY(-60%) translateX(40%);
+  transform: translateY(-70%) translateX(40%);
 }
 
 @media (min-width: 640px) {

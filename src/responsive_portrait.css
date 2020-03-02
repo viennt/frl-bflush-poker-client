@@ -192,8 +192,8 @@
         font-size: 1vh;
     }
     .seat__card_container .seat__card {
-        width: 9vh;
-        height: 14vw;
+        width: 5vh;
+        height: 11vw;
     }
     .remaining-chips {
         font-size: 3vw;
