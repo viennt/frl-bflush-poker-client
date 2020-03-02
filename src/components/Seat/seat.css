@@ -206,6 +206,9 @@
   background: linear-gradient(-90deg, #70dc23, yellow, orange, #ff1076);
   clip-path: inset(0 0 0 0);
   transition: clip-path;
+  -webkit-transition: clip-path;
+  -o-transition: clip-path;
+  -moz-transition: clip-path;
 }
 
 .seat__card_container {
