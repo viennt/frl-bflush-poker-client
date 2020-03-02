@@ -12,12 +12,12 @@ const ReBuyModal = props => {
 
     const popupRebuy = useSelector(state => state.popupRebuy,[]);
     const popupRebuyModalShow = useSelector(state => state.popupRebuyModalShow,[]);
-    const playerAction = useSelector(state => state.playerAction,[]);
+    const myInformation = useSelector(state => state.myInformation,[]);
     const tableDetails = useSelector(state => state.tableDetails,[]);
 
     useEffect(() => {
-        if (popupRebuy && playerAction) {
-            let setminChipValue = (parseFloat(popupRebuy.min) - parseFloat(playerAction['chips'])).toFixed(2);
+        if (popupRebuy && myInformation) {
+            let setminChipValue = (parseFloat(popupRebuy.min) - parseFloat(myInformation['chips'])).toFixed(2);
             if (setminChipValue < 0) {
                 setminChipValue = 0;
             }
@@ -27,12 +27,12 @@ const ReBuyModal = props => {
     }, [popupRebuy]);
 
     const dispatch = useDispatch();
-    if (popupRebuy && playerAction) {
-        minChip = (parseFloat(popupRebuy.min) - parseFloat(playerAction['chips'])).toFixed(2);
+    if (popupRebuy && myInformation) {
+        minChip = (parseFloat(popupRebuy.min) - parseFloat(myInformation['chips'])).toFixed(2);
         if (minChip < 0) {
             minChip = 0;
         }
-        maxChip = (parseFloat(popupRebuy.max) - parseFloat(playerAction['chips'])).toFixed(2);
+        maxChip = (parseFloat(popupRebuy.max) - parseFloat(myInformation['chips'])).toFixed(2);
         curChip = parseFloat(popupRebuy.chips);
     }
 
@@ -44,7 +44,7 @@ const ReBuyModal = props => {
 
 
     const SendMessageToServer = () => {
-        sendMsg("buyin", [betChip, 'N']);
+        sendMsg("rebuy", [betChip]);
     };
 
     const cancelRebuy = () => {

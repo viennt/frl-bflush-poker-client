@@ -19,13 +19,13 @@
 }
 
 .control-button {
-  width: 9em;
-  height: 2.5em;
+  width: 15vw;
+  height: 6vh;
   background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%), linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
   color: #ffffff;
   font-style: normal;
   font-weight: bold;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   /* line-height: 14px; */
   border: none;
   margin-left: 12px;

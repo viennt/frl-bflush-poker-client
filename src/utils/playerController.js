@@ -145,6 +145,91 @@ export function updatePlayerInformation (state, updateId, updateInformation) {
     }
     return state.myInformation;
 }
+
+
+export function positioningPlayer (numberPlayer,curSeatID,seats) {
+    let backupArray = [...seats];
+    let moveArray = [];
+    let leftArray = [];
+
+    switch (numberPlayer) {
+        case "2":
+            if (parseFloat(curSeatID) === 1) {
+                for (let i = 6; i <= 9; i++) {
+                    moveArray.push(backupArray[i])
+                }
+                for (let j = 0; j <= 5; j++) {
+                    leftArray.push(backupArray[j])
+                }
+                seats = [...moveArray,...leftArray];
+            } else {
+                for (let k = 0; k <= 4; k++) {
+                    moveArray.push(backupArray[k])
+                }
+                for (let l = 5; l <= 9; l++) {
+                    leftArray.push(backupArray[l])
+                }
+                seats = [...leftArray,...moveArray];
+            }
+            return seats;
+        case "6":
+            if (parseFloat(curSeatID) < 3) {
+                let startMoveIndex = parseFloat(curSeatID) + 5;
+                let numberMoveItems = 9;
+                for (let m = startMoveIndex; m <= numberMoveItems; m++) {
+                    moveArray.push(backupArray[m])
+                }
+                for (let j = 0; j <= parseFloat(curSeatID) + 4; j++ ) {
+                    leftArray.push(backupArray[j])
+                }
+                seats = [...moveArray,...leftArray];
+            } else if (parseFloat(curSeatID) ===  3) {
+                return seats
+            }else {
+                let startMoveIndex = 0;
+                let numberMoveItems = 0;
+                if (parseFloat(curSeatID) === 4) numberMoveItems = 1;
+                if (parseFloat(curSeatID) === 5) numberMoveItems = 4;
+                if (parseFloat(curSeatID) === 6) numberMoveItems = 5;
+
+                for (let m = startMoveIndex; m < numberMoveItems; m++) {
+                    moveArray.push(backupArray[m])
+                }
+                for (let j = numberMoveItems; j <= 9; j++ ) {
+                    leftArray.push(backupArray[j])
+                }
+                seats = [...leftArray,...moveArray];
+            }
+            return seats;
+            break;
+        case "10":
+            if (parseFloat(curSeatID) <= 5) {
+                let startMoveIndex = parseFloat(curSeatID) + 5;
+                let numberMoveItems = 9;
+                for (let m = startMoveIndex; m <= numberMoveItems; m++) {
+                    moveArray.push(backupArray[m])
+                }
+                for (let j = 0; j <= parseFloat(curSeatID) + 4; j++ ) {
+                    leftArray.push(backupArray[j])
+                }
+                seats = [...moveArray,...leftArray];
+            } else {
+                let startMoveIndex = 0;
+                let numberMoveItems = parseFloat(curSeatID) - 5;
+                for (let m = startMoveIndex; m < numberMoveItems; m++) {
+                    moveArray.push(backupArray[m])
+                }
+                for (let j = numberMoveItems; j <= 9; j++ ) {
+                    leftArray.push(backupArray[j])
+                }
+                seats = [...leftArray,...moveArray];
+            }
+            return seats;
+        default:
+            return seats;
+    }
+}
+
 //remove item from array
 // eslint-disable-next-line no-extend-native
 Array.prototype.remove = function() {

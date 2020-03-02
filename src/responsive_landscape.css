@@ -9,9 +9,11 @@
 
     .control-button {
         width: 15vw;
-        height: 8vh;
-        font-size: 1rem;
+        height: 7vh;
+        line-height: 7vh;
+        font-size: 4vh;
     }
+
     .game__header .list-menu {
         left: 2vh;
         top: 0.75vw;
@@ -36,7 +38,7 @@
         bottom: 10vh;
     }
     .seat-player-content-title {
-        font-size: 0.4rem;
+        font-size: 3vh;
         text-align: center;
     }
 

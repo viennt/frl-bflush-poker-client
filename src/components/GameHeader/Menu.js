@@ -11,6 +11,8 @@ const Menu = (props) => {
     const playerTurn = useSelector(state => state.playerTurn, []);
     const tableDetails = useSelector(state => state.tableDetails, []);
     const myInformation = useSelector(state => state.myInformation, []);
+    const emptySeat = useSelector(state => state.emptySeat,[]);
+
 
     useEffect(() => {
         if (isSittingOut) {
@@ -57,7 +59,7 @@ const Menu = (props) => {
     };
 
     const renderButton = () => {
-        if (parseFloat(curSeatID) !== 0) {
+        if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID)) {
             let extraButton = null;
             if (isSittingOut) {
                 extraButton = <button

@@ -212,9 +212,14 @@ function rootReducer(state = initialState, action) {
             };
         case "emptySeat":
             let emptySeat = handleEmptySeat(state.emptySeat,action.payload);
+            let stackActionUpdate = {...state.stackAction};
+            if (parseFloat(action.payload) === parseFloat(state.curSeatID)) {
+                stackActionUpdate[state.curSeatID] = null
+            }
             return {
                 ...state,
-                emptySeat
+                emptySeat : emptySeat,
+                stackActionUpdate : stackActionUpdate,
             };
         case "playerSitout":
             let playerSitout = handlePlayerSitout(state.playerSitout,action.payload,state.playerBackin);
@@ -379,7 +384,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerBetStatus,
-                mainPotStatus: mainPotStatus.toFixed(2),
+                mainPotStatus: mainPotStatus,
                 myInformation: playerInformationUpdated
             };
         case "resetClient":
