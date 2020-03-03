@@ -19,7 +19,8 @@ import "./responsive_portrait.css";
 import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
 import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'
-
+import {isMobile} from 'react-device-detect'
+import screenfull from "screenfull";
 
 //leave Table when close window
 const closingCode = () => {
@@ -37,6 +38,11 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if (isMobile) {
+            if (screenfull.isEnabled) {
+                screenfull.toggle();
+            }
+        }
         window.onbeforeunload = closingCode;
         // Read res from service via Socket IO
         // socket.on("message", receiveMsg);

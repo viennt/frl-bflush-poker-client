@@ -236,9 +236,16 @@ function rootReducer(state = initialState, action) {
                 isSittingOut: !(parseFloat(action.payload[0]) === parseFloat(state.curSeatID))
             };
         case "reEstablishPos":
+            let reEstablishPos = state.isSittingOut;
+            if (action.payload[0] === 'A') {
+                reEstablishPos = false
+            } else if (action.payload[0] === 'S') {
+                reEstablishPos = true;
+            };
             return {
                 ...state,
-                reEstablishPos: action.payload[0]
+                reEstablishPos: action.payload[0],
+                isSittingOut: reEstablishPos
             };
         case "clearTable":
             return {
@@ -453,6 +460,22 @@ function rootReducer(state = initialState, action) {
                     big_blind_amount: action.payload[1],
                     time_remaining: action.payload[2]
                 }
+            };
+        case "sitOutPlayer":
+            let updateIsSittingOut = state.isSittingOut;
+            if (action.payload[0] === 'Y') {
+                updateIsSittingOut = true
+            } else if (action.payload[0] === 'N'){
+                updateIsSittingOut = false
+            }
+            return {
+                ...state,
+                isSittingOut: updateIsSittingOut
+            };
+        case "mySeat":
+            return {
+                ...state,
+                isSittingOut: false
             };
         default:
             let customData = {};
