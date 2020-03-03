@@ -174,12 +174,12 @@
 
 .seat-player .d-chip {
   position: absolute;
-  bottom: 2vw;
+  bottom: 0.5vw;
   left: 0;
   z-index: 7;
   background-size: contain;
-  width: 3vw;
-  height: 2.5vw;
+  width: 4vw;
+  height: 3vw;
 }
 
 .seat-player .d-chip img {

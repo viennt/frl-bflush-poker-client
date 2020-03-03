@@ -44,7 +44,11 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     id="background"
                     style={
                         playerTurn && parseFloat(playerTurn["seat"]) === parseFloat(seatid) ?
-                            {opacity: 1, transitionDuration: playerTurn["total_time"] + "s", clipPath: "inset(0 100% 0 0)"} :
+                            {
+                                opacity: 1,
+                                transitionDuration: playerTurn["total_time"] + "s",
+                                clipPath: "inset(0 100% 0 0)"
+                            } :
                             {opacity: 0}
                     }
                 />

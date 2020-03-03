@@ -207,8 +207,8 @@
         height: 3vh;
     }
     .seat-player .d-chip {
-        bottom: 2vh;
-        width: 3vh;
-        height: 2.5vh;
+        bottom: 0.5vh;
+        width: 4vh;
+        height: 3vh;
     }
 }

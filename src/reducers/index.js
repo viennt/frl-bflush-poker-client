@@ -15,7 +15,7 @@ import {
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
 import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING} from "../const";
-
+import {isIOS} from "react-device-detect"
 const initialState = {
     mgs: [],
     receiveMsg: [],
@@ -177,11 +177,16 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
+            let stackUpdate = {...state.stackAction};
+            if (parseFloat(action.payload[0]) !== parseFloat(state.curSeatID)) {
+                stackUpdate[state.curSeatID] = null
+            }
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
                 allStatus: playerTurnAllStatus,
+                stackUpdate: stackUpdate
             };
         case "showCard":
             let showCard = handleShowCardParam(action.payload,state.showCard);
@@ -437,7 +442,7 @@ function rootReducer(state = initialState, action) {
         case "playerWinner":
             let playerWinner = handlePlayerWinner(action.payload, state.seatPlayer);
 
-            if (action.payload[3] === "Y") {
+            if (action.payload[3] === "Y" && !isIOS) {
                 let x = document.getElementById("winnerAudio");
                 x.play();
             }
@@ -471,11 +476,6 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 isSittingOut: updateIsSittingOut
-            };
-        case "mySeat":
-            return {
-                ...state,
-                isSittingOut: false
             };
         default:
             let customData = {};

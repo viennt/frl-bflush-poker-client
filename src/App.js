@@ -33,7 +33,7 @@ class App extends Component {
         super(props);
         this.receiveMsg = []
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         sendMsg("setSession", [window.q.gtbl_id_enc]);
     }
 
@@ -49,7 +49,6 @@ class App extends Component {
         socket.on("message", text => {
             let params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
             let message = params.shift(); // message, eg. playerSitOut, clearTable
-            console.log({message,params});
             this.props.updateMessage({ message, params });
             if (message === "startProcessQueue") {
                 setTimeout(() => {

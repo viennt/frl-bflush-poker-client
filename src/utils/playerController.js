@@ -174,12 +174,13 @@ export function positioningPlayer (numberPlayer,curSeatID,seats) {
             return seats;
         case "6":
             if (parseFloat(curSeatID) < 3) {
-                let startMoveIndex = parseFloat(curSeatID) + 5;
+                let startMoveIndex = parseFloat(curSeatID) === 1 ? parseFloat(curSeatID) + 5 : parseFloat(curSeatID) + 7;
                 let numberMoveItems = 9;
                 for (let m = startMoveIndex; m <= numberMoveItems; m++) {
                     moveArray.push(backupArray[m])
                 }
-                for (let j = 0; j <= parseFloat(curSeatID) + 4; j++ ) {
+                let moveIndex = parseFloat(curSeatID) === 1 ? parseFloat(curSeatID) + 4 : parseFloat(curSeatID) + 6;
+                for (let j = 0; j <= moveIndex; j++ ) {
                     leftArray.push(backupArray[j])
                 }
                 seats = [...moveArray,...leftArray];

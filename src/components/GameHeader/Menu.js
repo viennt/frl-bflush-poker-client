@@ -5,20 +5,21 @@ import {menuItems} from "../../const";
 
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
-    const isSittingOut = useSelector(state => state.isSittingOut,[]);
     const isTournamentGame = useSelector(state => state.isTournamentGame, []);
     const curSeatID = useSelector(state => state.curSeatID, []);
     const playerTurn = useSelector(state => state.playerTurn, []);
     const tableDetails = useSelector(state => state.tableDetails, []);
     const myInformation = useSelector(state => state.myInformation, []);
     const emptySeat = useSelector(state => state.emptySeat,[]);
+    const playerSitout = useSelector(state => state.playerSitout,[]);
 
 
     useEffect(() => {
-        if (isSittingOut) {
+        if (playerSitout.includes(curSeatID) && parseFloat(curSeatID) !== 0 && !showMenu) {
             setShowMenu(true);
         }
-    },[isSittingOut]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [playerSitout.join("-")]);
 
     const renderListMenu = () => {
         let menu = [];
@@ -61,7 +62,7 @@ const Menu = (props) => {
     const renderButton = () => {
         if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID)) {
             let extraButton = null;
-            if (isSittingOut) {
+            if (playerSitout.includes(curSeatID)) {
                 extraButton = <button
                     onClick={handleBackAction}
                     className={'menu-back-button'}

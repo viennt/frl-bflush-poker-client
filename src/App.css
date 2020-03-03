@@ -89,7 +89,6 @@ body {
 .game__header .menu-back-button {
   background: linear-gradient(180deg, #FFF491 0%, #FFEA2F 100%);
   font-size: 1.3rem;
-  margin-left: 25%;
   padding: 2px 35px;
   font-weight: bold;
 }
