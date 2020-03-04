@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 const FoldButton = ({show,curSeatID}) => {
   const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
-  const stackAction = useSelector(state => state.stackAction,[]);
+  const stackAction = useSelector(state => state.stackAction[curSeatID],[]);
 
   let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 

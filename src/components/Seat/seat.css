@@ -4,13 +4,16 @@
   height: 13vh;
   border: 1px solid #000000;
 }
+.seat-player.leave-empty {
+  border: none;
+}
 
 .seat-player .amount {
   width: 100%;
   z-index: 5;
   color: white;
   text-align: center;
-  top: -8vh;
+  top: -6vh;
 }
 
 .seat-player:nth-child(5) {

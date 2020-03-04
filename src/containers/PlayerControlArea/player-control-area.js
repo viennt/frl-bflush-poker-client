@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./player-control-area.css";
 import { useSelector} from "react-redux";
 
@@ -23,7 +23,7 @@ const PlayerControlArea = (props) => {
     const playerAction = useSelector(state => state.playerAction,[]);
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
-
+    let isIphoneX = navigator.userAgent.match(/(iPhone)/);
 
     let show = undefined;
     if (isMyTurn) {
@@ -52,52 +52,54 @@ const PlayerControlArea = (props) => {
         show = false;
     }
 
-    // Auto send stack action
-    if (isMyTurn) {
-        if (stackAction) {
-            let shouldSend = true;
-            let payload = [];
-            let name = stackAction.name;
-            if (stackAction.name.includes("actionCall")) {
-                if (stackAction.name === "actionCallAny") {
-                    name = "actionCall";
-                    payload = stackAction.payload
-                } else {
-                    shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
-                    if (shouldSend) {
-                        payload = stackAction.payload;
+    useEffect(() => {
+        // Auto send stack action
+        if (isMyTurn) {
+            if (stackAction) {
+                let shouldSend = true;
+                let payload = [];
+                let name = stackAction.name;
+                if (stackAction.name.includes("actionCall")) {
+                    if (stackAction.name === "actionCallAny") {
+                        name = "actionCall";
+                        payload = stackAction.payload
+                    } else {
+                        shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
+                        if (shouldSend) {
+                            payload = stackAction.payload;
+                        }
                     }
                 }
-            }
-            if (shouldSend) {
-                sendMsg(name, payload);
+                if (shouldSend) {
+                    sendMsg(name, payload);
+                }
             }
         }
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[isMyTurn, JSON.stringify(playerTurn), JSON.stringify(stackAction)]);
 
     return (
-        <div className="control-area">
-            {show && !isMyTurn && <p className={"pre-select-action"}>Pre-select your next action</p>}
+        <div className={isIphoneX ? "control-area iphoneX" : "control-area"}>
             <div
-                style={{
-                    marginTop: show && !isMyTurn ? "2.5vh" : "0"
-                }}
                 className="control-area-container"
             >
-                <FoldButton show={show} curSeatID={curSeatID}/>
-                <CheckButton show={show} curSeatID={curSeatID}/>
-                <CallButton show={show} curSeatID={curSeatID}/>
-                {!isMyTurn ?
-                    <CallAnyButton show={show}/> :
-                    <RaiseButton show={show}/>
-                }
-                {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
+                {show && !isMyTurn && <p className={"pre-select-action"}>Choose Next Action</p>}
+                <div className={'button-container'}>
+                    <FoldButton show={show} curSeatID={curSeatID}/>
+                    <CheckButton show={show} curSeatID={curSeatID}/>
+                    <CallButton show={show} curSeatID={curSeatID}/>
+                    {!isMyTurn ?
+                        <CallAnyButton show={show}/> :
+                        <RaiseButton show={show}/>
+                    }
+                    {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
+                </div>
                 {show &&
                     (!isMyTurn ?
                             <BlindTimer/> :
                             <div className={'remaining-chips'}>
                                 Total chips remaining:
-                                <div>{myInformation.chips}</div>
+                                <div>{parseFloat(myInformation.chips).toFixed(2)}</div>
                             </div>
                     )
                 }

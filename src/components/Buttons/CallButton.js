@@ -7,7 +7,7 @@ const CallButton = ({show,curSeatID}) => {
   const playerAction = useSelector(state => state.playerAction,[]);
 
   const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
-  const stackAction = useSelector(state => state.stackAction,[]);
+  const stackAction = useSelector(state => state.stackAction[curSeatID],[]);
 
   let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
 

@@ -14,7 +14,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             {amount &&
             <div
                 className="seat-player-content-money amount position-absolute">
-               {"£"+amount}
+               {"£"+parseFloat(amount).toFixed(2)}
             </div>}
             <div className="row" style={{height: "100%"}}>
                 <div className="seat-player-img col-3 p-0">
@@ -35,7 +35,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     <div
                         className={chips === playerSitout ? "seat-player-content-money chips" : "seat-player-content-money"}
                     >
-                        {!isNaN(chips) ? '£'+chips : chips}
+                        {!isNaN(chips) ? '£'+parseFloat(chips).toFixed(2) : chips}
                     </div>
                 </div>
             </div>

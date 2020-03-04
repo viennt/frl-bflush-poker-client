@@ -45,6 +45,10 @@ const ReBuyModal = props => {
 
     const SendMessageToServer = () => {
         sendMsg("rebuy", [betChip]);
+        dispatch({
+            type: "popupRebuyModalHide",
+            payload: false
+        })
     };
 
     const cancelRebuy = () => {

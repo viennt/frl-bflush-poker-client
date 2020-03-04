@@ -65,8 +65,7 @@
 
 .pre-select-action {
     color: white;
-    position: absolute;
     font-size: 2.7vh;
-    top: -0.5vh;
-    left: 25px;
+    margin-left: 1vw;
+    margin-bottom: 0;
 }

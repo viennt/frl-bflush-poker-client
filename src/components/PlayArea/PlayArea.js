@@ -19,7 +19,7 @@ const PlayArea = ({ children }) => {
                 seats.push(<Seat seatid={seatid.toString()} key={i} />);
                 seatid++;
             } else {
-                seats.push(<div key={i}/>)
+                seats.push(<div className={"seat-player leave-empty"} key={i}/>)
             }
         }
         if (parseFloat(curSeatID) !== 0) {

@@ -20,8 +20,8 @@ import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
 import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'
 import {isMobile} from 'react-device-detect'
-import screenfull from "screenfull";
-
+import FullScreen from 'mobile-safari-fullscreen'
+import styles from './index.modle.css'
 //leave Table when close window
 const closingCode = () => {
     sendMsg("leaveTable");
@@ -31,6 +31,9 @@ const closingCode = () => {
 class App extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isOpen: false
+        };
         this.receiveMsg = []
     }
     UNSAFE_componentWillMount() {
@@ -39,9 +42,12 @@ class App extends Component {
 
     componentDidMount() {
         if (isMobile) {
-            if (screenfull.isEnabled) {
-                screenfull.toggle();
-            }
+            setTimeout(() => {
+                this.setState({
+                    isOpen: true
+                })
+                window.scrollTo(0,1);
+            },1000)
         }
         window.onbeforeunload = closingCode;
         // Read res from service via Socket IO
@@ -60,21 +66,23 @@ class App extends Component {
 
     render() {
         return (
-            <div className="game">
-                <GameHeader/>
-                <PlayArea/>
-                <PlayerControlArea />
-                <BuyInModal/>
-                <ReBuyModal/>
-                <NotifyModal/>
-                <GameFinishModal/>
-                <audio id="winnerAudio">
-                    <source src={assetBaseUrl + "/sounds/winner.ogg"} type="audio/ogg"/>
-                </audio>
-                <ProcessMessage/>
-                <Loading/>
-                {/*<ChatRoom />*/}
-            </div>
+            <FullScreen classNames={styles} isOpen={this.state.isOpen}>
+                <div className="game">
+                    <GameHeader/>
+                    <PlayArea/>
+                    <PlayerControlArea />
+                    <BuyInModal/>
+                    <ReBuyModal/>
+                    <NotifyModal/>
+                    <GameFinishModal/>
+                    <audio id="winnerAudio">
+                        <source src={assetBaseUrl + "/sounds/winner.ogg"} type="audio/ogg"/>
+                    </audio>
+                    <ProcessMessage/>
+                    <Loading/>
+                    {/*<ChatRoom />*/}
+                </div>
+            </FullScreen>
         );
     }
 }

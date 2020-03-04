@@ -60,4 +60,12 @@
     .seat-player-content-money.chips {
         font-size: 1vw;
     }
+
+    .control-area.iphoneX {
+        height: 12vw;
+    }
+    .iphoneX .control-area-container {
+        padding-bottom: 3vw;
+    }
+
 }
