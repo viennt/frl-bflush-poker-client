@@ -194,12 +194,11 @@ function rootReducer(state = initialState, action) {
         case "showCard":
             let showCard = handleShowCardParam(action.payload,state.showCard);
             let resetBetAmount = {...state.seatPlayer};
-            resetBetAmount = resetBetAmount.map(item => {
-                return {
-                    ...item,
-                    amount: null
-                }
-            });
+            if (parseFloat(action.payload[0]) === 0) {
+                Object.keys(resetBetAmount).forEach(key => {
+                    resetBetAmount[key]["amount"] = null;
+                })
+            }
             return {
                 ...state,
                 showCard: showCard,
