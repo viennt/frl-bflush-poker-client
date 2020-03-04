@@ -359,7 +359,8 @@ function rootReducer(state = initialState, action) {
                 showNotify: true,
                 notify: {
                     title: action.payload[0],
-                    message: action.payload[1]
+                    message: action.payload[1],
+                    customAction: action.payload[2] ? action.payload[2] : null
                 }
             };
         case "hideNotify":

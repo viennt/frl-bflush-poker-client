@@ -11,7 +11,10 @@ const NotifyModal = (props) => {
         dispatch({
             type: "hideNotify",
             payload: false
-        })
+        });
+        if (notify.customAction && notify.customAction === 'notLogIn') {
+            window.close();
+        }
     };
 
     if (showNotify && notify) {

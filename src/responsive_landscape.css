@@ -37,6 +37,9 @@
     .control-area .raise-detail {
         bottom: 10vh;
     }
+    .control-area.iphoneX .raise-detail {
+        bottom: 13vh;
+    }
     .seat-player-content-title {
         font-size: 3vh;
         text-align: center;
@@ -65,7 +68,7 @@
         height: 12vw;
     }
     .iphoneX .control-area-container {
-        padding-bottom: 3vw;
+        padding-bottom: 3vh;
     }
 
 }

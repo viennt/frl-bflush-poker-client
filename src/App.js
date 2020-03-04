@@ -18,7 +18,7 @@ import "./responsive_portrait.css";
 
 import GameHeader from "./components/GameHeader";
 import {assetBaseUrl} from "./const";
-import { updateMessage, currentProcessMsg, startProcessMsg } from './actions'
+import { updateMessage, startProcessMsg , loadMessage } from './actions'
 import {isMobile} from 'react-device-detect'
 import FullScreen from 'mobile-safari-fullscreen'
 import styles from './index.modle.css'
@@ -38,6 +38,16 @@ class App extends Component {
     }
     UNSAFE_componentWillMount() {
         sendMsg("setSession", [window.q.gtbl_id_enc]);
+        this.listenLogin = setTimeout(() => {
+            if (this.receiveMsg.includes("tableDetails")) {
+                clearTimeout(this.listenLogin);
+            } else {
+                this.props.loadMessage({
+                    message: "notify",
+                    params: ["WARNING", "You are no longer loggedin. Please log back in to continue","notLogIn"]
+                })
+            }
+        },10000)
     }
 
     componentDidMount() {
@@ -45,7 +55,7 @@ class App extends Component {
             setTimeout(() => {
                 this.setState({
                     isOpen: true
-                })
+                });
                 window.scrollTo(0,1);
             },1000)
         }
@@ -55,6 +65,8 @@ class App extends Component {
         socket.on("message", text => {
             let params = text.split("|"); //.map(p => Base64.Decode(p)); // we are not using b64 now
             let message = params.shift(); // message, eg. playerSitOut, clearTable
+
+            this.receiveMsg.push(message);
             this.props.updateMessage({ message, params });
             if (message === "startProcessQueue") {
                 setTimeout(() => {
@@ -86,4 +98,4 @@ class App extends Component {
         );
     }
 }
-export default connect(null, { updateMessage , currentProcessMsg , startProcessMsg })(App);
+export default connect(null, { updateMessage , startProcessMsg , loadMessage })(App);
