@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -12,14 +12,25 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     let minBetAmount = 0;
     let maxBetAmount = 100;
     let step = 0.5;
+
+    useEffect(() => {
+        if (playerAction && tableDetails) {
+            minBetAmount = playerAction['check_available'] ?
+                parseFloat(playerAction['reraise_amount']) : parseFloat(tableDetails['big_blind']);
+            dispatch({
+                type: "setRaiseAmount",
+                payload: minBetAmount
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[JSON.stringify(playerAction), JSON.stringify(tableDetails)]);
+
+    const dispatch = useDispatch();
+
     if (playerAction && tableDetails) {
-        minBetAmount = playerAction['check_available'] ?
-            parseFloat(playerAction['reraise_amount']) : parseFloat(tableDetails['big_blind']);
         maxBetAmount = parseFloat(playerAction['chips']);
         step = parseFloat(tableDetails['big_blind']);
     }
-
-    const dispatch = useDispatch();
 
     const actionRaise12 = () => {
         if (playerAction) {
@@ -95,11 +106,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             </button>
             <div
                 className="raise-chips">
-                {
-                    setRaiseAmount ?
-                        parseFloat(setRaiseAmount).toFixed(2) :
-                        parseFloat(minBetAmount).toFixed(2)
-                }
+                {parseFloat(setRaiseAmount).toFixed(2)}
             </div>
             <button
                 onClick={handlePlusButtonPress}
