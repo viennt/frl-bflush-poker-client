@@ -23,22 +23,23 @@
 
 .seat-player:nth-child(1) {
   transform: translateX(25vw) translateY(-26vh);
-  z-index: 1;
+  z-index: 2;
 }
 
 .seat-player:nth-child(1) .amount {
   bottom: -5vh;
   left: -5vw;
+  top: unset;
 }
 
 .seat-player:nth-child(2) {
   transform: translateX(35vw) translateY(-9vh);
-  z-index: 2;
+  z-index: 3;
 }
 
 .seat-player:nth-child(3) {
   transform: translateX(35vw) translateY(8vh);
-  z-index: 3;
+  z-index: 4;
 }
 
 .seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
@@ -48,7 +49,7 @@
 
 .seat-player:nth-child(4) {
   transform: translateX(25vw) translateY(25vh);
-  z-index: 4;
+  z-index: 5;
 }
 .seat-player:nth-child(4) .amount {
   left: -5vw
@@ -67,12 +68,12 @@
 
 .seat-player:nth-child(7) {
   transform: translateX(-35vw) translateY(8vh);
-  z-index: 3;
+  z-index: 4;
 }
 
 .seat-player:nth-child(8) {
   transform: translateX(-35vw) translateY(-9vh);
-  z-index: 2;
+  z-index: 3;
 }
 
 .seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
@@ -82,17 +83,18 @@
 
 .seat-player:nth-child(9) {
   transform: translateX(-25vw) translateY(-26vh);
-  z-index: 1;
+  z-index: 2;
 }
 
 .seat-player:nth-child(9) .amount {
   bottom: -5vh;
   left: 5vw;
+  top: unset;
 }
 
 .seat-player:nth-child(10) {
   transform: translateY(-30vh);
-  z-index: 10;
+  z-index: 1;
 }
 
 .seat-player:nth-child(10) .amount {
