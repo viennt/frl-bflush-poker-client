@@ -269,8 +269,7 @@ function rootReducer(state = initialState, action) {
                 playerActionStatus:[],
                 playerBetStatus: {},
                 mainPotStatus: null,
-                stackAction: {},
-                setRaiseAmount: {}
+                stackAction: {}
             };
         case "mainPotStatus":
             return {
@@ -463,8 +462,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerWinner,
-                stackAction: {},
-                setRaiseAmount: {}
+                stackAction: {}
             };
         case "setRaiseAmount":
             let updateSetRaiseAmount = {...state.setRaiseAmount};

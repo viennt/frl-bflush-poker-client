@@ -12,7 +12,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     let step = 0.5;
 
     const dispatch = useDispatch();
-
+console.log(setRaiseAmount)
     if (playerAction && tableDetails) {
         maxBetAmount = parseFloat(playerAction['chips']);
         step = parseFloat(tableDetails['big_blind']);

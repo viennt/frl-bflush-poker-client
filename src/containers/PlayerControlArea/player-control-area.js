@@ -64,16 +64,16 @@ const PlayerControlArea = (props) => {
                 if (stackAction.name.includes("actionCall")) {
                     if (stackAction.name === "actionCallAny") {
                         name = "actionCall";
-                        payload = stackAction.payload
+                        payload = [parseFloat(stackAction.payload).toFixed(2)]
                     } else {
                         shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
                         if (shouldSend) {
-                            payload = stackAction.payload;
+                            payload = [parseFloat(stackAction.payload).toFixed(2)];
                         }
                     }
                 }
                 if (shouldSend) {
-                    sendMsg(name, [parseFloat(payload).toFixed(2)]);
+                    sendMsg(name, payload);
                     dispatch({
                         type: "stackAction",
                         payload: null
