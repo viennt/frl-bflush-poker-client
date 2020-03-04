@@ -71,7 +71,7 @@ const PlayerControlArea = (props) => {
                     }
                 }
                 if (shouldSend) {
-                    sendMsg(name, payload);
+                    sendMsg(name, [parseFloat(payload).toFixed(2)]);
                 }
             }
         }

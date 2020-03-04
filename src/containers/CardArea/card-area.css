@@ -42,7 +42,7 @@
   overflow: hidden;
   height: 11vh;
 }
-.seat__card img {
+.card-area .seat__card img {
   width: 100%;
   height: 100%;
 }

@@ -66,7 +66,7 @@ const initialState = {
     stackAction: {},
     popupRebuyModalShow: false,
     currentPlayerTurn: 0,
-    setRaiseAmount: 0,
+    setRaiseAmount: {},
     myInformation: {},
     currentProcess: null,
     startProcessing: false,
@@ -178,22 +178,34 @@ function rootReducer(state = initialState, action) {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
             let stackUpdate = {...state.stackAction};
+            let raiseAmountUpdate = {...state.setRaiseAmount};
             if (parseFloat(action.payload[0]) !== parseFloat(state.curSeatID)) {
-                stackUpdate[state.curSeatID] = null
+                stackUpdate[state.curSeatID] = null;
+                raiseAmountUpdate[state.curSeatID] = null;
             }
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
                 allStatus: playerTurnAllStatus,
-                stackUpdate: stackUpdate
+                stackUpdate: stackUpdate,
+                setRaiseAmount: raiseAmountUpdate
             };
         case "showCard":
             let showCard = handleShowCardParam(action.payload,state.showCard);
+            let resetBetAmount = {...state.seatPlayer};
+            resetBetAmount = resetBetAmount.map(item => {
+                return {
+                    ...item,
+                    amount: null
+                }
+            });
             return {
                 ...state,
                 showCard: showCard,
-                stackAction: {}
+                stackAction: {},
+                setRaiseAmount: {},
+                seatPlayer: resetBetAmount
             };
         case "seatPlayer":
             let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
@@ -218,13 +230,16 @@ function rootReducer(state = initialState, action) {
         case "emptySeat":
             let emptySeat = handleEmptySeat(state.emptySeat,action.payload);
             let stackActionUpdate = {...state.stackAction};
+            let raiseUpdate = {...state.setRaiseAmount};
             if (parseFloat(action.payload) === parseFloat(state.curSeatID)) {
                 stackActionUpdate[state.curSeatID] = null
+                raiseUpdate[state.curSeatID] = null;
             }
             return {
                 ...state,
                 emptySeat : emptySeat,
                 stackActionUpdate : stackActionUpdate,
+                setRaiseAmount: raiseUpdate
             };
         case "playerSitout":
             let playerSitout = handlePlayerSitout(state.playerSitout,action.payload,state.playerBackin);
@@ -264,7 +279,8 @@ function rootReducer(state = initialState, action) {
                 playerActionStatus:[],
                 playerBetStatus: {},
                 mainPotStatus: null,
-                stackAction: {}
+                stackAction: {},
+                setRaiseAmount: {}
             };
         case "mainPotStatus":
             return {
@@ -451,12 +467,15 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerWinner,
-                stackAction: {}
+                stackAction: {},
+                setRaiseAmount: {}
             };
         case "setRaiseAmount":
+            let updateSetRaiseAmount = {...state.setRaiseAmount};
+            updateSetRaiseAmount[state.curSeatID] = action.payload;
             return {
                 ...state,
-                setRaiseAmount: action.payload
+                setRaiseAmount: updateSetRaiseAmount
             };
         case "updateBlinds":
             return {

@@ -6,13 +6,18 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     const playerAction = useSelector(state => state.playerAction,[]);
     const tableDetails = useSelector(state => state.tableDetails,[]);
     const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
-    const setRaiseAmount = useSelector(state => state.setRaiseAmount,[]);
+    const setRaiseAmount = useSelector(state => state.setRaiseAmount[curSeatID],[]);
 
-    let minBetAmount = tableDetails ?
-        (playerAction && playerAction['check_available'] ?
-            parseFloat(playerAction['reraise_amount']) : parseFloat(tableDetails['big_blind'])) : 0;
-    let maxBetAmount = playerAction && playerAction['chips'] ? parseFloat(playerAction['chips']) : 100;
-    let step = tableDetails && tableDetails['big_blind'] ? parseFloat(tableDetails['big_blind']) : 0.5;
+
+    let minBetAmount = 0;
+    let maxBetAmount = 100;
+    let step = 0.5;
+    if (playerAction && tableDetails) {
+        minBetAmount = playerAction['check_available'] ?
+            parseFloat(playerAction['reraise_amount']) : parseFloat(tableDetails['big_blind']);
+        maxBetAmount = parseFloat(playerAction['chips']);
+        step = parseFloat(tableDetails['big_blind']);
+    }
 
     const dispatch = useDispatch();
 
@@ -21,7 +26,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             let amount = seatPlayer['total_pot'];
             amount = (parseFloat(amount))/2;
 
-            sendMsg("actionRaise",[amount])
+            sendMsg("actionRaise",[parseFloat(amount).toFixed(2)])
         }
     };
 
@@ -30,12 +35,12 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             let amount = seatPlayer['total_pot'];
             amount = (3*parseFloat(amount))/4;
 
-            sendMsg("actionRaise",[amount])
+            sendMsg("actionRaise",[parseFloat(amount).toFixed(2)])
         }
     };
 
     const actionRaisePot = () => {
-        sendMsg("actionRaise",[parseFloat(seatPlayer['total_pot'])])
+        sendMsg("actionRaise",[parseFloat(seatPlayer['total_pot']).toFixed(2)])
     };
 
     const actionAllIn = () => {
@@ -54,7 +59,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             }
             dispatch({
                 type: "setRaiseAmount",
-                payload: chipsSet
+                payload: parseFloat(chipsSet).toFixed(2)
             })
         }
     };
@@ -69,7 +74,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             }
             dispatch({
                 type: "setRaiseAmount",
-                payload: chipsSet
+                payload: parseFloat(chipsSet).toFixed(2)
             })
         }
     };
@@ -88,7 +93,14 @@ const RaiseDetailActions = ({show,curSeatID}) => {
             >
                 -
             </button>
-            <div className="raise-chips">{setRaiseAmount !== 0 ? setRaiseAmount : minBetAmount}</div>
+            <div
+                className="raise-chips">
+                {
+                    setRaiseAmount ?
+                        parseFloat(setRaiseAmount).toFixed(2) :
+                        parseFloat(minBetAmount).toFixed(2)
+                }
+            </div>
             <button
                 onClick={handlePlusButtonPress}
                 className="raise-button"

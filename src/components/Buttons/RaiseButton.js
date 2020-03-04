@@ -3,10 +3,11 @@ import {useSelector} from "react-redux";
 import {sendMsg} from "../../utils/socket-io-lib";
 
 const RaiseButton = ({show}) => {
-    const setRaiseAmount = useSelector(state => state.setRaiseAmount,[]);
+    const curSeatID = useSelector(state => state.curSeatID,[]);
+    const setRaiseAmount = useSelector(state => state.setRaiseAmount[curSeatID],[]);
 
     const sendMessageToServer = () => {
-        sendMsg("actionRaise",[setRaiseAmount])
+        sendMsg("actionRaise",[parseFloat(setRaiseAmount).toFixed(2)])
     };
 
     if (!show) return null;
