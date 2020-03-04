@@ -331,7 +331,11 @@ function rootReducer(state = initialState, action) {
             };
         case "playerAction":
             let setReRaisePlayerAction = {...state.setRaiseAmount};
-            if (action.payload[0] === "Y") setReRaisePlayerAction[state.curSeatID] = action.payload[3];
+            if (action.payload[0] === "Y") {
+                setReRaisePlayerAction[state.curSeatID] = action.payload[3]
+            } else {
+                setReRaisePlayerAction[state.curSeatID] = state.tableDetails['big_blind']
+            }
             return {
                 ...state,
                 playerAction:{
