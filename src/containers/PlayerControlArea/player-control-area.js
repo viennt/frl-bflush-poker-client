@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "./player-control-area.css";
-import { useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import FoldButton from "../../components/Buttons/FoldButton";
 import CallButton from "../../components/Buttons/CallButton";
@@ -21,6 +21,8 @@ const PlayerControlArea = (props) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const myInformation = useSelector(state => state.myInformation,[]);
     const playerAction = useSelector(state => state.playerAction,[]);
+
+    const dispatch = useDispatch();
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
     let isIphoneX = navigator.userAgent.match(/(iPhone)/);
@@ -72,6 +74,10 @@ const PlayerControlArea = (props) => {
                 }
                 if (shouldSend) {
                     sendMsg(name, [parseFloat(payload).toFixed(2)]);
+                    dispatch({
+                        type: "stackAction",
+                        payload: null
+                    })
                 }
             }
         }

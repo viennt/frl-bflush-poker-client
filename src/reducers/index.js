@@ -15,7 +15,7 @@ import {
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
 import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING} from "../const";
-import {isIOS} from "react-device-detect"
+import {isSafari} from "react-device-detect"
 const initialState = {
     mgs: [],
     receiveMsg: [],
@@ -177,19 +177,11 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
-            let stackUpdate = {...state.stackAction};
-            let raiseAmountUpdate = {...state.setRaiseAmount};
-            if (parseFloat(action.payload[0]) !== parseFloat(state.curSeatID)) {
-                stackUpdate[state.curSeatID] = null;
-                raiseAmountUpdate[state.curSeatID] = null;
-            }
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
-                allStatus: playerTurnAllStatus,
-                stackUpdate: stackUpdate,
-                setRaiseAmount: raiseAmountUpdate
+                allStatus: playerTurnAllStatus
             };
         case "showCard":
             let showCard = handleShowCardParam(action.payload,state.showCard);
@@ -203,7 +195,6 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 showCard: showCard,
                 stackAction: {},
-                setRaiseAmount: {},
                 seatPlayer: resetBetAmount
             };
         case "seatPlayer":
@@ -320,6 +311,8 @@ function rootReducer(state = initialState, action) {
                 showActions
             };
         case "tableDetails":
+            let defaultSetRaiseAction  = {...state.setRaiseAmount};
+            defaultSetRaiseAction[state.curSeatID] = action.payload[2];
             return {
                 ...state,
                 tableDetails: {
@@ -334,9 +327,12 @@ function rootReducer(state = initialState, action) {
                     blinds_timer: action.payload[8],
                     in_progress: action.payload[9]
                 },
-                isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null
+                isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null,
+                setRaiseAmount: defaultSetRaiseAction
             };
         case "playerAction":
+            let setReRaisePlayerAction = {...state.setRaiseAmount};
+            if (action.payload[0] === "Y") setReRaisePlayerAction[state.curSeatID] = action.payload[3];
             return {
                 ...state,
                 playerAction:{
@@ -344,7 +340,8 @@ function rootReducer(state = initialState, action) {
                     call_amount: action.payload[1],
                     chips: action.payload[2],
                     reraise_amount: action.payload[3]
-                }
+                },
+                setRaiseAmount: setReRaisePlayerAction
             };
         case "stackAction":
             let stackAction = {...state.stackAction};
@@ -401,7 +398,7 @@ function rootReducer(state = initialState, action) {
             let playerBetStatus = handlePlayerBetStatus(action.payload, state.seatPlayer);
             let mainPotStatus = parseFloat(state.mainPotStatus);
             if (parseFloat(action.payload[3]) > 0) {
-                mainPotStatus += parseFloat(action.payload[3]);
+                mainPotStatus = parseFloat(action.payload[3]);
             }
             let playerInformationUpdated = updatePlayerInformation(
                 state,
@@ -458,7 +455,7 @@ function rootReducer(state = initialState, action) {
         case "playerWinner":
             let playerWinner = handlePlayerWinner(action.payload, state.seatPlayer);
 
-            if (action.payload[3] === "Y" && !isIOS) {
+            if (action.payload[3] === "Y" && !isSafari) {
                 let x = document.getElementById("winnerAudio");
                 x.play();
             }

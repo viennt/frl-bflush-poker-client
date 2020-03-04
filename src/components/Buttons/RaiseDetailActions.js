@@ -8,22 +8,8 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
     const setRaiseAmount = useSelector(state => state.setRaiseAmount[curSeatID],[]);
 
-
-    let minBetAmount = 0;
     let maxBetAmount = 100;
     let step = 0.5;
-
-    useEffect(() => {
-        if (playerAction && tableDetails) {
-            minBetAmount = playerAction['check_available'] ?
-                parseFloat(playerAction['reraise_amount']) : parseFloat(tableDetails['big_blind']);
-            dispatch({
-                type: "setRaiseAmount",
-                payload: minBetAmount
-            })
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[JSON.stringify(playerAction), JSON.stringify(tableDetails)]);
 
     const dispatch = useDispatch();
 
@@ -59,7 +45,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     };
 
     const handlePlusButtonPress = () => {
-        let chipsSet = setRaiseAmount;
+        let chipsSet = parseFloat(setRaiseAmount);
         if (chipsSet < maxBetAmount) {
             chipsSet += step;
 
@@ -76,7 +62,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     };
 
     const handleMinusButtonPress = () => {
-        let chipsSet = setRaiseAmount;
+        let chipsSet = parseFloat(setRaiseAmount);
         if (chipsSet > 0) {
             chipsSet -= step;
             chipsSet = parseFloat(chipsSet).toFixed(2);
