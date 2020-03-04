@@ -237,7 +237,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 emptySeat : emptySeat,
-                stackActionUpdate : stackActionUpdate,
+                stackAction : stackActionUpdate,
                 setRaiseAmount: raiseUpdate
             };
         case "playerSitout":

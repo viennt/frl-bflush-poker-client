@@ -52,14 +52,14 @@ const RaiseDetailActions = ({show,curSeatID}) => {
         if (chipsSet < maxBetAmount) {
             chipsSet += step;
 
-            chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
+            chipsSet = parseFloat(chipsSet).toFixed(2);
 
             if (chipsSet > maxBetAmount) {
                 chipsSet = maxBetAmount
             }
             dispatch({
                 type: "setRaiseAmount",
-                payload: parseFloat(chipsSet).toFixed(2)
+                payload: chipsSet
             })
         }
     };
@@ -68,13 +68,13 @@ const RaiseDetailActions = ({show,curSeatID}) => {
         let chipsSet = setRaiseAmount;
         if (chipsSet > 0) {
             chipsSet -= step;
-            chipsSet = parseFloat(chipsSet.toFixed(step.toString().length-2));
+            chipsSet = parseFloat(chipsSet).toFixed(2);
             if (chipsSet < 0) {
                 chipsSet = 0
             }
             dispatch({
                 type: "setRaiseAmount",
-                payload: parseFloat(chipsSet).toFixed(2)
+                payload: chipsSet
             })
         }
     };

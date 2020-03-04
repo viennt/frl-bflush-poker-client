@@ -64,8 +64,7 @@ const ReBuyModal = props => {
         if (chipsSet < parseFloat(maxChip)) {
             chipsSet += parseFloat(step);
 
-            let toFixed = parseFloat(step) >= 1 ? 0 : step.toString().length-2;
-            chipsSet = parseFloat(chipsSet.toFixed(toFixed));
+            chipsSet = parseFloat(chipsSet).toFixed(2);
 
             if (chipsSet > maxChip) {
                 chipsSet = maxChip
@@ -79,8 +78,7 @@ const ReBuyModal = props => {
         if (chipsSet > 0) {
             chipsSet -= parseFloat(step);
 
-            let toFixed = parseFloat(step) >= 1 ? 0 : step.toString().length-2;
-            chipsSet = parseFloat(chipsSet.toFixed(toFixed));
+            chipsSet = parseFloat(chipsSet).toFixed(2);
 
             if (chipsSet < 0) {
                 chipsSet = 0

@@ -9,7 +9,7 @@ const CheckButton = ({show,curSeatID}) => {
     const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
     const stackAction = useSelector(state => state.stackAction[curSeatID],[]);
 
-    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID);
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
 
     const dispatch = useDispatch();
 
