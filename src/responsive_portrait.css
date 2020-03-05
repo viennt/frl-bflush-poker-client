@@ -132,6 +132,7 @@
 
     .seat-player-content-money {
         font-size: 3vw;
+        margin-top: 0;
     }
 
     .control-area .raise-detail {
@@ -140,6 +141,7 @@
     .seat-player-content-title {
         font-size: 4vw;
         text-align: center;
+        margin-bottom: 0;
     }
 
     .card__middle .seat__card {

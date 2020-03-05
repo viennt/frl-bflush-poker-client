@@ -32,7 +32,8 @@
     }
 
     .seat-player-content-money {
-        font-size: unset;
+        font-size: 3vh;
+        margin-top: 0;
     }
 
     .control-area .raise-detail {
