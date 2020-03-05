@@ -311,7 +311,7 @@ function rootReducer(state = initialState, action) {
             };
         case "tableDetails":
             let defaultSetRaiseAction  = {...state.setRaiseAmount};
-            defaultSetRaiseAction[state.curSeatID] = (10 * parseFloat(action.payload[2])).toFixed(2);
+            defaultSetRaiseAction[state.curSeatID] = parseFloat(action.payload[2]).toFixed(2);
             return {
                 ...state,
                 tableDetails: {
@@ -332,9 +332,9 @@ function rootReducer(state = initialState, action) {
         case "playerAction":
             let setReRaisePlayerAction = {...state.setRaiseAmount};
             if (action.payload[0] === "Y") {
-                setReRaisePlayerAction[state.curSeatID] = action.payload[3]
+                setReRaisePlayerAction[state.curSeatID] = parseFloat(action.payload[3]).toFixed(2);
             } else {
-                setReRaisePlayerAction[state.curSeatID] = (10 * parseFloat(state.tableDetails['big_blind'])).toFixed(2)
+                setReRaisePlayerAction[state.curSeatID] = parseFloat(state.tableDetails['big_blind']).toFixed(2)
             }
             return {
                 ...state,

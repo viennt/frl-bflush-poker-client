@@ -8,9 +8,12 @@ import dealerChips from '../../../assets/dealer-chip.svg';
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
+    const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(seatid);
 
     return (
-        <div className="seat-player container">
+        <div className={isMyTurn ? "seat-player container hightlight-turn" : "seat-player container"}>
             {amount &&
             <div
                 className="seat-player-content-money amount position-absolute">
