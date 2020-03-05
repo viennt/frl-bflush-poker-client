@@ -17,7 +17,7 @@ const EmptySeat = ({ seatid }) => {
       });
     }
   };
-  if (parseFloat(curSeatID) !== 0)  return null;
+  if (parseFloat(curSeatID) !== 0)  return <div className="seat-player"/>;
   return (
       <div className="seat-player">
         <button onClick={SendMessageToServer} className={parseFloat(curSeatID) === 0 ? "select-seat-btn" : "empty-seat-btn"}>

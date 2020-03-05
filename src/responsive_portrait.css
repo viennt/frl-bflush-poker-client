@@ -45,7 +45,7 @@
     }
 
     .seat-player:nth-child(5) {
-        transform: translateY(30vw);
+        transform: translateY(28vw);
     }
 
     .seat-player:nth-child(1) {
@@ -110,7 +110,7 @@
     }
 
     .seat-player:nth-child(10) {
-        transform: translateY(-30vw);
+        transform: translateY(-28vw);
     }
 
     .seat-player:nth-child(10) .amount {

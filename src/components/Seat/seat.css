@@ -21,7 +21,7 @@
 }
 
 .seat-player:nth-child(5) {
-  transform: translateY(30vh);
+  transform: translateY(28vh);
   z-index: 5;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .seat-player:nth-child(10) {
-  transform: translateY(-30vh);
+  transform: translateY(-28vh);
   z-index: 1;
 }
 
