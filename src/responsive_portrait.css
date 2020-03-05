@@ -10,7 +10,7 @@
         left: 0;
     }
     .game__header {
-        height: 12vw;
+        height: 18vw;
     }
     .game__header .list-menu .menu-items span{
         font-size: 1.1rem;
@@ -135,7 +135,7 @@
     }
 
     .control-area .raise-detail {
-        bottom: 10vw;
+        bottom: 9vw;
     }
     .seat-player-content-title {
         font-size: 4vw;
@@ -170,7 +170,7 @@
     .control-area .raise-detail .control-button {
         height: 5vw;
         line-height: 5vw;
-        font-size: 3vw;
+        font-size: 2.3vw;
     }
     .pre-select-action {
         font-size: 2vh;
@@ -184,7 +184,7 @@
     .raise-section .raise-chips {
         height: 5vw;
         line-height: 5vw;
-        font-size: 5vw;
+        font-size: 4vw;
     }
     .game__header .item-status {
         font-size: 3vw;

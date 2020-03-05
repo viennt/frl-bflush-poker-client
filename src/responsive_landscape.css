@@ -20,7 +20,8 @@
     }
 
     .game__header .menu-button {
-        padding: 1vh 4vw;
+        padding: 0 4vw;
+        font-size: 4vh;
     }
 
     .game__header .list-menu-section {
@@ -35,10 +36,10 @@
     }
 
     .control-area .raise-detail {
-        bottom: 10vh;
+        bottom: 8vh;
     }
     .control-area.iphoneX .raise-detail {
-        bottom: 13vh;
+        bottom: 12vh;
     }
     .seat-player-content-title {
         font-size: 3vh;
