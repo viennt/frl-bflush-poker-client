@@ -94,10 +94,7 @@ const PlayerControlArea = (props) => {
                     <FoldButton show={show} curSeatID={curSeatID}/>
                     <CheckButton show={show} curSeatID={curSeatID}/>
                     <CallButton show={show} curSeatID={curSeatID}/>
-                    {!isMyTurn ?
-                        <CallAnyButton show={show}/> :
-                        <RaiseButton show={show}/>
-                    }
+                    {isMyTurn && <RaiseButton show={show}/>}
                     {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
                 </div>
                 {show &&
