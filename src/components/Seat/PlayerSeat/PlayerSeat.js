@@ -18,7 +18,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
         if (playerWinner !== null) {
             setTimeout(() => {
                 dispatch({
-                    type: "playerWinner"
+                    type: "resetPlayerWinner"
                 })
             },2000)
         }

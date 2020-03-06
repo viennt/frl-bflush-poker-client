@@ -7,7 +7,7 @@ import CallButton from "../../components/Buttons/CallButton";
 import CheckButton from "../../components/Buttons/CheckButton";
 import RaiseButton from "../../components/Buttons/RaiseButton";
 import RaiseDetailActions from "../../components/Buttons/RaiseDetailActions";
-import CallAnyButton from "../../components/Buttons/CallAnyButton";
+// import CallAnyButton from "../../components/Buttons/CallAnyButton";
 import BlindTimer from "../../components/PlayArea/BlindTimer";
 import {sendMsg} from "../../utils/socket-io-lib";
 
@@ -62,15 +62,15 @@ const PlayerControlArea = (props) => {
                 let payload = [];
                 let name = stackAction.name;
                 if (stackAction.name.includes("actionCall")) {
-                    if (stackAction.name === "actionCallAny") {
-                        name = "actionCall";
-                        payload = [parseFloat(stackAction.payload).toFixed(2)]
-                    } else {
-                        shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
+                    // if (stackAction.name === "actionCallAny") {
+                    //     name = "actionCall";
+                    //     payload = [parseFloat(stackAction.payload).toFixed(2)]
+                    // } else {
+                        shouldSend = parseFloat(stackAction.payload) < parseFloat(playerTurn["call_amount"]);
                         if (shouldSend) {
                             payload = [parseFloat(stackAction.payload).toFixed(2)];
                         }
-                    }
+                    // }
                 }
                 if (shouldSend) {
                     sendMsg(name, payload);

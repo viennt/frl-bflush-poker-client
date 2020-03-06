@@ -1,13 +1,18 @@
 import {actionList, playerActionMessage, playerTurnMessage, RESERVE} from "../const";
 
 export function handlePlayerTurn(payload) {
-    return {
+    let dataLayer = {
         seat: payload[0],
         total_time: payload[1],
-        extra_time: payload[2],
-        remain_time: payload[3],
-        call_amount: payload[4]
+    };
+    dataLayer["call_amount"] = payload[payload.length-1];
+    if (payload.length > 4) {
+        dataLayer["extra_time"] = payload[2];
+        dataLayer["remain_time"] = payload[3];
+    } else {
+        dataLayer["remain_time"] = payload[2];
     }
+    return dataLayer;
 }
 
 export function generatePlayerTurnString(payload,user) {
