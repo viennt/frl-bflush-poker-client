@@ -218,4 +218,7 @@
     .iphoneX .control-area-container {
         padding-bottom: unset;
     }
+    .game__header .update-status {
+        margin-right: 5vh;
+    }
 }
