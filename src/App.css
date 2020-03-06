@@ -29,11 +29,11 @@ body {
   border: 1.5px solid #7CCBFC;
   background: #2D2F34;
   color: white;
-  padding: 1vh 3vw;
+  padding: 0.3vh 3vw;
   cursor: pointer;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 40px;
   z-index: 10;
 }
 
