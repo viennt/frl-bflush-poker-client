@@ -1,14 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./player-seat.css";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import PlayerCards from "./PlayerCards";
-import {playerSitout} from "../../../const";
+import {playerSitout, WINNER} from "../../../const";
 import redChips from '../../../assets/redChip.png';
 import dealerChips from '../../../assets/dealer-chip.svg';
 const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
     const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+    const playerWinner = useSelector(state => state.playerWinner,[]);
+
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (playerWinner !== null) {
+            setTimeout(() => {
+                dispatch({
+                    type: "playerWinner"
+                })
+            },2000)
+        }
+    });
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(seatid);
 
@@ -38,7 +52,11 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     <div
                         className={chips === playerSitout ? "seat-player-content-money chips" : "seat-player-content-money"}
                     >
-                        {!isNaN(chips) ? '£'+parseFloat(chips).toFixed(2) : chips}
+                        {
+                            playerWinner && parseFloat(playerWinner) === parseFloat(seatid) ?
+                                WINNER :
+                            (!isNaN(chips) ? '£'+parseFloat(chips).toFixed(2) : chips)
+                        }
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ const initialState = {
     playerTurn: null,
     showCard:{},
     highlightCards: 0,
-    playerWinner:[],
+    playerWinner: null,
     playerActionStatus:[],
     playerBetStatus: {},
     mainPotStatus: null,
@@ -265,7 +265,7 @@ function rootReducer(state = initialState, action) {
                 playerTurn: null,
                 playerAction:{},
                 highlightCards: 0,
-                playerWinner:[],
+                playerWinner: null,
                 playerActionStatus:[],
                 playerBetStatus: {},
                 mainPotStatus: null,
@@ -469,7 +469,13 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 seatPlayer: playerWinner,
-                stackAction: {}
+                stackAction: {},
+                playerWinner: action.payload[0]
+            };
+        case "resetPlayerWinner":
+            return {
+                ...state,
+                playerWinner: null
             };
         case "setRaiseAmount":
             let updateSetRaiseAmount = {...state.setRaiseAmount};

@@ -1,4 +1,4 @@
-import {actionList, playerActionMessage, playerTurnMessage, RESERVE, WINNER} from "../const";
+import {actionList, playerActionMessage, playerTurnMessage, RESERVE} from "../const";
 
 export function handlePlayerTurn(payload) {
     return {
@@ -130,7 +130,7 @@ export function handlePlayerWinner (payload, currentState) {
     currentState[payload[0]] = {
         ...currentState[payload[0]],
         amount_won: payload[1],
-        chips: payload[3] === 'Y' ? WINNER : payload[2]
+        chips: payload[2]
     };
 
     return currentState;
