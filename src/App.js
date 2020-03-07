@@ -68,11 +68,6 @@ class App extends Component {
 
             this.receiveMsg.push(message);
             this.props.updateMessage({ message, params });
-            if (message === "startProcessQueue") {
-                setTimeout(() => {
-                    this.props.startProcessMsg()
-                },2000)
-            }
         });
     }
 

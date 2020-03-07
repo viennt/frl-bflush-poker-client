@@ -43,11 +43,10 @@ const BlindTimer = ({props}) => {
             if (updateBlinds) {
                 time = updateBlinds['time_remaining']
             }
-            setCountTime(createTimer(time));
             startTimer(time)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[show, JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
+    },[JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
 
     if (!show) return null;
 

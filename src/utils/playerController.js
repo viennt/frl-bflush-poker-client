@@ -110,7 +110,7 @@ export function handleReserveSeat (payload, currentState) {
     }
     currentState[payload[0]] = {
         ...currentState[payload[0]],
-        extra_chips: RESERVE
+        chips: RESERVE
     };
 
     return currentState;
@@ -135,8 +135,7 @@ export function handlePlayerWinner (payload, currentState) {
     currentState[payload[0]] = {
         ...currentState[payload[0]],
         amount_won: payload[1],
-        chips: payload[2],
-        extra_chips: null
+        chips: payload[2]
     };
 
     return currentState;
@@ -237,20 +236,11 @@ export function positioningPlayer (numberPlayer,curSeatID,seats) {
 }
 
 
-export function handlePlayerActionStatusData (payload, currentState, seatPlayerData) {
+export function handlePlayerActionStatusData (payload, currentState) {
     let modifyPlayerAction = {...currentState};
     modifyPlayerAction[payload[0]] = actionList[payload[1]].toUpperCase();
 
-    let modifySeatPlayer = {...seatPlayerData};
-    modifySeatPlayer[payload[0]] = {
-        ...modifySeatPlayer,
-        extra_chips: actionList[payload[1]].toUpperCase()
-    };
-
-    return {
-        playerActionStatus : modifyPlayerAction,
-        seatPlayer: modifySeatPlayer
-    }
+    return  modifyPlayerAction
 }
 export function handleClearPlayerActionStatus (seatPlayer) {
     let modify = {...seatPlayer};

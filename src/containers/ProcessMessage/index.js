@@ -4,10 +4,6 @@ import { loadMessage , didFinishProcess , resetStartProcessing } from '../../act
 
 class ProcessMessage extends React.Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.startProcessing === true) {
-            this.props.resetStartProcessing();
-            return true
-        }
         if (nextProps.isProcessing === false) {
             return true
         }
@@ -36,7 +32,6 @@ class ProcessMessage extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        startProcessing: state.startProcessing,
         isProcessing : state.isProcessing,
         receiveMsg: state.receiveMsg
     }

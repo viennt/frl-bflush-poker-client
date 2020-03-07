@@ -18,6 +18,9 @@ export const loadMessage = (message) =>
     async dispatch => {
         console.log(message);
         dispatch({
+            type: START_PROCESSING
+        });
+        dispatch({
             type: message.message,
             payload: message.params
         })

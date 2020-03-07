@@ -1,6 +1,6 @@
 import {
     generatePlayerActionStatus,
-    generatePlayerTurnString, handleClearPlayerActionStatus,
+    generatePlayerTurnString,
     handleEmptySeat, handlePlayerActionStatusData,
     handlePlayerBackin,
     handlePlayerBetStatus,
@@ -19,7 +19,7 @@ import {
     CURRENT_PROCESS,
     UPDATE_RECEIVE,
     START_PROCESSING,
-    RESET_START_PROCESSING
+    // RESET_START_PROCESSING
 } from "../const";
 import {isSafari} from "react-device-detect"
 const initialState = {
@@ -75,7 +75,7 @@ const initialState = {
     setRaiseAmount: {},
     myInformation: {},
     currentProcess: null,
-    startProcessing: false,
+    startProcessing: true,
     isProcessing: false,
 };
 
@@ -97,7 +97,7 @@ function rootReducer(state = initialState, action) {
         case START_PROCESSING:
             return {
                 ...state,
-                startProcessing: true
+                isProcessing: true
             };
         case UPDATE_RECEIVE:
             let receive = [...state.receiveMsg];
@@ -170,12 +170,11 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerActionStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerActionStatus(action.payload,state.seatPlayer)]
             }
-            let updatedPlayerActionStatus = handlePlayerActionStatusData(action.payload,{...state.playerActionStatus},{...state.seatPlayer});
+            let updatedPlayerActionStatus = handlePlayerActionStatusData(action.payload,{...state.playerActionStatus});
 
             return {
                 ...state,
-                playerActionStatus: updatedPlayerActionStatus.playerActionStatus,
-                seatPlayer: updatedPlayerActionStatus.seatPlayer,
+                playerActionStatus: updatedPlayerActionStatus,
                 allStatus: playerActionStatus
             };
         case "playerTurn":
@@ -185,13 +184,13 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
-            let modifySeatPlayer = {...state.seatPlayer};
-            modifySeatPlayer[action.payload[0]]['extra_chips'] = null;
+            let modifySeatPlayer = {...state.playerActionStatus};
+            modifySeatPlayer[action.payload[0]] = null;
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
-                seatPlayer: modifySeatPlayer,
+                playerActionStatus: modifySeatPlayer,
                 allStatus: playerTurnAllStatus
             };
         case "showCard":
@@ -283,12 +282,10 @@ function rootReducer(state = initialState, action) {
                 stackAction: {}
             };
         case "mainPotStatus":
-            let clearPlayerActionStatus = handleClearPlayerActionStatus({...state.seatPlayer});
             return {
                 ...state,
                 mainPotStatus: action.payload[0],
-                playerActionStatus: {},
-                seatPlayer: clearPlayerActionStatus
+                playerActionStatus: {}
             };
         case "popupBuyin":
             return {
@@ -523,7 +520,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 curSeatID: action.payload[0]
             };
-        case RESET_START_PROCESSING:
+        case "startProcessQueue":
             return {
                 ...state,
                 startProcessing: false

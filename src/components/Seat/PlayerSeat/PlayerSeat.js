@@ -5,11 +5,12 @@ import PlayerCards from "./PlayerCards";
 import {playerSitout, WINNER} from "../../../const";
 import redChips from '../../../assets/redChip.png';
 import dealerChips from '../../../assets/dealer-chip.svg';
-const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount , extraChips }) => {
+const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const playerDealer = useSelector(state => state.playerDealer,[]);
     const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
     const playerWinner = useSelector(state => state.playerWinner,[]);
+    const playerActionStatus = useSelector(state => state.playerActionStatus[seatid],[]);
 
 
     const dispatch = useDispatch();
@@ -55,11 +56,9 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount , extraCh
                         {
                             playerWinner && parseFloat(playerWinner) === parseFloat(seatid) ?
                                 WINNER :
-                                (
-                                    extraChips ?
-                                    extraChips :
-                                    '£'+parseFloat(chips).toFixed(2)
-                                )
+                                (playerActionStatus ?
+                                    playerActionStatus :
+                                (!isNaN(chips) ? '£'+parseFloat(chips).toFixed(2) : chips))
                         }
                     </div>
                 </div>
