@@ -18,7 +18,6 @@ export function handleShowCardParam(payload, currentShowCard) {
             showCard[payload[0]] = [payload[1]]
         }
     }
-    console.log('Player id: ' + payload[0] + ' has ' + showCard[payload[0]].length );
     return showCard
 }
 

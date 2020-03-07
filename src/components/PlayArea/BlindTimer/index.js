@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {useSelector} from "react-redux";
 
 const BlindTimer = ({props}) => {
-    const isTournamentGame = useSelector(state => state.isTournamentGame,[]);
+    const isTournamentGame = useSelector(state => state.isTournamentGame);
     const tableDetails = useSelector(state => state.tableDetails,[]);
     const updateBlinds = useSelector(state => state.updateBlinds,[]);
-
+    const timerToClearSomewhere = useRef(false);
 
     const [countTime,setCountTime] = useState(0);
     let show = false;
@@ -23,14 +23,14 @@ const BlindTimer = ({props}) => {
     };
 
     const startTimer = (duration) => {
-        let timer = parseFloat(duration)-1000;
-        let myCountDown = setInterval(function () {
-            let time = createTimer(duration);
+        let timer = parseFloat(duration);
+        timerToClearSomewhere.current = setInterval(function () {
+            let time = createTimer(timer);
 
             setCountTime(time);
-
-            if (--timer < 0) {
-                clearInterval(myCountDown);
+            timer--;
+            if (timer < 0) {
+                clearInterval(timerToClearSomewhere.current);
             }
         }, 1000);
     };
@@ -43,10 +43,14 @@ const BlindTimer = ({props}) => {
             if (updateBlinds) {
                 time = updateBlinds['time_remaining']
             }
-            startTimer(time)
+            clearInterval(timerToClearSomewhere.current);
+            startTimer(time);
+            return () => {
+                clearInterval(timerToClearSomewhere.current)
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[show, JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
+    },[JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
 
     if (!show) return null;
 

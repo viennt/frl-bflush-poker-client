@@ -184,13 +184,13 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
-            let modifySeatPlayer = {...state.playerActionStatus};
-            modifySeatPlayer[action.payload[0]] = null;
+            // let modifySeatPlayer = {...state.playerActionStatus};
+            // modifySeatPlayer[action.payload[0]] = null;
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
-                playerActionStatus: modifySeatPlayer,
+                // playerActionStatus: modifySeatPlayer,
                 allStatus: playerTurnAllStatus
             };
         case "showCard":

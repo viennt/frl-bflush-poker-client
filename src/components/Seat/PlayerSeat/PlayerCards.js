@@ -34,7 +34,7 @@ const PlayerCards = ({seatid}) => {
                         key={index}
                         className={"seat__card"}
                         style={
-                            playerActionStatus === actionList[2] ?
+                            playerActionStatus === actionList[2].toUpperCase() ?
                                 {opacity: 0.6} :
                                 {opacity: 1}
                         }
