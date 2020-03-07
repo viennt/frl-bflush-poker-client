@@ -476,12 +476,14 @@ function rootReducer(state = initialState, action) {
                 let x = document.getElementById("winnerAudio");
                 x.play();
             }
-
+            let modifyPlayerActionStatus = {...state.playerActionStatus};
+            modifyPlayerActionStatus[action.payload[0]] = null;
             return {
                 ...state,
                 seatPlayer: playerWinner,
                 stackAction: {},
-                playerWinner: action.payload[0]
+                playerWinner: action.payload[0],
+                playerActionStatus: modifyPlayerActionStatus
             };
         case "resetPlayerWinner":
             return {

@@ -51,7 +51,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                     <div className="seat-player-content-line" />
                     {/* eslint-disable-next-line no-undef */}
                     <div
-                        className={chips === playerSitout ? "seat-player-content-money chips" : "seat-player-content-money"}
+                        className={!playerActionStatus && chips === playerSitout ? "seat-player-content-money chips" : "seat-player-content-money"}
                     >
                         {
                             playerWinner && parseFloat(playerWinner) === parseFloat(seatid) ?
