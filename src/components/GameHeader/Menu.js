@@ -108,7 +108,7 @@ const Menu = (props) => {
             {
                 showMenu &&
                 <div className={'list-menu-section'}>
-                    {!isTournamentGame && renderButton()}
+                    {renderButton()}
                     <hr/>
                     <p className={'menu-section'}>The below options will fold your hand and cause you to leave the table</p>
                     {renderListMenu()}
