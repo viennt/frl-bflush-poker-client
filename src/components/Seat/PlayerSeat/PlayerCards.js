@@ -1,10 +1,12 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {assetBaseUrl} from "../../../const";
+import {actionList, assetBaseUrl} from "../../../const";
 
 const PlayerCards = ({seatid}) => {
     const showCard = useSelector(state => state.showCard,[]);
     const highlightCards = useSelector(state => state.highlightCards,[]);
+    const playerActionStatus = useSelector(state => state.playerActionStatus[seatid],[]);
+
     const dispatch = useDispatch();
 
     const resetHightlightCard = () => {
@@ -31,6 +33,11 @@ const PlayerCards = ({seatid}) => {
                     <div
                         key={index}
                         className={"seat__card"}
+                        style={
+                            playerActionStatus === actionList[2] ?
+                                {opacity: 0.6} :
+                                {opacity: 1}
+                        }
                     >
                         <img
                             className={parseFloat(highlightCards) === parseFloat(seatid) ? "hightlight-card" : ""}

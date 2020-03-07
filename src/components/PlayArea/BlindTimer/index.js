@@ -46,7 +46,7 @@ const BlindTimer = ({props}) => {
             startTimer(time)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
+    },[show, JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
 
     if (!show) return null;
 

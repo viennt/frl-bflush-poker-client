@@ -41,6 +41,7 @@
   width: 5vw;
   overflow: hidden;
   height: 11vh;
+  transition: opacity 0.2ms ease-in-out ;
 }
 .card-area .seat__card img {
   width: 100%;
