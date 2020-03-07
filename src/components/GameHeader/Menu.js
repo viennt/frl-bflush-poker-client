@@ -60,7 +60,7 @@ const Menu = (props) => {
     };
 
     const renderButton = () => {
-        if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID) && !isTournamentGame) {
+        if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID)) {
             let extraButton = null;
             if (playerSitout.includes(curSeatID)) {
                 extraButton = <button
@@ -82,6 +82,7 @@ const Menu = (props) => {
                     {parseFloat(curSeatID) !== 0 && extraButton}
                     {
                         playerTurn &&
+                        !isTournamentGame &&
                         Object.keys(myInformation).length > 0 &&
                         parseFloat(tableDetails['max_buyin']) >= myInformation['chips'] &&
                         <button
