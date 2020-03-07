@@ -60,7 +60,7 @@ const Menu = (props) => {
     };
 
     const renderButton = () => {
-        if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID)) {
+        if (parseFloat(curSeatID) !== 0 && !emptySeat.includes(curSeatID) && !isTournamentGame) {
             let extraButton = null;
             if (playerSitout.includes(curSeatID)) {
                 extraButton = <button
