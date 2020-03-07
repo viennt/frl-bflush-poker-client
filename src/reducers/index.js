@@ -504,6 +504,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 isSittingOut: updateIsSittingOut
             };
+        case "mySeat":
+            return {
+                ...state,
+                curSeatID: action.payload[0]
+            };
         default:
             let customData = {};
             customData[action.type] = action.payload;
