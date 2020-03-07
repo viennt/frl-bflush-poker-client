@@ -10,16 +10,24 @@ const BlindTimer = ({props}) => {
     const [countTime,setCountTime] = useState(0);
     let show = false;
 
-    const startTimer = (duration) => {
+    const createTimer = (duration) => {
         let timer = duration, minutes, seconds;
+
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        return minutes + ":" + seconds
+    };
+
+    const startTimer = (duration) => {
+        let timer = parseFloat(duration)-1000;
         let myCountDown = setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+            let time = createTimer(duration);
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            setCountTime(minutes + ":" + seconds);
+            setCountTime(time);
 
             if (--timer < 0) {
                 clearInterval(myCountDown);
@@ -35,9 +43,11 @@ const BlindTimer = ({props}) => {
             if (updateBlinds) {
                 time = updateBlinds['time_remaining']
             }
+            setCountTime(createTimer(time));
             startTimer(time)
         }
-    },[show, tableDetails, updateBlinds]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[show, JSON.stringify(tableDetails), JSON.stringify(updateBlinds)]);
 
     if (!show) return null;
 

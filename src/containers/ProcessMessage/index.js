@@ -1,10 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux'
-import { loadMessage , didFinishProcess } from '../../actions'
+import { loadMessage , didFinishProcess , resetStartProcessing } from '../../actions'
 
 class ProcessMessage extends React.Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if (nextProps.startProcessing === true) {
+            this.props.resetStartProcessing();
             return true
         }
         if (nextProps.isProcessing === false) {
@@ -40,4 +41,4 @@ function mapStateToProps(state) {
         receiveMsg: state.receiveMsg
     }
 }
-export default connect(mapStateToProps,{ loadMessage , didFinishProcess })(ProcessMessage)
+export default connect(mapStateToProps,{ loadMessage , didFinishProcess , resetStartProcessing })(ProcessMessage)

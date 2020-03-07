@@ -1,4 +1,10 @@
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, START_PROCESSING, UPDATE_RECEIVE} from "../const";
+import {
+    DID_FININSH_PROCESSING,
+    CURRENT_PROCESS,
+    START_PROCESSING,
+    UPDATE_RECEIVE,
+    RESET_START_PROCESSING
+} from "../const";
 
 export const updateMessage = (message) =>
     async dispatch => {
@@ -38,5 +44,11 @@ export const startProcessMsg = () =>
     async dispatch => {
         dispatch({
             type: START_PROCESSING
+        })
+    };
+export const resetStartProcessing = () =>
+    async dispatch => {
+        dispatch({
+            type: RESET_START_PROCESSING
         })
     };

@@ -1,7 +1,7 @@
 import {
     generatePlayerActionStatus,
-    generatePlayerTurnString,
-    handleEmptySeat,
+    generatePlayerTurnString, handleClearPlayerActionStatus,
+    handleEmptySeat, handlePlayerActionStatusData,
     handlePlayerBackin,
     handlePlayerBetStatus,
     handlePlayerSeat,
@@ -14,7 +14,13 @@ import {
     updatePlayerInformation
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
-import {DID_FININSH_PROCESSING, CURRENT_PROCESS, UPDATE_RECEIVE, START_PROCESSING} from "../const";
+import {
+    DID_FININSH_PROCESSING,
+    CURRENT_PROCESS,
+    UPDATE_RECEIVE,
+    START_PROCESSING,
+    RESET_START_PROCESSING
+} from "../const";
 import {isSafari} from "react-device-detect"
 const initialState = {
     mgs: [],
@@ -36,7 +42,7 @@ const initialState = {
     showCard:{},
     highlightCards: 0,
     playerWinner: null,
-    playerActionStatus:[],
+    playerActionStatus: {},
     playerBetStatus: {},
     mainPotStatus: null,
     updateBlinds: null,
@@ -164,10 +170,12 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerActionStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerActionStatus(action.payload,state.seatPlayer)]
             }
+            let updatedPlayerActionStatus = handlePlayerActionStatusData(action.payload,{...state.playerActionStatus},{...state.seatPlayer});
 
             return {
                 ...state,
-                playerActionStatus: action.payload,
+                playerActionStatus: updatedPlayerActionStatus.playerActionStatus,
+                seatPlayer: updatedPlayerActionStatus.seatPlayer,
                 allStatus: playerActionStatus
             };
         case "playerTurn":
@@ -177,10 +185,13 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
+            let modifySeatPlayer = {...state.seatPlayer};
+            modifySeatPlayer[action.payload[0]]['extra_chips'] = null;
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
+                seatPlayer: modifySeatPlayer,
                 allStatus: playerTurnAllStatus
             };
         case "showCard":
@@ -266,15 +277,18 @@ function rootReducer(state = initialState, action) {
                 playerAction:{},
                 highlightCards: 0,
                 playerWinner: null,
-                playerActionStatus:[],
+                playerActionStatus: {},
                 playerBetStatus: {},
                 mainPotStatus: null,
                 stackAction: {}
             };
         case "mainPotStatus":
+            let clearPlayerActionStatus = handleClearPlayerActionStatus({...state.seatPlayer});
             return {
                 ...state,
-                mainPotStatus: action.payload[0]
+                mainPotStatus: action.payload[0],
+                playerActionStatus: {},
+                seatPlayer: clearPlayerActionStatus
             };
         case "popupBuyin":
             return {
@@ -508,6 +522,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 curSeatID: action.payload[0]
+            };
+        case RESET_START_PROCESSING:
+            return {
+                ...state,
+                startProcessing: false
             };
         default:
             let customData = {};

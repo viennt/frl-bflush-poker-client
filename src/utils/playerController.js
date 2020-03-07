@@ -110,7 +110,7 @@ export function handleReserveSeat (payload, currentState) {
     }
     currentState[payload[0]] = {
         ...currentState[payload[0]],
-        chips: RESERVE
+        extra_chips: RESERVE
     };
 
     return currentState;
@@ -135,7 +135,8 @@ export function handlePlayerWinner (payload, currentState) {
     currentState[payload[0]] = {
         ...currentState[payload[0]],
         amount_won: payload[1],
-        chips: payload[2]
+        chips: payload[2],
+        extra_chips: null
     };
 
     return currentState;
@@ -235,6 +236,30 @@ export function positioningPlayer (numberPlayer,curSeatID,seats) {
     }
 }
 
+
+export function handlePlayerActionStatusData (payload, currentState, seatPlayerData) {
+    let modifyPlayerAction = {...currentState};
+    modifyPlayerAction[payload[0]] = actionList[payload[1]].toUpperCase();
+
+    let modifySeatPlayer = {...seatPlayerData};
+    modifySeatPlayer[payload[0]] = {
+        ...modifySeatPlayer,
+        extra_chips: actionList[payload[1]].toUpperCase()
+    };
+
+    return {
+        playerActionStatus : modifyPlayerAction,
+        seatPlayer: modifySeatPlayer
+    }
+}
+export function handleClearPlayerActionStatus (seatPlayer) {
+    let modify = {...seatPlayer};
+    Object.keys(modify).forEach(key => {
+        modify[key]['extra_chips'] = null
+    });
+
+    return modify;
+}
 //remove item from array
 // eslint-disable-next-line no-extend-native
 Array.prototype.remove = function() {
