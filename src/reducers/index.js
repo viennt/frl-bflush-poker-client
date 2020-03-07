@@ -18,7 +18,7 @@ import {
     DID_FININSH_PROCESSING,
     CURRENT_PROCESS,
     UPDATE_RECEIVE,
-    START_PROCESSING,
+    START_PROCESSING, actionList,
     // RESET_START_PROCESSING
 } from "../const";
 import {isSafari} from "react-device-detect"
@@ -184,13 +184,15 @@ function rootReducer(state = initialState, action) {
             } else {
                 playerTurnAllStatus = [ state.allStatus[state.allStatus.length-1] , generatePlayerTurnString(action.payload,state.seatPlayer) ]
             }
-            // let modifySeatPlayer = {...state.playerActionStatus};
-            // modifySeatPlayer[action.payload[0]] = null;
+            let modifySeatPlayer = {...state.playerActionStatus};
+            if (modifySeatPlayer[action.payload[0]] !== actionList[2].toUpperCase()) {
+                modifySeatPlayer[action.payload[0]] = null;
+            }
             return {
                 ...state,
                 playerTurn: handlePlayerTurn(action.payload),
                 currentPlayerTurn: action.payload[0],
-                // playerActionStatus: modifySeatPlayer,
+                playerActionStatus: modifySeatPlayer,
                 allStatus: playerTurnAllStatus
             };
         case "showCard":
@@ -282,10 +284,16 @@ function rootReducer(state = initialState, action) {
                 stackAction: {}
             };
         case "mainPotStatus":
+            let mainPotStatusUpdatePlayerAction = {...state.playerActionStatus};
+            Object.keys(mainPotStatusUpdatePlayerAction).forEach(key => {
+                if (mainPotStatusUpdatePlayerAction[key] !== actionList[2].toUpperCase()) {
+                    mainPotStatusUpdatePlayerAction[key] = null;
+                }
+            });
             return {
                 ...state,
                 mainPotStatus: action.payload[0],
-                playerActionStatus: {}
+                playerActionStatus: mainPotStatusUpdatePlayerAction
             };
         case "popupBuyin":
             return {
