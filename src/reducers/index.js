@@ -77,6 +77,7 @@ const initialState = {
     currentProcess: null,
     startProcessing: true,
     isProcessing: false,
+    setTimer: null
 };
 
 function rootReducer(state = initialState, action) {
@@ -345,6 +346,7 @@ function rootReducer(state = initialState, action) {
                     blinds_timer: action.payload[8],
                     in_progress: action.payload[9]
                 },
+                setTimer: action.payload[8],
                 isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null,
                 setRaiseAmount: defaultSetRaiseAction
             };
@@ -512,7 +514,8 @@ function rootReducer(state = initialState, action) {
                     small_blind_amount: action.payload[0],
                     big_blind_amount: action.payload[1],
                     time_remaining: action.payload[2]
-                }
+                },
+                setTimer: action.payload[2]
             };
         case "sitOutPlayer":
             let updateIsSittingOut = state.isSittingOut;
@@ -534,6 +537,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 startProcessing: false
+            };
+        case "setTimer":
+            return {
+                ...state,
+                setTimer: action.payload
             };
         default:
             let customData = {};
