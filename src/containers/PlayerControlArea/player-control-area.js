@@ -10,6 +10,7 @@ import RaiseDetailActions from "../../components/Buttons/RaiseDetailActions";
 // import CallAnyButton from "../../components/Buttons/CallAnyButton";
 import BlindTimer from "../../components/PlayArea/BlindTimer";
 import {sendMsg} from "../../utils/socket-io-lib";
+import {actionList} from "../../const";
 
 const PlayerControlArea = (props) => {
     const curSeatID = useSelector(state => state.curSeatID,[]);
@@ -21,6 +22,7 @@ const PlayerControlArea = (props) => {
     const playerTurn = useSelector(state => state.playerTurn,[]);
     const myInformation = useSelector(state => state.myInformation,[]);
     const playerAction = useSelector(state => state.playerAction,[]);
+    const playerActionStatus = useSelector(state => state.playerActionStatus[curSeatID],[]);
 
     const dispatch = useDispatch();
 
@@ -51,6 +53,10 @@ const PlayerControlArea = (props) => {
     }
 
     if (parseFloat(curSeatID) === 0) {
+        show = false;
+    }
+
+    if (playerActionStatus === actionList[2].toUpperCase()) {
         show = false;
     }
 
@@ -89,7 +95,7 @@ const PlayerControlArea = (props) => {
             <div
                 className="control-area-container"
             >
-                {show && !isMyTurn && <p className={"pre-select-action"}>Choose Next Action</p>}
+                {show && !isMyTurn && <p className={"pre-select-action"}>Preselect Next Action</p>}
                 <div className={'button-container'}>
                     <FoldButton show={show} curSeatID={curSeatID}/>
                     <CheckButton show={show} curSeatID={curSeatID}/>
