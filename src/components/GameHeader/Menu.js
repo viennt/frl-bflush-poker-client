@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {sendMsg} from "../../utils/socket-io-lib";
-import {useSelector} from "react-redux";
-import {menuItems} from "../../const";
+import {useDispatch, useSelector} from "react-redux";
+import {LEAVE, menuItems} from "../../const";
 
 const Menu = (props) => {
     const [ showMenu , setShowMenu ] = useState(false);
@@ -12,7 +12,7 @@ const Menu = (props) => {
     const myInformation = useSelector(state => state.myInformation, []);
     const emptySeat = useSelector(state => state.emptySeat,[]);
     const playerSitout = useSelector(state => state.playerSitout,[]);
-
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (playerSitout.includes(curSeatID) && parseFloat(curSeatID) !== 0 && !showMenu) {
@@ -32,7 +32,22 @@ const Menu = (props) => {
                 </div>
             )
         });
+        menu.push(
+            <div key={'leave-game'} className={'menu-items'}>
+                    <span onClick={handleLeaveGame}>
+                        {LEAVE}
+                    </span>
+            </div>
+        );
         return <div>{menu}</div>
+    };
+
+    const handleLeaveGame = () => {
+        setShowMenu(false)
+        dispatch({
+            type:  "notify",
+            payload: ["WARNING", "Are you sure you wish to leave?","leaveGame"]
+        });
     };
 
     const handleLinkClick = (link) => {
