@@ -134,17 +134,22 @@ export function handleRebuyChips (payload, currentState) {
 }
 
 export function handlePlayerWinner (payload, currentState) {
-    if (!currentState.hasOwnProperty(payload[0])) {
-        currentState[payload[0]] = {}
+    let updateWinner = {...currentState};
+    if (!updateWinner.hasOwnProperty(payload[0])) {
+        updateWinner[payload[0]] = {}
     }
 
-    currentState[payload[0]] = {
-        ...currentState[payload[0]],
+    updateWinner[payload[0]] = {
+        ...updateWinner[payload[0]],
         amount_won: payload[1],
         chips: payload[2]
     };
 
-    return currentState;
+    Object.keys(updateWinner).forEach(key => {
+        updateWinner[key]['amount'] = null;
+    });
+
+    return updateWinner;
 }
 
 export function updatePlayerInformation (state, updateId, updateInformation) {
