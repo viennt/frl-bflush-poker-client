@@ -59,7 +59,8 @@ export function handlePlayerBackin(currentState, payload, playerSitout) {
     };
 }
 
-export function handlePlayerSeat(currentState, emptySeat, payload) {
+export function handlePlayerSeat(currentState, emptySeat, payload, curSeatID) {
+    let curSeatIDUpdate = curSeatID;
     currentState[payload[0]] = {
         seat_id: payload[0],
         user_name: payload[1],
@@ -72,9 +73,14 @@ export function handlePlayerSeat(currentState, emptySeat, payload) {
         }
     });
 
+    if (payload[4]) {
+        curSeatIDUpdate = payload[4]
+    }
+
     return {
         seatPlayer: currentState,
-        emptySeat: emptySeat
+        emptySeat: emptySeat,
+        curSeatID: curSeatIDUpdate
     }
 }
 

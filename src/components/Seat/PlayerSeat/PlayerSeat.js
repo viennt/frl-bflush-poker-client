@@ -11,6 +11,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
     const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
     const playerWinner = useSelector(state => state.playerWinner,[]);
     const playerActionStatus = useSelector(state => state.playerActionStatus[seatid],[]);
+    const isTournamentGame = useSelector(state => state.isTournamentGame,[]);
 
 
     const dispatch = useDispatch();
@@ -32,7 +33,11 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
             {amount &&
             <div
                 className="seat-player-content-money amount position-absolute">
-               {"£"+parseFloat(amount).toFixed(2)}
+               {
+                   isTournamentGame ?
+                       parseFloat(amount) :
+                       "£"+parseFloat(amount).toFixed(2)
+               }
             </div>}
             <div className="row" style={{height: "100%"}}>
                 <div className="seat-player-img col-3 p-0">
@@ -58,7 +63,16 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                                 WINNER :
                                 (playerActionStatus ?
                                     playerActionStatus :
-                                (!isNaN(chips) ? '£'+parseFloat(chips).toFixed(2) : chips))
+                                    (
+                                        !isNaN(chips) ?
+                                            (
+                                                isTournamentGame ?
+                                                    parseFloat(chips) :
+                                                    '£'+parseFloat(chips).toFixed(2)
+                                            ) :
+                                            chips
+                                    )
+                                )
                         }
                     </div>
                 </div>

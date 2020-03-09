@@ -6,6 +6,7 @@ import {assetBaseUrl} from "../../const";
 const CardArea = (props) => {
   const showCard = useSelector(state => state.showCard,[]);
   const mainPotStatus = useSelector(state => state.mainPotStatus,[]);
+  const isTournamentGame = useSelector(state => state.isTournamentGame,[]);
 
   const renderCardInMiddle = () => {
     let listCard = showCard["0"];
@@ -35,7 +36,14 @@ const CardArea = (props) => {
   return <div className="card-area">
     {renderCardInMiddle()}
     <div className={'total-pot'}>
-      {mainPotStatus ? 'Total Pot: £' + parseFloat(mainPotStatus).toFixed(2) : ''}
+      {mainPotStatus ?
+          (
+              isTournamentGame ?
+                  'Total Pot: ' + parseFloat(mainPotStatus) :
+                  'Total Pot: £' + parseFloat(mainPotStatus).toFixed(2)
+          ) :
+          ''
+      }
     </div>
   </div>;
 };

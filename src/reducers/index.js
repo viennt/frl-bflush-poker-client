@@ -211,7 +211,7 @@ function rootReducer(state = initialState, action) {
                 seatPlayer: resetBetAmount
             };
         case "seatPlayer":
-            let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat,action.payload);
+            let seatPlayer = handlePlayerSeat(state.seatPlayer,state.emptySeat, action.payload, state.curSeatID);
             let modalShow = state.modalShow;
             if (state.modalShow) {
                 modalShow = false;
