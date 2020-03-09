@@ -72,7 +72,7 @@ const PlayerControlArea = (props) => {
                     //     name = "actionCall";
                     //     payload = [parseFloat(stackAction.payload).toFixed(2)]
                     // } else {
-                        shouldSend = parseFloat(stackAction.payload) < parseFloat(playerTurn["call_amount"]);
+                        shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
                         if (shouldSend) {
                             payload = [parseFloat(stackAction.payload).toFixed(2)];
                         }
