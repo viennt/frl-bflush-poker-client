@@ -8,6 +8,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
     const setRaiseAmount = useSelector(state => state.setRaiseAmount[curSeatID],[]);
     const updateBlinds = useSelector(state => state.updateBlinds,[]);
+    const minRaiseAmount = useSelector(state => state.minRaiseAmount[curSeatID],[]);
 
     let maxBetAmount = 100;
     let step = 0.5;
@@ -26,8 +27,10 @@ const RaiseDetailActions = ({show,curSeatID}) => {
         if (playerAction) {
             let amount = seatPlayer['total_pot'];
             amount = (parseFloat(amount))/2;
-
-            sendMsg("actionRaise",[parseFloat(amount).toFixed(2)])
+            dispatch({
+                type: "setRaiseAmount",
+                payload: parseFloat(amount).toFixed(2)
+            });
         }
     };
 
@@ -35,13 +38,18 @@ const RaiseDetailActions = ({show,curSeatID}) => {
         if (playerAction) {
             let amount = seatPlayer['total_pot'];
             amount = (3*parseFloat(amount))/4;
-
-            sendMsg("actionRaise",[parseFloat(amount).toFixed(2)])
+            dispatch({
+                type: "setRaiseAmount",
+                payload: parseFloat(amount).toFixed(2)
+            });
         }
     };
 
     const actionRaisePot = () => {
-        sendMsg("actionRaise",[parseFloat(seatPlayer['total_pot']).toFixed(2)])
+        dispatch({
+            type: "setRaiseAmount",
+            payload: parseFloat(seatPlayer['total_pot']).toFixed(2)
+        });
     };
 
     const actionAllIn = () => {
@@ -67,11 +75,11 @@ const RaiseDetailActions = ({show,curSeatID}) => {
 
     const handleMinusButtonPress = () => {
         let chipsSet = parseFloat(setRaiseAmount);
-        if (chipsSet > 0) {
+        if (chipsSet > parseFloat(minRaiseAmount)) {
             chipsSet -= step;
             chipsSet = parseFloat(chipsSet).toFixed(2);
-            if (chipsSet < 0) {
-                chipsSet = 0
+            if (chipsSet < parseFloat(minRaiseAmount)) {
+                chipsSet = parseFloat(minRaiseAmount).toFixed(2)
             }
             dispatch({
                 type: "setRaiseAmount",

@@ -77,7 +77,8 @@ const initialState = {
     currentProcess: null,
     startProcessing: true,
     isProcessing: false,
-    setTimer: null
+    setTimer: null,
+    minRaiseAmount: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -350,18 +351,23 @@ function rootReducer(state = initialState, action) {
                 },
                 setTimer: action.payload[8],
                 isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null,
-                setRaiseAmount: defaultSetRaiseAction
+                setRaiseAmount: defaultSetRaiseAction,
+                minRaiseAmount: defaultSetRaiseAction
             };
         case "playerAction":
             let setReRaisePlayerAction = {...state.setRaiseAmount};
+            let bigBlind = parseFloat(state.tableDetails['big_blind']).toFixed(2);
+            if (state.updateBlinds) {
+                bigBlind = parseFloat(state.updateBlinds['big_blind_amount']).toFixed(2);
+            }
             if (action.payload[0] === "Y") {
-                setReRaisePlayerAction[state.curSeatID] = parseFloat(state.tableDetails['big_blind']).toFixed(2)
+                setReRaisePlayerAction[state.curSeatID] = bigBlind
             } else {
-                setReRaisePlayerAction[state.curSeatID] = parseFloat(state.tableDetails['big_blind']).toFixed(2)
+                setReRaisePlayerAction[state.curSeatID] = parseFloat(action.payload[3]).toFixed(2)
             }
-            if (setReRaisePlayerAction[state.curSeatID] === '0.00') {
-                setReRaisePlayerAction[state.curSeatID] = parseFloat(state.tableDetails['big_blind']).toFixed(2)
-            }
+            // if (setReRaisePlayerAction[state.curSeatID] === '0.00') {
+            //     setReRaisePlayerAction[state.curSeatID] = parseFloat(state.tableDetails['big_blind']).toFixed(2)
+            // }
             return {
                 ...state,
                 playerAction:{
@@ -370,7 +376,8 @@ function rootReducer(state = initialState, action) {
                     chips: action.payload[2],
                     reraise_amount: action.payload[3]
                 },
-                setRaiseAmount: setReRaisePlayerAction
+                setRaiseAmount: setReRaisePlayerAction,
+                minRaiseAmount: setReRaisePlayerAction
             };
         case "stackAction":
             let stackAction = {...state.stackAction};
