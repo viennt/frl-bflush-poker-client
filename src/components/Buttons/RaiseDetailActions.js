@@ -7,15 +7,19 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     const tableDetails = useSelector(state => state.tableDetails,[]);
     const seatPlayer = useSelector(state => state.seatPlayer[curSeatID],[]);
     const setRaiseAmount = useSelector(state => state.setRaiseAmount[curSeatID],[]);
+    const updateBlinds = useSelector(state => state.updateBlinds,[]);
 
     let maxBetAmount = 100;
     let step = 0.5;
 
     const dispatch = useDispatch();
-console.log(setRaiseAmount)
+    console.log(setRaiseAmount);
     if (playerAction && tableDetails) {
         maxBetAmount = parseFloat(playerAction['chips']);
         step = parseFloat(tableDetails['big_blind']);
+        if (updateBlinds) {
+            step = parseFloat(updateBlinds['big_blind_amount']);
+        }
     }
 
     const actionRaise12 = () => {

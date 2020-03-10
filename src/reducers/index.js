@@ -282,7 +282,9 @@ function rootReducer(state = initialState, action) {
                 playerActionStatus: {},
                 playerBetStatus: {},
                 mainPotStatus: null,
-                stackAction: {}
+                stackAction: {},
+                setRaiseAmount: {},
+                updateBlinds: null
             };
         case "mainPotStatus":
             let mainPotStatusUpdatePlayerAction = {...state.playerActionStatus};
