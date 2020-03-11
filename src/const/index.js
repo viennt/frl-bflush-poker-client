@@ -25,30 +25,30 @@ export const LEAVE = "Leave";
 export const menuItems = [
     {
         name: 'Tables',
-        link: "/members-area/index.html"
+        link: "/members_area/index.html"
     },
     {
         name: 'Account',
-        link: "/members-area/index.html"
+        link: "/members_area/home_summary.html"
     },
     {
         name: 'Genealogy',
-        link: "/members-area/index.html"
+        link: "/members_area/genealogy.html"
     },
     {
         name: 'Cashier',
-        link: "/members-area/index.html"
+        link: "/members_area/cashier_deposit.html"
     },
     {
         name: 'Tokens',
-        link: "/members-area/index.html"
+        link: "/members_area/buy_tokens.html"
     },
     {
         name: 'Marketing',
-        link: "/members-area/index.html"
+        link: "/members_area/friend.html"
     },
     {
         name: 'Support',
-        link: "/members-area/index.html"
+        link: "/members_area/support.html"
     },
 ];
