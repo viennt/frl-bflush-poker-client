@@ -23,6 +23,7 @@ const PlayerControlArea = (props) => {
     const myInformation = useSelector(state => state.myInformation,[]);
     const playerAction = useSelector(state => state.playerAction,[]);
     const playerActionStatus = useSelector(state => state.playerActionStatus[curSeatID],[]);
+    const showCard = useSelector(state => state.showCard[curSeatID],[]);
 
     const dispatch = useDispatch();
 
@@ -57,6 +58,10 @@ const PlayerControlArea = (props) => {
     }
 
     if (playerActionStatus === actionList[2].toUpperCase()) {
+        show = false;
+    }
+
+    if (!showCard) {
         show = false;
     }
 
