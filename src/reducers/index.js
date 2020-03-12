@@ -408,13 +408,15 @@ function rootReducer(state = initialState, action) {
                 notify: {
                     title: action.payload[0],
                     message: action.payload[1],
-                    customAction: action.payload[2] ? action.payload[2] : null
+                    time: action.payload[2] ? action.payload[2] : null,
+                    customAction: action.customAction
                 }
             };
         case "hideNotify":
             return {
                 ...state,
-                showNotify: false
+                showNotify: false,
+                notify: {}
             };
         case "gameFinished":
             return {
@@ -428,7 +430,8 @@ function rootReducer(state = initialState, action) {
         case "hideGameFinished":
             return {
                 ...state,
-                showGameFinished: false
+                showGameFinished: false,
+                gameFinished: {}
             };
         case "playerBetStatus":
             let playerBetStatus = handlePlayerBetStatus(action.payload, state.seatPlayer);

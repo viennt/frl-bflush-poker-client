@@ -22,7 +22,8 @@ export const loadMessage = (message) =>
         });
         dispatch({
             type: message.message,
-            payload: message.params
+            payload: message.params,
+            customAction: message.custom
         })
     };
 

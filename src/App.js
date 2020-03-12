@@ -45,7 +45,8 @@ class App extends Component {
             } else {
                 this.props.loadMessage({
                     message: "notify",
-                    params: ["WARNING", "You are no longer loggedin. Please log back in to continue","notLogIn"]
+                    params: ["WARNING", "You are no longer loggedin. Please log back in to continue"],
+                    custom: "notLogIn"
                 })
             }
         },10000)

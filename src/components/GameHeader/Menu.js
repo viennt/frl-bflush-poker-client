@@ -46,7 +46,8 @@ const Menu = (props) => {
         setShowMenu(false)
         dispatch({
             type:  "notify",
-            payload: ["WARNING", "Are you sure you wish to leave?","leaveGame"]
+            payload: ["WARNING", "Are you sure you wish to leave?"],
+            customAction: "leaveGame"
         });
     };
 
