@@ -402,6 +402,7 @@ function rootReducer(state = initialState, action) {
                 popupRebuyModalShow: false
             };
         case "notify":
+        case "notifyQueued":
             return {
                 ...state,
                 showNotify: true,
