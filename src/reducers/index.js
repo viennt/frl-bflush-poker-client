@@ -312,6 +312,8 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 popupRebuyModalShow: true,
+                showGameFinished: false,
+                showNotify: false,
                 popupRebuy: {
                     min: action.payload[0],
                     max: action.payload[1],
@@ -405,7 +407,9 @@ function rootReducer(state = initialState, action) {
         case "notifyQueued":
             return {
                 ...state,
+                showGameFinished: false,
                 showNotify: true,
+                popupRebuyModalShow: false,
                 notify: {
                     title: action.payload[0],
                     message: action.payload[1],
@@ -423,6 +427,8 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 showGameFinished: true,
+                showNotify: false,
+                popupRebuyModalShow: false,
                 gameFinished: {
                     title: action.payload[0],
                     message: action.payload[1]
