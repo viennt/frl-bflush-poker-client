@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import "./notify-modal.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "react-bootstrap";
 
@@ -42,6 +43,7 @@ const NotifyModal = (props) => {
                 size="sm"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+		className={notify.customAction}
             >
                 <Modal.Body style={{height: 'unset', width: 'unset', padding: '15px'}}>
                     <div className="modal-title">{notify.title}</div>
