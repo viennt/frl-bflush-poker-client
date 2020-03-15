@@ -25,10 +25,6 @@ export const LEAVE_LINK = "/members_area/index.html";
 
 export const menuItems = [
     {
-        name: 'Tables',
-        link: "/members_area/index.html"
-    },
-    {
         name: 'Account',
         link: "/members_area/home_summary.html"
     },

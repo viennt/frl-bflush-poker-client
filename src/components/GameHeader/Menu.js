@@ -23,6 +23,13 @@ const Menu = (props) => {
 
     const renderListMenu = () => {
         let menu = [];
+        menu.push(
+            <div key={'leave-game'} className={'menu-items'}>
+                    <span onClick={handleLeaveGame}>
+                        {LEAVE}
+                    </span>
+            </div>
+        );
         menuItems.forEach((item,index) => {
             menu.push(
                 <div key={index} className={'menu-items'}>
@@ -32,13 +39,6 @@ const Menu = (props) => {
                 </div>
             )
         });
-        menu.push(
-            <div key={'leave-game'} className={'menu-items'}>
-                    <span onClick={handleLeaveGame}>
-                        {LEAVE}
-                    </span>
-            </div>
-        );
         return <div>{menu}</div>
     };
 
