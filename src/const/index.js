@@ -21,6 +21,7 @@ export const seatMap =
     };
 
 export const LEAVE = "Leave";
+export const LEAVE_LINK = "/members_area/index.html";
 
 export const menuItems = [
     {

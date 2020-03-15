@@ -2,6 +2,9 @@ import React, {useEffect} from "react";
 import "./notify-modal.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "react-bootstrap";
+import {
+    LEAVE_LINK
+} from "../../const";
 
 const NotifyModal = (props) => {
     const showNotify = useSelector(state => state.showNotify,[]);
@@ -26,12 +29,12 @@ const NotifyModal = (props) => {
             payload: false
         });
         if (notify.customAction && notify.customAction === 'notLogIn') {
-            window.close();
+            window.location.href = LEAVE_LINK;
         }
     };
 
     const leaveGame = () => {
-        window.close();
+        window.location.href = LEAVE_LINK;
     };
 
     if (showNotify && notify) {

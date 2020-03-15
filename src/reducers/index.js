@@ -15,6 +15,7 @@ import {
 } from "../utils/playerController";
 import {handleHighlightCards, handleShowCardParam} from "../utils/showCardController";
 import {
+    LEAVE_LINK,
     DID_FININSH_PROCESSING,
     CURRENT_PROCESS,
     UPDATE_RECEIVE,
@@ -394,7 +395,7 @@ function rootReducer(state = initialState, action) {
                 playerDealer: action.payload[0]
             };
         case "cancelBuyin":
-            window.close();
+            window.location.href = LEAVE_LINK;
             return {
                 ...initialState
             };

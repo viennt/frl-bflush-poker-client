@@ -1,6 +1,9 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "react-bootstrap";
+import {
+    LEAVE_LINK
+} from "../../const";
 
 const GameFinishModal = (props) => {
     const showGameFinished = useSelector(state => state.showGameFinished,[]);
@@ -8,7 +11,7 @@ const GameFinishModal = (props) => {
     const dispatch = useDispatch();
 
     const returnToLobby = () => {
-        window.close();
+        window.location.href = LEAVE_LINK;
     };
 
     const hideGameFinish = () => {
