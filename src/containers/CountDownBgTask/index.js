@@ -9,7 +9,7 @@ const CountDownBgTask = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (setTimer) {
+        if (setTimer && parseFloat(setTimer) > 0) {
             let time = setTimer;
             time--;
             backGroundTimer.current = setTimeout(() => {
@@ -21,6 +21,8 @@ const CountDownBgTask = (props) => {
             if (time < 0) {
                 clearTimeout(backGroundTimer.current)
             }
+        } else if (backGroundTimer.current) {
+            clearTimeout(backGroundTimer.current)
         }
         // eslint-disable-next-line
     },[setTimer]);
