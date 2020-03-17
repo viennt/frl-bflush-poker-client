@@ -170,15 +170,7 @@ export function positioningPlayer (numberPlayer,curSeatID,seats) {
 
     switch (numberPlayer) {
         case "2":
-            if (parseFloat(curSeatID) === 1) {
-                for (let i = 6; i <= 9; i++) {
-                    moveArray.push(backupArray[i])
-                }
-                for (let j = 0; j <= 5; j++) {
-                    leftArray.push(backupArray[j])
-                }
-                seats = [...moveArray,...leftArray];
-            } else {
+            if (parseFloat(curSeatID) !== 1) {
                 for (let k = 0; k <= 4; k++) {
                     moveArray.push(backupArray[k])
                 }
