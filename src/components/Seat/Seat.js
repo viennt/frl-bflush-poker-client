@@ -5,6 +5,7 @@ import EmptySeat from "./EmptySeat/EmptySeat";
 import PlayerSeat from "./PlayerSeat/PlayerSeat";
 
 import "./seat.css";
+import {noAvatar} from "../../const";
 
 const Seat = ({ seatid }) => {
   let playerName = "";
@@ -20,7 +21,7 @@ const Seat = ({ seatid }) => {
     playerName = seatPlayer['user_name'];
     avatarSource = seatPlayer['avatar'] !== "" ?
         "/" + seatPlayer['avatar'] :
-        "https://pngimage.net/wp-content/uploads/2018/06/no-avatar-png.png";
+        noAvatar;
     chips = seatPlayer['chips'];
     amount = seatPlayer['amount']
   }

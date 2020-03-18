@@ -1,4 +1,4 @@
-export const assetBaseUrl = "https://www.dev-b.bflush.com/engine/0.1";
+export const noAvatar = "/images/newsite/no_image.jpg";
 export const playerTurnMessage = "user_name It is your turn, you have time_remain seconds.";
 export const playerActionMessage = "Last move: user_name has just taken action: action_user";
 export const actionList = ["","Check","Folded","Call","Raise","All In"];
