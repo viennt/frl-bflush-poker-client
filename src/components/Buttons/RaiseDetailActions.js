@@ -1,5 +1,4 @@
 import React from "react";
-import {sendMsg} from "../../utils/socket-io-lib";
 import {useDispatch, useSelector} from "react-redux";
 
 const RaiseDetailActions = ({show,curSeatID}) => {
@@ -53,7 +52,10 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     };
 
     const actionAllIn = () => {
-        sendMsg("actionAllIn")
+        dispatch({
+            type: "setRaiseAmount",
+            payload: parseFloat(setRaiseAmount).toFixed(2)
+        });
     };
 
     const handlePlusButtonPress = () => {

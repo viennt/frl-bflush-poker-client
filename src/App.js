@@ -17,7 +17,6 @@ import "./responsive_landscape.css";
 import "./responsive_portrait.css";
 
 import GameHeader from "./components/GameHeader";
-import {assetBaseUrl} from "./const";
 import { updateMessage, startProcessMsg , loadMessage } from './actions'
 import {isMobile} from 'react-device-detect'
 import FullScreen from 'mobile-safari-fullscreen'
@@ -85,7 +84,7 @@ class App extends Component {
                     <NotifyModal/>
                     <GameFinishModal/>
                     <audio id="winnerAudio">
-                        <source src={assetBaseUrl + "/sounds/winner.ogg"} type="audio/ogg"/>
+                        <source src={"/sounds/winner.ogg"} type="audio/ogg"/>
                     </audio>
                     <ProcessMessage/>
                     <Loading/>

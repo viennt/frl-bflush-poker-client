@@ -19,7 +19,7 @@ const Seat = ({ seatid }) => {
   if (seatPlayer) {
     playerName = seatPlayer['user_name'];
     avatarSource = seatPlayer['avatar'] !== "" ?
-        "https://www.dev-b.bflush.com/" + seatPlayer['avatar'] :
+        "/" + seatPlayer['avatar'] :
         "https://pngimage.net/wp-content/uploads/2018/06/no-avatar-png.png";
     chips = seatPlayer['chips'];
     amount = seatPlayer['amount']

@@ -1,7 +1,6 @@
 import React, {  } from "react";
 import "./card-area.css";
 import {useSelector} from "react-redux";
-import {assetBaseUrl} from "../../const";
 
 const CardArea = (props) => {
   const showCard = useSelector(state => state.showCard,[]);
@@ -19,7 +18,7 @@ const CardArea = (props) => {
                 className="seat__card"
             >
               <img
-                src={assetBaseUrl + '/images/html5/cards/cards_' + card + '.svg'}
+                src={'/images/html5/cards/cards_' + card + '.svg'}
                 alt={'card-middle-table'}
               />
             </div>

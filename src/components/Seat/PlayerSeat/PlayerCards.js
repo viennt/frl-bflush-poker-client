@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {actionList, assetBaseUrl} from "../../../const";
+import {actionList} from "../../../const";
 
 const PlayerCards = ({seatid}) => {
     const showCard = useSelector(state => state.showCard,[]);
@@ -41,7 +41,7 @@ const PlayerCards = ({seatid}) => {
                     >
                         <img
                             className={parseFloat(highlightCards) === parseFloat(seatid) ? "hightlight-card" : ""}
-                             src={assetBaseUrl + '/images/html5/cards/cards_' + card + '.svg'}
+                             src={'/images/html5/cards/cards_' + card + '.svg'}
                              alt={'card-player-show'}
                         />
                     </div>
