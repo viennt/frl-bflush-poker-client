@@ -23,7 +23,7 @@ const BlindTimer = ({showBlindTimer}) => {
     const createTimer = () => {
         let currentTime = new Date().getTime();
         let timer = (setTimer - currentTime)/1000;
-        if (timer === 0) {
+        if (timer <= 0) {
             clearInterval(backGroundBlind.current)
         }
 
