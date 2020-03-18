@@ -338,6 +338,7 @@ function rootReducer(state = initialState, action) {
         case "tableDetails":
             let defaultSetRaiseAction  = {...state.setRaiseAmount};
             defaultSetRaiseAction[state.curSeatID] = parseFloat(action.payload[2]).toFixed(2);
+            let currentTime = new Date().getTime();
             return {
                 ...state,
                 tableDetails: {
@@ -352,7 +353,7 @@ function rootReducer(state = initialState, action) {
                     blinds_timer: action.payload[8],
                     in_progress: action.payload[9]
                 },
-                setTimer: action.payload[8],
+                setTimer: currentTime + (action.payload[8])*1000,
                 isTournamentGame: action.payload[5] !== "N" && action.payload[5] !== "" && action.payload[5] !== null,
                 setRaiseAmount: defaultSetRaiseAction,
                 minRaiseAmount: defaultSetRaiseAction
@@ -528,6 +529,7 @@ function rootReducer(state = initialState, action) {
                 setRaiseAmount: updateSetRaiseAmount
             };
         case "updateBlinds":
+            let currentUpdateTime = new Date().getTime();
             return {
                 ...state,
                 updateBlinds: {
@@ -535,7 +537,7 @@ function rootReducer(state = initialState, action) {
                     big_blind_amount: action.payload[1],
                     time_remaining: action.payload[2]
                 },
-                setTimer: action.payload[2]
+                setTimer: currentUpdateTime + (action.payload[2])*1000
             };
         case "sitOutPlayer":
             let updateIsSittingOut = state.isSittingOut;
@@ -558,11 +560,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 startProcessing: false
             };
-        case "setTimer":
-            return {
-                ...state,
-                setTimer: action.payload
-            };
+        // case "setTimer":
+        //     return {
+        //         ...state,
+        //         setTimer: action.payload
+        //     };
         default:
             let customData = {};
             customData[action.type] = action.payload;

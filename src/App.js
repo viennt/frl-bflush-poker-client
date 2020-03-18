@@ -21,7 +21,7 @@ import { updateMessage, startProcessMsg , loadMessage } from './actions'
 import {isMobile} from 'react-device-detect'
 import FullScreen from 'mobile-safari-fullscreen'
 import styles from './index.modle.css'
-import CountDownBgTask from "./containers/CountDownBgTask";
+// import CountDownBgTask from "./containers/CountDownBgTask";
 //leave Table when close window
 const closingCode = () => {
     sendMsg("leaveTable");
@@ -88,7 +88,7 @@ class App extends Component {
                     </audio>
                     <ProcessMessage/>
                     <Loading/>
-                    <CountDownBgTask/>
+                    {/*<CountDownBgTask/>*/}
                     {/*<ChatRoom />*/}
                 </div>
             </FullScreen>
