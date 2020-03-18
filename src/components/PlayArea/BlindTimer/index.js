@@ -24,7 +24,8 @@ const BlindTimer = ({showBlindTimer}) => {
         let currentTime = new Date().getTime();
         let timer = (setTimer - currentTime)/1000;
         if (timer <= 0) {
-            clearInterval(backGroundBlind.current)
+            clearInterval(backGroundBlind.current);
+            return "00:00"
         }
 
         let minutes = parseInt(timer / 60, 10);

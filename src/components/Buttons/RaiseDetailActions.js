@@ -54,7 +54,7 @@ const RaiseDetailActions = ({show,curSeatID}) => {
     const actionAllIn = () => {
         dispatch({
             type: "setRaiseAmount",
-            payload: parseFloat(setRaiseAmount).toFixed(2)
+            payload: maxBetAmount.toFixed(2)
         });
     };
 
