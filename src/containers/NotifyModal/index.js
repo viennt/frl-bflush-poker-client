@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import "./notify-modal.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "react-bootstrap";
@@ -11,14 +11,21 @@ const NotifyModal = (props) => {
     const notify = useSelector(state => state.notify,[]);
     const dispatch = useDispatch();
 
+    const notifyRef = useRef(false);
+
     useEffect(() => {
         if (notify.time) {
-            setTimeout(() => {
+            notifyRef.current = setTimeout(() => {
                 dispatch({
                     type: "hideNotify",
                     payload: false
                 });
             },parseFloat(notify.time) * 1000)
+        }
+        return () => {
+            if (notifyRef.current) {
+                clearTimeout(notifyRef.current)
+            }
         }
         // eslint-disable-next-line
     },[showNotify]);

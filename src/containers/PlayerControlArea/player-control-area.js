@@ -25,11 +25,6 @@ const PlayerControlArea = (props) => {
     const playerActionStatus = useSelector(state => state.playerActionStatus[curSeatID],[]);
     const showCard = useSelector(state => state.showCard[curSeatID],[]);
 
-
-    const isTournamentGame = useSelector(state => state.isTournamentGame);
-
-    let showBlindTimer = isTournamentGame && tableDetails;
-
     const dispatch = useDispatch();
 
     let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
@@ -115,7 +110,7 @@ const PlayerControlArea = (props) => {
                 </div>
                 {show &&
                     (!isMyTurn ?
-                            <BlindTimer showBlindTimer={showBlindTimer}/> :
+                            <BlindTimer /> :
                             <div className={'remaining-chips'}>
                                 Total chips remaining:
                                 <div>{parseFloat(myInformation.chips).toFixed(2)}</div>

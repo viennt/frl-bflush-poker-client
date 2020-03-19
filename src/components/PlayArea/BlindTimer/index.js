@@ -1,10 +1,14 @@
 import React, {useEffect, useRef,useState} from "react";
 import {useSelector} from "react-redux";
 
-const BlindTimer = ({showBlindTimer}) => {
+const BlindTimer = (props) => {
     const backGroundBlind = useRef(false);
     const [seconds, setSeconds] = useState(0);
     const setTimer  = useSelector(state => state.setTimer,[]);
+    const tableDetails  = useSelector(state => state.tableDetails,[]);
+    const isTournamentGame = useSelector(state => state.isTournamentGame);
+
+    let showBlindTimer = isTournamentGame && tableDetails;
 
     useEffect(() => {
         if (setTimer) {
