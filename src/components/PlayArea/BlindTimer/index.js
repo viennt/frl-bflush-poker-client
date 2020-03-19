@@ -3,26 +3,9 @@ import {useSelector} from "react-redux";
 
 const BlindTimer = (props) => {
     const backGroundBlind = useRef(false);
-    const [seconds, setSeconds] = useState(0);
     const setTimer  = useSelector(state => state.setTimer,[]);
     const tableDetails  = useSelector(state => state.tableDetails,[]);
     const isTournamentGame = useSelector(state => state.isTournamentGame);
-
-    let showBlindTimer = isTournamentGame && tableDetails;
-
-    useEffect(() => {
-        if (setTimer) {
-            if (backGroundBlind.current && setTimer - new Date().getTime() <= 0) {
-                clearInterval(backGroundBlind.current)
-            } else {
-                backGroundBlind.current = setInterval(() => {
-                    setSeconds(createTimer());
-                }, 1000);
-            }
-            return () => clearInterval(backGroundBlind.current);
-        }
-        // eslint-disable-next-line
-    }, [setTimer,seconds]);
 
     const createTimer = () => {
         let currentTime = new Date().getTime();
@@ -40,6 +23,27 @@ const BlindTimer = (props) => {
 
         return minutes + ":" + seconds
     };
+
+
+    let startUpValue = createTimer();
+    const [seconds, setSeconds] = useState(startUpValue);
+
+
+    let showBlindTimer = isTournamentGame && tableDetails;
+
+    useEffect(() => {
+        if (setTimer) {
+            if (backGroundBlind.current && setTimer - new Date().getTime() <= 0) {
+                clearInterval(backGroundBlind.current)
+            } else {
+                backGroundBlind.current = setInterval(() => {
+                    setSeconds(createTimer());
+                }, 1000);
+            }
+            return () => clearInterval(backGroundBlind.current);
+        }
+        // eslint-disable-next-line
+    }, [setTimer,seconds]);
 
     if (!showBlindTimer) return null;
 
