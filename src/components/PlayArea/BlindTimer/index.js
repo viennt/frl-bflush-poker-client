@@ -37,7 +37,7 @@ const BlindTimer = ({showBlindTimer}) => {
         return minutes + ":" + seconds
     };
 
-    if (showBlindTimer) return null;
+    if (!showBlindTimer) return null;
 
     return <div className={'blind-timer'}>
         Blinds increase in
