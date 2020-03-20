@@ -20,7 +20,7 @@ const Seat = ({ seatid }) => {
   if (seatPlayer) {
     playerName = seatPlayer['user_name'];
     avatarSource = seatPlayer['avatar'] !== "" ?
-        "/" + seatPlayer['avatar'] :
+        seatPlayer['avatar'] :
         noAvatar;
     chips = seatPlayer['chips'];
     amount = seatPlayer['amount']
