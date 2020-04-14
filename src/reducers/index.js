@@ -301,13 +301,18 @@ function rootReducer(state = initialState, action) {
                 playerActionStatus: mainPotStatusUpdatePlayerAction
             };
         case "popupBuyin":
+            let popupBuyin = {
+                min: action.payload[0],
+                max: action.payload[1],
+                chips: action.payload[2]
+            };
+
+            if (action.payload[3] && action.payload[3] === "1") {
+                popupBuyin["hasPassword"] = true
+            }
             return {
                 ...state,
-                popupBuyin: {
-                    min: action.payload[0],
-                    max: action.payload[1],
-                    chips: action.payload[2]
-                }
+                popupBuyin: popupBuyin
             };
         case "popupRebuy":
             return {

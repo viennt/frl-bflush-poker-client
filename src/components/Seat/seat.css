@@ -32,7 +32,7 @@
 
 .seat-player:nth-child(1) .amount {
   bottom: -5vh;
-  left: -5vw;
+  left: -8vw;
   top: unset;
 }
 
@@ -47,8 +47,8 @@
 }
 
 .seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
-  top: 2vh;
-  left: -16vw;
+  top: 4vh;
+  left: -12vw;
 }
 
 .seat-player:nth-child(4) {
@@ -56,7 +56,7 @@
   z-index: 5;
 }
 .seat-player:nth-child(4) .amount {
-  left: -5vw
+  left: -8vw
 }
 
 
@@ -67,7 +67,7 @@
 }
 
 .seat-player:nth-child(6) .amount {
-  left: 5vw;
+  left: 8vw;
 }
 
 .seat-player:nth-child(7) {
@@ -81,8 +81,8 @@
 }
 
 .seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
-  top: 2vh;
-  left: 16vw;
+  top: 4vh;
+  left: 12vw;
 }
 
 .seat-player:nth-child(9) {
@@ -92,7 +92,7 @@
 
 .seat-player:nth-child(9) .amount {
   bottom: -5vh;
-  left: 5vw;
+  left: 8vw;
   top: unset;
 }
 
@@ -238,6 +238,38 @@
 .seat__card_container .seat__card:nth-child(2) {
   transform: translateY(-100%) translateX(50%);
 }
+
+
+.progress {
+  width: 100%;
+  background-color: transparent;
+  height: 1.25em;
+  position: relative;
+}
+.progress-bar-cus {
+  animation-name: width;
+  background-image: linear-gradient(
+          to left,
+          #70dc23, yellow, orange, #ff1076
+  );
+  height: 100%;
+  position: relative;
+}
+
+@keyframes width {
+  0%,
+  100% {
+    transition-timing-function: cubic-bezier(1, 0, 0.65, 0.85);
+  }
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+
 
 @media (min-width: 640px) {
 

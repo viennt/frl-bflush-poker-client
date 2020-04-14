@@ -54,7 +54,7 @@
 
     .seat-player:nth-child(1) .amount {
         bottom: -5vw;
-        left: -5vh;
+        left: -8vh;
     }
 
     .seat-player:nth-child(2) {
@@ -66,15 +66,15 @@
     }
 
     .seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
-        top: 2vw;
-        left: -16vh;
+        top: 4vw;
+        left: -12vh;
     }
 
     .seat-player:nth-child(4) {
         transform: translateX(25vh) translateY(25vw);
     }
     .seat-player:nth-child(4) .amount {
-        left: -5vh
+        left: -8vh
     }
 
 
@@ -84,7 +84,8 @@
     }
 
     .seat-player:nth-child(6) .amount {
-        left: 5vh;
+        left: 8vh;
+        top: -5vw;
     }
 
     .seat-player:nth-child(7) {
@@ -96,8 +97,8 @@
     }
 
     .seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
-        top: 2vw;
-        left: 16vh;
+        top: 4vw;
+        left: 12vh;
     }
 
     .seat-player:nth-child(9) {
@@ -106,7 +107,7 @@
 
     .seat-player:nth-child(9) .amount {
         bottom: -5vw;
-        left: 5vh;
+        left: 8vh;
     }
 
     .seat-player:nth-child(10) {

@@ -131,3 +131,15 @@
   margin-top: 15px;
   float: right;
 }
+
+.password-container {
+  padding: 0 20px 20px 20px;
+}
+.password-container .password-title {
+  color: white;
+  font-weight: bold;
+}
+.password-container .password-input {
+  height: 34px;
+  max-width: 150px;
+}

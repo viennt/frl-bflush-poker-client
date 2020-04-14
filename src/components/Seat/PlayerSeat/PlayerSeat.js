@@ -78,18 +78,20 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 </div>
             </div>
             <div id="prog-bar">
-                <div
-                    id="background"
-                    style={
-                        playerTurn && parseFloat(playerTurn["seat"]) === parseFloat(seatid) ?
-                            {
-                                opacity: 1,
-                                transitionDuration: playerTurn["total_time"] + "s",
-                                clipPath: "inset(0 100% 0 0)"
-                            } :
-                            {opacity: 0}
-                    }
-                />
+                <div className="progress">
+                    <div
+                        className="progress-bar-cus"
+                        style={
+                            playerTurn && parseFloat(playerTurn["seat"]) === parseFloat(seatid) ?
+                                {
+                                    opacity: 1,
+                                    animationDuration: playerTurn["total_time"] + "s"
+                                } :
+                                {opacity: 0}
+                        }
+                    >
+                    </div>
+                </div>
             </div>
             {
                 amount && parseFloat(amount) > 0 &&

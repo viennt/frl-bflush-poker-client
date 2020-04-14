@@ -14,6 +14,8 @@ const BuyInModal = props => {
   const modalShow = useSelector(state => state.modalShow,[]);
   const tableDetails = useSelector(state => state.tableDetails,[]);
 
+  const [password,setPassword] = useState("");
+
   useEffect(() => {
     if (popupBuyin) {
       setBetChip(popupBuyin.min)
@@ -35,7 +37,11 @@ const BuyInModal = props => {
 
 
   const SendMessageToServer = () => {
-    sendMsg("buyin", [betChip, 'N']);
+    let param = [betChip, 'N'];
+    if (popupBuyin.hasPassword) {
+      param.push(password);
+    }
+    sendMsg("buyin", param);
   };
 
   const cancelReverseSeat = () => {
@@ -47,7 +53,11 @@ const BuyInModal = props => {
   };
 
   const waitForBigBlind = () => {
-    sendMsg("buyin", [betChip,'Y'])
+    let param = [betChip, 'Y'];
+    if (popupBuyin.hasPassword) {
+      param.push(password);
+    }
+    sendMsg("buyin", param)
   };
 
   const handlePlusButtonPress = () => {
@@ -78,6 +88,10 @@ const BuyInModal = props => {
     }
   };
 
+  const handleChange = (e) => {
+    setPassword(e.target.value)
+  };
+
   if (popupBuyin) {
     return (
         <Modal
@@ -88,7 +102,7 @@ const BuyInModal = props => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-          <Modal.Body>
+          <Modal.Body style={popupBuyin.hasPassword ? {paddingBottom: "50px", height: "300px"} : {}}>
             <div className="modal-title">Lets play! </div>
             <div className="modal-question">How many chips would you like?</div>
             <div className="modal-introduce-table">
@@ -118,6 +132,16 @@ const BuyInModal = props => {
                 +
               </button>
             </div>
+            {
+              popupBuyin.hasPassword &&
+                  <div className={'row password-container justify-content-center align-items-center'}>
+                    <span className={'col-6 password-title'}>Password for this table:</span>
+                    <input
+                        className={'col-6 password-input'}
+                        onChange={ handleChange }
+                    />
+                  </div>
+            }
             <div className="modal-chips-menu-select">
               <button
                   onClick={waitForBigBlind}
