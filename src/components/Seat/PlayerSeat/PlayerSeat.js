@@ -22,7 +22,7 @@ const PlayerSeat = ({ avatarSource, playerName, chips, seatid , amount }) => {
                 dispatch({
                     type: "resetPlayerWinner"
                 })
-            },2000)
+            },2500)
         }
     });
 
