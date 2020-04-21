@@ -1,0 +1,73 @@
+.play-area__background {
+  width: 100%;
+  height: 100%;
+  background: url("../../../assets/table-honey-comb.jpg") center center no-repeat;
+  background-size: cover;
+}
+.play-area__table {
+  width: 100%;
+  height: 100%;
+  background: url("../../../assets/table-logo.png") center center no-repeat;
+  background-size: contain;
+}
+
+.raise-section {
+    margin-left: 5px;
+}
+
+
+
+.raise-section .raise-button {
+    /* width: 2.5em; */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
+    border: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 4vh;
+    height: 4vh;
+    line-height: 4vh;
+}
+.raise-section .raise-chips {
+    background: white;
+    font-style: normal;
+    font-weight: normal;
+    color: #045388;
+    text-align: center;
+    margin: 0 5px;
+    height: 4vh;
+    line-height: 4vh;
+    font-size: 4vh;
+    flex-grow: 1;
+    padding: 0 2vw;
+}
+
+.control-area .raise-detail {
+   position: absolute;
+   background: #2c2f34;
+   bottom: 9vh;
+   width: 48%;
+   z-index: 20;
+   padding: 10px;
+ }
+
+.control-area .raise-detail .control-button {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(11, 10, 10, 0.7) 100%), #FFEA2F;
+    font-size: 2.3vh;
+    border: none;
+    font-weight: bold;
+    color: black;
+    height: 4vh;
+    line-height: 4vh;
+    margin-left: 5px;
+}
+
+.control-area .raise-detail .control-button:nth-child(1) {
+  margin-left: 0;
+}
+
+.pre-select-action {
+    color: white;
+    font-size: 2.7vh;
+    margin-left: 1vw;
+    margin-bottom: 0;
+}

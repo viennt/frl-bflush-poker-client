@@ -1,0 +1,151 @@
+import React, {useState, useEffect} from "react";
+import { Modal } from "react-bootstrap";
+import { sendMsg } from "../../utils/socket-io-lib";
+import "../BuyInModal/buy-in-modal.css";
+import {useDispatch, useSelector} from "react-redux";
+
+const ReBuyModal = props => {
+    let minChip = 0;
+    let maxChip = 0;
+    let curChip = 0;
+    let step = 0;
+
+    const popupRebuy = useSelector(state => state.popupRebuy,[]);
+    const popupRebuyModalShow = useSelector(state => state.popupRebuyModalShow,[]);
+    const myInformation = useSelector(state => state.myInformation,[]);
+    const tableDetails = useSelector(state => state.tableDetails,[]);
+
+    useEffect(() => {
+        if (popupRebuy && myInformation) {
+            let setminChipValue = (parseFloat(popupRebuy.min) - parseFloat(myInformation['chips'])).toFixed(2);
+            if (setminChipValue < 0) {
+                setminChipValue = 0;
+            }
+            setBetChip(setminChipValue)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [popupRebuy]);
+
+    const dispatch = useDispatch();
+    if (popupRebuy && myInformation) {
+        minChip = (parseFloat(popupRebuy.min) - parseFloat(myInformation['chips'])).toFixed(2);
+        if (minChip < 0) {
+            minChip = 0;
+        }
+        maxChip = (parseFloat(popupRebuy.max) - parseFloat(myInformation['chips'])).toFixed(2);
+        curChip = parseFloat(popupRebuy.chips);
+    }
+
+    if (tableDetails) {
+        step = 10 * parseFloat(tableDetails['big_blind']);
+    }
+
+    const [betChip,setBetChip] = useState(minChip);
+
+
+    const SendMessageToServer = () => {
+        sendMsg("rebuy", [betChip]);
+        dispatch({
+            type: "popupRebuyModalHide",
+            payload: false
+        })
+    };
+
+    const cancelRebuy = () => {
+        sendMsg("sitOut");
+        dispatch({
+            type: "popupRebuyModalHide",
+            payload: false
+        })
+    };
+
+    const handlePlusButtonPress = () => {
+        let chipsSet = parseFloat(betChip);
+        if (chipsSet < parseFloat(maxChip)) {
+            chipsSet += parseFloat(step);
+
+            chipsSet = parseFloat(chipsSet).toFixed(2);
+
+            if (chipsSet > maxChip) {
+                chipsSet = maxChip
+            }
+            setBetChip(chipsSet)
+        }
+    };
+
+    const handleMinusButtonPress = () => {
+        let chipsSet = parseFloat(betChip);
+        if (chipsSet > 0) {
+            chipsSet -= parseFloat(step);
+
+            chipsSet = parseFloat(chipsSet).toFixed(2);
+
+            if (chipsSet < 0) {
+                chipsSet = 0
+            }
+            setBetChip(chipsSet)
+        }
+    };
+
+    if (popupRebuyModalShow) {
+        return (
+            <Modal
+                {...props}
+                show={popupRebuyModalShow}
+                onHide={cancelRebuy}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Body>
+                    <div className="modal-title">Lets play more! </div>
+                    <div className="modal-question">How many chips would you like?</div>
+                    <div className="modal-introduce-table">
+                        <div className="modal-introduce-table-row01">
+                            <div>Minimum buy in:</div>
+                            <div> Maximum buy in:</div>
+                            <div className="modal-chips-text">Your total chips: </div>
+                        </div>
+                        <div className="modal-introduce-table-row02">
+                            <div>{minChip}</div>
+                            <div>{maxChip}</div>
+                            <div className="modal-chips-text">{curChip}</div>
+                        </div>
+                    </div>
+                    <div className="modal-chips-table">
+                        <button
+                            onClick={handleMinusButtonPress}
+                            className="modal-chips-mir"
+                        >
+                            -
+                        </button>
+                        <div className="modal-chips-chips">{betChip}</div>
+                        <button
+                            onClick={handlePlusButtonPress}
+                            className="modal-chips-plus"
+                        >
+                            +
+                        </button>
+                    </div>
+                    <div className="modal-chips-menu-select">
+                        <button
+                            onClick={cancelRebuy}
+                            className="modal-chips-menu-select-btn"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={SendMessageToServer}
+                            className="modal-chips-menu-select-btn"
+                        >
+                            Buy
+                        </button>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        );
+    }
+    return null
+};
+
+export default ReBuyModal;

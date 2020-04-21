@@ -1,58 +1,125 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./player-control-area.css";
-import { useSelector , useDispatch } from "react-redux";
-import { FilterSeatPlayerByUser } from "../../utils/filter";
+import {useDispatch, useSelector} from "react-redux";
+
+import FoldButton from "../../components/Buttons/FoldButton";
+import CallButton from "../../components/Buttons/CallButton";
+import CheckButton from "../../components/Buttons/CheckButton";
+import RaiseButton from "../../components/Buttons/RaiseButton";
+import RaiseDetailActions from "../../components/Buttons/RaiseDetailActions";
+// import CallAnyButton from "../../components/Buttons/CallAnyButton";
+import BlindTimer from "../../components/PlayArea/BlindTimer";
+import {sendMsg} from "../../utils/socket-io-lib";
+import {actionList} from "../../const";
 
 const PlayerControlArea = (props) => {
-  let fold_btn = "";
-  let call_btn = "";
-  let call_any_btn = "";
-  let bet_btn = "";
-  let show_player_control = false;
+    const curSeatID = useSelector(state => state.curSeatID,[]);
+    const currentPlayerTurn = useSelector(state => state.currentPlayerTurn,[]);
+    const tableDetails = useSelector(state => state.tableDetails,[]);
+    const emptySeat = useSelector(state => state.emptySeat,[]);
+    const playerSitout = useSelector(state => state.playerSitout,[]);
+    const stackAction = useSelector(state => state.stackAction[curSeatID], []);
+    const playerTurn = useSelector(state => state.playerTurn,[]);
+    const myInformation = useSelector(state => state.myInformation,[]);
+    const playerAction = useSelector(state => state.playerAction,[]);
+    const playerActionStatus = useSelector(state => state.playerActionStatus[curSeatID],[]);
+    const showCard = useSelector(state => state.showCard[curSeatID],[]);
 
-  const receiveMsg = useSelector(state => state.receiveMsg);
-  const curSeat = useSelector(state => state.curSeatID);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  let seat_user_id = FilterSeatPlayerByUser(receiveMsg);
-  if (typeof seat_user_id !== "undefined" || seat_user_id != null) {
-    dispatch({
-      type: "SET_CUR_SEAT_ID",
-      payload: seat_user_id.params[0]
-    });
-  }
+    let isMyTurn = parseFloat(currentPlayerTurn) === parseFloat(curSeatID) && parseFloat(curSeatID) !== 0;
+    let isIphoneX = navigator.userAgent.match(/(iPhone)/);
 
-  const sitOutPlayerID = receiveMsg
-    .filter(receive => {
-      return receive.message === "playerSitout";
-    })
-    .filter(seat => {
-      return seat.params[0] === curSeat;
-    });
+    let show = undefined;
+    if (isMyTurn) {
+        if (Object.keys(playerAction).length > 0) {
+            show = true;
+        }
+    } else {
+        if (!playerSitout.includes(curSeatID) && playerTurn) {
+            show = true;
+        }
+    }
 
-  if (Object.keys(sitOutPlayerID).length < 1) {
-    show_player_control = true;
-  }
+    if (!tableDetails) {
+        show = false;
+    }
 
-  if (show_player_control) {
-    fold_btn = <button className="control-button">Fold</button>;
-    call_btn = <button className="control-button">Call</button>;
-    call_any_btn = <button className="control-button">Call any</button>;
-    bet_btn = <button className="control-button">Bet</button>;
-  }
+    if (emptySeat.includes(curSeatID)) {
+        show = false;
+    }
 
-  if (curSeat === 0) {
-    return <div id="control-area"></div>;
-  }
+    if (playerSitout.includes(curSeatID)) {
+        show = false;
+    }
 
-  return (
-    <div id="control-area">
-      {fold_btn}
-      {call_btn}
-      {call_any_btn}
-      {bet_btn}
-    </div>
-  );
+    if (parseFloat(curSeatID) === 0) {
+        show = false;
+    }
+
+    if (playerActionStatus === actionList[2].toUpperCase()) {
+        show = false;
+    }
+
+    if (!showCard) {
+        show = false;
+    }
+
+    useEffect(() => {
+        // Auto send stack action
+        if (isMyTurn) {
+            if (stackAction) {
+                let shouldSend = true;
+                let payload = [];
+                let name = stackAction.name;
+                if (stackAction.name.includes("actionCall")) {
+                    // if (stackAction.name === "actionCallAny") {
+                    //     name = "actionCall";
+                    //     payload = [parseFloat(stackAction.payload).toFixed(2)]
+                    // } else {
+                        shouldSend = parseFloat(stackAction.payload) <= parseFloat(playerTurn["call_amount"]);
+                        if (shouldSend) {
+                            payload = [parseFloat(stackAction.payload).toFixed(2)];
+                        }
+                    // }
+                }
+                if (shouldSend) {
+                    sendMsg(name, payload);
+                    dispatch({
+                        type: "stackAction",
+                        payload: null
+                    })
+                }
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[isMyTurn, JSON.stringify(playerTurn), JSON.stringify(stackAction)]);
+
+    return (
+        <div className={isIphoneX ? "control-area iphoneX" : "control-area"}>
+            <div
+                className="control-area-container"
+            >
+                {show && !isMyTurn && <p className={"pre-select-action"}>Preselect Next Action</p>}
+                <div className={'button-container'}>
+                    <FoldButton show={show} curSeatID={curSeatID}/>
+                    <CheckButton show={show} curSeatID={curSeatID}/>
+                    <CallButton show={show} curSeatID={curSeatID}/>
+                    {isMyTurn && <RaiseButton show={show}/>}
+                    {isMyTurn && <RaiseDetailActions show={show} curSeatID={curSeatID}/>}
+                </div>
+                {show &&
+                    (!isMyTurn ?
+                            <BlindTimer /> :
+                            <div className={'remaining-chips'}>
+                                Total chips remaining:
+                                <div>{parseFloat(myInformation.chips).toFixed(2)}</div>
+                            </div>
+                    )
+                }
+            </div>
+        </div>
+    );
 };
 
 export default PlayerControlArea;

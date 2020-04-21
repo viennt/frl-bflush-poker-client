@@ -1,10 +1,55 @@
 .card-area {
   position: absolute;
-  width: 180px;
-  height: 52px;
-  top: 90px;
-  left: 202px;
-  background: blue;
+  width: 35vw;
+  height: 30vh;
+  top: calc(50% - 18vh);
+  left: calc(50% - 18vw);
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+}
+
+.card__middle {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.card__middle .seat__card {
+  width: 6vw;
+  height: 14vh;
+}
+
+.inner_card {
+  width: 100%;
+  height: 100%;
+}
+
+.card-area .total-pot {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.seat__card {
+  width: 5vw;
+  overflow: hidden;
+  height: 11vh;
+  transition: opacity 0.2ms ease-in-out ;
+}
+.card-area .seat__card img {
+  width: 100%;
+  height: 100%;
+}
+img, svg {
+  vertical-align: middle;
+  width: 140%;
+  height: 140%;
+  overflow: hidden;
 }

@@ -1,0 +1,225 @@
+@media screen and (min-width: 320px) and (max-width: 812px) and (orientation: portrait) {
+    body {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    .game__header {
+        height: 18vw;
+    }
+    .game__header .list-menu .menu-items span{
+        font-size: 1.1rem;
+    }
+    .game__header .list-menu .menu-items {
+        margin: 10px 0;
+    }
+    .modal-backdrop {
+        width: 100vh;
+        height: 100vw;
+    }
+    .modal.show .modal-dialog {
+        justify-content: center;
+    }
+    .modal-content {
+        width: 80%;
+    }
+    .modal-dialog-centered::before {
+        height: unset;
+    }
+    .control-area {
+        height: 17vw;
+    }
+    .game {
+        width: 100vh;
+        height: 100vw;
+    }
+
+    .seat-player {
+        width: 20vh;
+        height: 13vw;
+    }
+
+    .seat-player:nth-child(5) {
+        transform: translateY(28vw);
+    }
+
+    .seat-player:nth-child(1) {
+        transform: translateX(25vh) translateY(-26vw);
+    }
+
+    .seat-player:nth-child(1) .amount {
+        bottom: -5vw;
+        left: -8vh;
+    }
+
+    .seat-player:nth-child(2) {
+        transform: translateX(35vh) translateY(-9vw);
+    }
+
+    .seat-player:nth-child(3) {
+        transform: translateX(35vh) translateY(8vw);
+    }
+
+    .seat-player:nth-child(3) .amount, .seat-player:nth-child(2) .amount {
+        top: 4vw;
+        left: -12vh;
+    }
+
+    .seat-player:nth-child(4) {
+        transform: translateX(25vh) translateY(25vw);
+    }
+    .seat-player:nth-child(4) .amount {
+        left: -8vh
+    }
+
+
+
+    .seat-player:nth-child(6) {
+        transform: translateX(-25vh) translateY(25vw);
+    }
+
+    .seat-player:nth-child(6) .amount {
+        left: 8vh;
+        top: -5vw;
+    }
+
+    .seat-player:nth-child(7) {
+        transform: translateX(-35vh) translateY(8vw);
+    }
+
+    .seat-player:nth-child(8) {
+        transform: translateX(-35vh) translateY(-9vw);
+    }
+
+    .seat-player:nth-child(7) .amount, .seat-player:nth-child(8) .amount {
+        top: 4vw;
+        left: 12vh;
+    }
+
+    .seat-player:nth-child(9) {
+        transform: translateX(-25vh) translateY(-26vw);
+    }
+
+    .seat-player:nth-child(9) .amount {
+        bottom: -5vw;
+        left: 8vh;
+    }
+
+    .seat-player:nth-child(10) {
+        transform: translateY(-28vw);
+    }
+
+    .seat-player:nth-child(10) .amount {
+        bottom: -5vw;
+        top: unset;
+    }
+
+    .control-button {
+        width: 15vh;
+        height: 8vw;
+        font-size: 1rem;
+    }
+    .game__header .list-menu-section {
+        max-width: 35vh;
+        max-height: 78vw;
+        padding: 11vw 2vw 2vw 2vw;
+        overflow: scroll;
+    }
+
+    .seat-player-content-money {
+        font-size: 3vw;
+        margin-top: 0;
+    }
+
+    .control-area .raise-detail {
+        bottom: 9vw;
+    }
+    .seat-player-content-title {
+        font-size: 4vw;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .card__middle .seat__card {
+        width: 4vh;
+        height: 14vw;
+    }
+    .game__header .menu-back-button {
+        padding: 0 20px;
+        font-size: 1.1rem;
+        margin: 5px;
+    }
+    .select-seat-btn,.empty-seat-btn {
+        font-size: 0.8rem;
+    }
+    .game__header .menu-button {
+        padding: 1vw 3vh;
+    }
+    .card-area {
+        width: 28vh;
+        height: 30vw;
+        top: calc(50% - 20vw);
+        left: calc(50% - 14vh);
+    }
+    .game__header .list-menu {
+        left: 1vh;
+        top: 2vw;
+    }
+    .control-area .raise-detail .control-button {
+        height: 5vw;
+        line-height: 5vw;
+        font-size: 2.3vw;
+    }
+    .pre-select-action {
+        font-size: 2vh;
+        margin-left: 1vh;
+    }
+    .raise-section .raise-button {
+        height: 5vw;
+        line-height: 5vw;
+        font-size: 5vw;
+    }
+    .raise-section .raise-chips {
+        height: 5vw;
+        line-height: 5vw;
+        font-size: 4vw;
+    }
+    .game__header .item-status {
+        font-size: 3vw;
+    }
+    .seat-player-content-money.chips {
+        font-size: 1vh;
+    }
+    .seat__card_container .seat__card {
+        width: 5vh;
+        height: 11vw;
+    }
+    .remaining-chips {
+        font-size: 3vw;
+    }
+    .blind-timer .clock {
+        font-size: 3vw;
+        padding: 2vw;
+    }
+    .seat-player .red-chips {
+        width: 4vh;
+        height: 3vh;
+    }
+    .seat-player .d-chip {
+        bottom: 0.5vh;
+        width: 4vh;
+        height: 3vh;
+    }
+
+    .iphoneX .control-area-container {
+        padding-bottom: unset;
+    }
+    .game__header .update-status {
+        margin-right: 15vh;
+    }
+}

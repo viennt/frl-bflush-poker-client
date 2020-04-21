@@ -1,20 +1,66 @@
-#control-area {
+.control-area {
+  width: 100%;
+  height: 13vh;
+  margin: 0 auto;
+  background-color: #2D2F34;
+  border-top: 1px solid #6f6f6f;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  /* align-items: center; */
+  position: relative;
+  flex-direction: column;
+}
+
+.control-area-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.button-container {
+  display: flex;
+  flex-grow: 1;
 }
 
 .control-button {
-  width: 90px;
-  height: 26px;
-  background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%),
-    linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
+  width: 15vw;
+  height: 6vh;
+  background: linear-gradient(180deg, #7ccbfc 0%, #045388 100%), linear-gradient(180deg, #045388 0%, #7ccbfc 100%), #0d77bf;
   color: #ffffff;
   font-style: normal;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
+  /* font-size: 1.2rem; */
+  /* line-height: 14px; */
   border: none;
   margin-left: 12px;
   font-family: "Lato", sans-serif;
+}
+.control-button:disabled {
+  background:  #045388;
+}
+.control-button.selected {
+  background: linear-gradient(180deg, #045388 0%, #7CCBFC 100%);
+}
+
+.remaining-chips {
+  color: white;
+  font-size: 3vh;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.blind-timer {
+  flex-grow: 1;
+  text-align: center;
+  color: white;
+  margin: 0 35px;
+}
+
+.blind-timer .clock {
+  background: #FFEA2F;
+  padding: 2vh;
+  color: black;
+  font-weight: bold;
+  font-size: 3vh;
 }

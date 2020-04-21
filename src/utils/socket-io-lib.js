@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-export const sendMsg = (action, params) => {
+export const sendMsg = (action, params=[]) => {
   // params is an array
   params.unshift(action);
   var text = params.map(p => p.toString()).join("|"); // we are not using base64 now, just convert them to string

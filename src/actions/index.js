@@ -1,9 +1,58 @@
-// Create Action
-const initialState = {
-  mgs: [],
-  receiveMsg: [],
-  curSeatID: 0,
-  modalShow: false
-};
+import {
+    DID_FININSH_PROCESSING,
+    CURRENT_PROCESS,
+    START_PROCESSING,
+    UPDATE_RECEIVE,
+    RESET_START_PROCESSING
+} from "../const";
 
-export default initialState;
+export const updateMessage = (message) =>
+    async dispatch => {
+        dispatch({
+            type: UPDATE_RECEIVE,
+            payload: message
+        })
+    };
+
+export const loadMessage = (message) =>
+    async dispatch => {
+        console.log(message);
+        dispatch({
+            type: START_PROCESSING
+        });
+        dispatch({
+            type: message.message,
+            payload: message.params,
+            customAction: message.custom
+        })
+    };
+
+
+export const currentProcessMsg = (msg) =>
+    async dispatch => {
+        dispatch({
+            type: CURRENT_PROCESS,
+            payload: msg
+        })
+    };
+
+
+export const didFinishProcess = () =>
+    async dispatch => {
+        dispatch({
+            type: DID_FININSH_PROCESSING
+        })
+    };
+
+export const startProcessMsg = () =>
+    async dispatch => {
+        dispatch({
+            type: START_PROCESSING
+        })
+    };
+export const resetStartProcessing = () =>
+    async dispatch => {
+        dispatch({
+            type: RESET_START_PROCESSING
+        })
+    };

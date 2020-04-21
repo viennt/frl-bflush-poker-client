@@ -1,0 +1,76 @@
+@media screen and (min-width: 320px) and (max-width: 812px) and (orientation: landscape) {
+    .game__header {
+        height: 12vh;
+    }
+    .seat-player {
+        width: 20vw;
+        height: 13vh;
+    }
+
+    .control-button {
+        width: 15vw;
+        height: 7vh;
+        line-height: 7vh;
+        font-size: 4vh;
+    }
+
+    .game__header .list-menu {
+        left: 2vh;
+        top: 0.75vw;
+    }
+
+    .game__header .menu-button {
+        padding: 0 4vw;
+        font-size: 4vh;
+    }
+
+    .game__header .list-menu-section {
+        max-width: 35vw;
+        max-height: 78vh;
+        padding: 11vh 2vh 2vh 2vh;
+        overflow: scroll;
+    }
+
+    .seat-player-content-money {
+        font-size: 3vh;
+        margin-top: 0;
+    }
+
+    .control-area .raise-detail {
+        bottom: 8vh;
+    }
+    .control-area.iphoneX .raise-detail {
+        bottom: 12vh;
+    }
+    .seat-player-content-title {
+        font-size: 3vh;
+        text-align: center;
+    }
+
+    .card__middle .seat__card {
+        width: 6vw;
+        height: 15vh;
+    }
+    .game__header .menu-back-button {
+        padding: 0 20px;
+        font-size: 1.1rem;
+        margin: 5px;
+    }
+    .select-seat-btn,.empty-seat-btn {
+        font-size: 0.8rem;
+    }
+    .game__header .list-menu .menu-items {
+        font-size: 3vw;
+    }
+    .seat-player-content-money.chips {
+        font-size: 1vw;
+    }
+
+    .control-area.iphoneX {
+        height: 12vw;
+    }
+    .iphoneX .control-area-container {
+        padding-bottom: 3vh;
+    }
+
+}
